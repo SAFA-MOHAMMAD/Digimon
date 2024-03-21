@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title> Event Details </title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Boxicons CDN Link -->
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <!--sidebar: start-->
+  <div class="sidebar">
+    <div class="logo-details">
+      <img Src="images/logo.png" class="icon">
+      <div class="logo_name">Club Mangment</div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav-list">
+
+      <li>
+        <a href="#">
+          <i class='bx bx-home'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-calendar-event'></i>
+          <span class="links_name">Weekly activites</span>
+        </a>
+        <span class="tooltip">Weekly activite</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bxl-telegram'></i>
+          <span class="links_name">Requests</span>
+        </a>
+        <span class="tooltip">Requests</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-add-to-queue'></i>
+          <span class="links_name">Create event</span>
+        </a>
+        <span class="tooltip">Create event</span>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-plus'></i>
+          <span class="links_name">Create Club</span>
+        </a>
+        <span class="tooltip">Create Club</span>
+      </li>
+      <li class="profile">
+        <div class="profile-details">
+          <img src="images/profile.png" alt="profileImg">
+          <div class="name_job">
+            <div class="name">Micheal salman</div>
+            <div class="job">Web designer</div>
+          </div>
+        </div>
+        <i class='bx bx-log-out' id="log_out"></i>
+      </li>
+    </ul>
+  </div>
+  <!--sidebar: end-->
+
+  <!--home-section: start-->
+  <section class="home-section">
+    <div class="text">
+      Event Details
+    </div>
+
+    <div class="grid"> <!--layout contaioner-->
+
+      <!--All the comming classes' names are descriping themselves-->
+
+      <!--Club section-->
+      <div class="clubNameDiv">
+        <img src="images/club2-logo.png" class="clubNameImg" alt="">
+        <h3 class="clubNameImg">Club Name</h3>
+        <p class="clubNameInfo">some info</p>
+      </div>
+
+      <!--Poster section-->
+      <div class="posterDiv">
+        <img src="images/poster1.png" class="posterImg" alt="">
+      </div>
+
+      <!--Guests section-->
+      <div class="guestDiv">
+        <div class="titleDiv">
+          <h3 class="title">Guests</h3>
+          <a href="#" class="editA"><button class="editBtn"><img src="images/EditIcon.png" class="editIcon"
+                alt=""></button></a>
+        </div>
+        <h4 class="guestName">Guest 1: Elon Musk</h4>
+        <p class="contactInfo">Contact Info: random@email.com</p>
+        <br>
+        <h4 class="guestName">Guest 2: Jeon Jung-kook</h4>
+        <p class="contactInfo">Contact Info: random@email.com</p>
+        <br>
+      </div>
+
+      <!--Information section-->
+      <div class="infoDiv">
+        <div class="titleDiv">
+          <h3 class="title">Information</h3>
+          <a href="#" class="editA"><button class="editBtn"><img src="images/EditIcon.png" class="editIcon"
+                alt=""></button></a>
+        </div>
+        <p class="InfoDate">Date: 10/3/2024</p>
+        <p class="infoTime">Time: 12:00 PM</p>
+        <p class="infoLocation">Location: Uskudar Central Campus</p>
+      </div>
+
+      <!--Description section-->
+      <div class="descDiv">
+        <div class="titleDiv">
+          <h3 class="title">Description</h3>
+          </button><a href="#" class="editA"><button class="editBtn"></button><img src="images/EditIcon.png"
+              class="editIcon" alt=""></button></a>
+        </div>
+        <p class="descP">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque molestiae unde porro ullam
+          laborum sit quas debitis rerum, adipisci cupiditate, quasi nisi modi magnam quam et nostrum quos ducimus!
+          Repudiandae?</p>
+      </div>
+
+
+    </div> <!--layout container: end-->
+
+    <!--Control buttons section-->
+    <div class="ctrlButtons">
+      <form action="">
+        <button class="deleteBtn">Delete Event <span class="material-symbols-outlined deleteIcon">
+            delete_forever
+          </span></button>
+        <button class="cancelBtn">Cancel Changes</button>
+        <button class="saveBtn">Save Changes</button>
+      </form>
+    </div>
+
+    <!--home-section: End-->
+
+    <script src="script.js"></script>
+</body>
+
+</html>
