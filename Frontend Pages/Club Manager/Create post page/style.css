@@ -1,0 +1,616 @@
+/* Google Font Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+
+
+/*==================================================*/
+
+/*Anchor deafult class*/
+
+
+a {
+  text-decoration: none; /* Remove underlining */
+}
+
+/*==================================================*/
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
+}
+
+/*side bar (closed)*/
+.sidebar{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 78px;
+  background-image: linear-gradient(to bottom, rgb(22, 139, 175), rgb(0, 82, 80));
+  padding: 6px 14px;
+  z-index: 99;
+  transition: all 0.5s ease;
+}
+
+/*side bar (open)*/
+.sidebar.open{
+  width: 250px;
+}
+
+/*side bar (closed) logo div (uskudar uni logo)*/
+.sidebar .logo-details{
+  margin-top: 15px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/*side bar (closed) logo picture class (uskudar uni logo)*/
+.sidebar .logo-details .icon{
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+/*side bar logo name class "club management"*/
+.sidebar .logo-details .logo_name{
+  margin-left: 2px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+/*side bar (open) logo picture class (uskudar uni logo)*/
+.sidebar.open .logo-details .icon{
+    opacity: 1;
+    height: 80px;
+}
+
+/*side bar (open) ogo name class "club management"*/
+.sidebar.open .logo-details .logo_name{
+  opacity: 1;
+}
+
+
+/*side bar (closed) menu button*/
+.sidebar .logo-details #btn{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: all 0.4s ease;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+/*side bar (open) menu button*/
+
+.sidebar.open .logo-details #btn{
+  text-align: right;
+}
+
+
+/*side bar icons format*/
+
+.sidebar i{
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+}
+
+/*side bar sub pages sub format*/
+.sidebar .nav-list{
+  margin-top: 20px;
+  height: 100%;
+}
+
+/*side bar link format*/
+
+.sidebar li{
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+
+/* tootip: a message which appears when a cursor is positioned over an icon, image, hyperlink */
+
+/* Sidebar tooltip */
+
+.sidebar li .tooltip{
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
+}
+
+/* Sidebar tooltip hover */
+
+.sidebar li:hover .tooltip{
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sidebar.open li .tooltip{
+  display: none;
+}
+
+.sidebar li a{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #11101D;
+}
+.sidebar li a:hover{
+  background: #FFF;
+}
+
+/* links name is the class name for  */
+/* Sidebar links name */
+
+
+.sidebar li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+}
+.sidebar.open li a .links_name{
+  opacity: 1;
+  pointer-events: auto;
+}
+.sidebar li a:hover .links_name,
+.sidebar li a:hover i{
+  transition: all 0.5s ease;
+  color: #11101D;
+}
+.sidebar li i{
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  border-radius: 12px;
+}
+
+/* side profile */
+
+
+.sidebar li.profile{
+  position: fixed;
+  height: 60px;
+  width: 78px;
+  left: 0;
+  bottom: -8px;
+  padding: 10px 14px;
+  background: #1d1b31;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+.sidebar.open li.profile{
+  width: 250px;
+}
+.sidebar li .profile-details{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.sidebar li img{
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+.sidebar li.profile .name,
+.sidebar li.profile .job{
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+}
+.sidebar li.profile .job{
+  font-size: 12px;
+}
+
+/* prfoile logout part */
+.sidebar .profile #log_out{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: #ff0000;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 0px;
+  transition: all 0.5s ease;
+}
+.sidebar.open .profile #log_out{
+  width: 50px;
+  background: red;
+}
+
+/* ===================================================== */
+
+/* home scetion start */
+
+.home-section{
+  position: relative;
+  background-image: linear-gradient(to left, rgb(207, 214, 214), rgb(185, 188, 188));
+  height: 1000px;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+.sidebar.open ~ .home-section{
+  left: 250px;
+  width: calc(100% - 250px);
+}
+.home-section .text{
+  font-family: "Koulen", sans-serif;
+  display: inline-block;
+  color: #11101d;
+  font-size: 50px;
+  font-weight: 500;
+  margin: 100px
+}
+/* notfication part start */
+
+.home-section .nav-grid{
+  display: grid;
+  grid-template-columns: 90% 10%;
+
+
+}
+/* notfication icon div */
+
+.icon-1 {
+position:relative;
+text-align: right;
+background-color: transparent;
+cursor: pointer;
+margin-right: 50px;
+}
+
+/* notficaion image/icon format */
+.icon-1 img {
+
+display: inline-block;
+width: 40px;
+margin-top: 20px;
+}
+.icon-1:hover {
+opacity: .7;
+}
+
+/* notficaion icon (the bell icon) */
+
+.home-section .notfication-icon {
+margin-top: 40px;
+margin-left: 60px;
+position: relative;
+display: block;
+text-align:right;
+z-index: 1;
+}
+
+/* notfication box format */
+
+
+.notifi-box {
+background-color: #FFF;
+width: 300px;
+height: 200px; /* Set a fixed height for the notification box */
+opacity: 0;
+position: absolute;
+top: 80px;
+right: 35px;
+transition: 1s opacity, 250ms height;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+z-index: 3;
+overflow: auto; /* Enable scrolling */
+}
+
+/* each notfication message picture/image */
+.notifi-box .box-icon{
+text-align: center;
+}
+
+.notifi-box h2 {
+font-size: 14px;
+padding: 10px;
+border-bottom: 1px solid #eee;
+color: #999;
+}
+.notifi-box h2 span {
+color: #f00;
+}
+
+notifi-box a{
+text-decoration: none;
+}
+
+.notifi-box::-webkit-scrollbar{
+width: 0;
+}
+
+/* each notfication message div */
+
+
+.notifi-item {
+display: grid;
+grid-template-columns: repeat(2, 1fr); /* 3 columns */
+grid-template-columns: 30% 70%;
+height: 80px;
+border-bottom: 1px solid #eee;
+padding: 15px 5px;
+margin-bottom: 15px;
+cursor: pointer;
+}
+
+
+.notifi-item:hover {
+background-color: #eee;
+}
+
+
+.notifi-item img {
+display: block;
+width: 50px;
+margin-right: 10px;
+border-radius: 50%;
+}
+
+/* text section in each notfication message */
+
+.notifi-item .text{
+margin: 0;
+text-align: left;
+}
+
+
+
+.notifi-item .text h4 {
+color: #777;
+font-size: 13px;
+margin-top: 5px;
+}
+.notifi-item .text p {
+color: #aaa;
+font-size: 12px;
+}
+
+
+
+
+
+
+/* Form styling */
+.home-section .Form {
+  margin: 80px; /* Margin around the form */
+}
+
+/* Input container styling */
+.home-section .Form .input {
+  margin-bottom: 20px; /* Spacing between input elements */
+  width: 60%;
+}
+
+/* Label styling */
+.home-section .Form .label {
+  font-family: "Inter", sans-serif; /* Font family */
+  font-size: 18px; /* Font size */
+  font-weight: 500; /* Font weight */
+  padding-bottom: 5px; /* Spacing below label */
+}
+
+/* Text input and text area styling */
+.home-section .Form .text-input,
+.home-section .Form .text-input2,
+.home-section .Form .text-input3,
+.home-section .Form .Check-box,
+.home-section .Form .text-area {
+  width: 80%; /* Full width */
+  padding: 10px; /* Padding */
+  border: 1px solid #ccc; /* Border */
+  border-radius: 5px; /* Border radius */
+  box-sizing: border-box; /* Include padding and border in width */
+  transition: border-color 0.3s ease; /* Transition effect */
+}
+.home-section .Form .text-area {
+  width: 90%;
+}
+
+.home-section .Form .text-input2{
+
+  width: 80%;
+  margin-right: 100px;
+
+}
+
+.home-section .Form .text-input3{
+  width: 200px;
+  margin-right: 50px;
+
+
+}
+.home-section .Form .Check-box {
+  /* Use similar colors and border-radius */
+  background-color: #04AA6D; /* Background color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  padding: 10px; /* Padding */
+  border-radius: 5px; /* Border radius */
+  cursor: pointer; /* Cursor style */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transition effect */
+}
+
+/* Hover effect */
+.home-section .Form .Check-box:hover {
+  background-color: #038854; /* Change background color on hover */
+}
+
+
+
+.home-section .Form .mulitple-boxs-inline{
+  display:flex;
+
+}
+
+.home-section .Form .speakers{
+  display: flex;
+  flex-wrap: wrap; 
+
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+
+.home-section .Form .posterDiv{
+  width: 400px;
+}
+
+.home-section .Form .file{
+  text-align: center;
+}
+
+
+
+
+
+/* Focus styling for text input and text area */
+.home-section .Form .text-input:focus,
+.home-section .Form .text-input2:focus,
+.home-section .Form .text-input3:focus,
+.home-section .Form .drop-down:focus,
+.home-section .Form .text-area:focus {
+  outline: none; /* Remove outline */
+  border-color: #04AA6D; /* Change border color on focus */
+}
+
+/* File upload button styling */
+.home-section .Form .upload {
+  font-family: "Inter", sans-serif; /* Font family */
+  background-color: #04AA6D; /* Background color */
+  color: white; /* Text color */
+  padding: 15px 32px; /* Padding */
+  text-align: center; /* Text alignment */
+  text-decoration: none; /* Text decoration */
+  display: inline-block; /* Display type */
+  font-size: 20px; /* Font size */
+  border: none; /* Remove border */
+  border-radius: 12px; /* Border radius */
+  cursor: pointer; /* Cursor style */
+  transition: background-color 0.3s ease; /* Transition effect */
+}
+
+/* Hover effect for upload button */
+.home-section .Form .upload:hover {
+  background-color: #038854; /* Change background color on hover */
+}
+
+/* Button container styling */
+.home-section .Form .button-container {
+  text-align: right; /* Align buttons to the right */
+  margin-top: 60px; /* Spacing from the inputs */
+}
+
+/* Styling for accept and cancel buttons */
+.home-section .Form .accept,
+.home-section .Form .cancel {
+  font-family: "Inter", sans-serif; /* Font family */
+  background-color: transparent; /* Transparent background */
+  color: #333; /* Text color */
+  padding: 10px 20px; /* Padding */
+  border: 1px solid #ccc; /* Border */
+  border-radius: 5px; /* Border radius */
+  cursor: pointer; /* Cursor style */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transition effect */
+}
+/* Hover effect for accept button */
+.home-section .Form .accept:hover{
+  background-color: #12A6D4; /* Change background color on hover */
+  color: #ffffff; /* Change text color on hover */
+}
+/* Hover effect for cancel button */
+.home-section .Form .cancel:hover {
+  background-color: #f0f0f0; /* Change background color on hover */
+  color: #222; /* Change text color on hover */
+}
+
+/* new addition ----- ending*/
+
+
+
+
+
+.home-section .Form .drop-down {
+  
+  width: 250px; /* Full width */
+  padding: 10px; /* Padding */
+
+  
+  margin-bottom: 30px;
+  margin-right: 30px;
+  border: 1px solid #ccc; /* Border */
+  border-radius: 5px; /* Border radius */
+  box-sizing: border-box; /* Include padding and border in width */
+  transition: border-color 0.3s ease; /* Transition effect */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 420px) {
+  .sidebar li .tooltip{
+    display: none;
+  }
+}
