@@ -508,22 +508,31 @@ notifi-box a{
 /* Styling for accept and cancel buttons */
 .home-section .Form .accept,
 .home-section .Form .cancel {
-  font-family: "Inter", sans-serif; /* Font family */
-  background-color: transparent; /* Transparent background */
-  color: #333; /* Text color */
-  padding: 10px 20px; /* Padding */
-  border: 1px solid #ccc; /* Border */
-  border-radius: 5px; /* Border radius */
-  cursor: pointer; /* Cursor style */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Transition effect */
+  background-color: #12A6D4; /* Reverted back to original color */
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 4px 12.5px;
+  cursor: pointer;
+  border: 0.5px solid #11101D;
+  border-radius: 8px;
+  transition: background-color 0.3s ease; /* Smooth transition effect */
 }
-/* Hover effect for accept button */
-.home-section .Form .accept:hover{
-  background-color: #12A6D4; /* Change background color on hover */
-  color: #ffffff; /* Change text color on hover */
+
+.home-section .Form .cancel {
+  background-color: transparent;
+  color: rgb(0, 0, 0);
 }
-/* Hover effect for cancel button */
+
 .home-section .Form .cancel:hover {
-  background-color: #f0f0f0; /* Change background color on hover */
-  color: #222; /* Change text color on hover */
+  transform: scale(0.95);
+  transition: all 0.1s ease-in;
+  background-color: #e0e0e0; /* Change color on hover */
+}
+.home-section .Form .accept:hover {
+  transform: scale(0.95);
+  transition: all 0.1s ease-in;
 }
