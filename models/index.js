@@ -1,4 +1,4 @@
-const dbConfig = require('../config/dbConfig.js');
+const dbConfig =require('../config/dbConfig.js');
 
 const {Sequelize, DataTypes} = require('sequelize');
 
@@ -9,7 +9,6 @@ const sequelize = new Sequelize(
         host: dbConfig.HOST,
         dialect: dbConfig.dialect,
         operatorsAliases: false,
-
         
     }
 )
@@ -36,10 +35,6 @@ db.sequelize.sync({ force: false })
 .then(() => {
     console.log('connected to db !!')
 })
-
-
-
-
 
 
 
