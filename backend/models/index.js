@@ -27,10 +27,10 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
-db.products = require('./clubEventInfo.js')(sequelize, DataTypes)
-db.reviews = require('./postInfo.js')(sequelize, DataTypes)
-db.reviews = require('./clubCreateInfo.js')(sequelize, DataTypes)
-db.reviews = require('./users.js')(sequelize, DataTypes)
+db.event = require('./clubEventInfo.js')(sequelize, DataTypes)
+db.post = require('./postInfo.js')(sequelize, DataTypes)
+db.club = require('./clubCreateInfo.js')(sequelize, DataTypes)
+db.user = require('./users.js')(sequelize, DataTypes)
 
 db.sequelize.sync({ force: false })
 .then(() => {
