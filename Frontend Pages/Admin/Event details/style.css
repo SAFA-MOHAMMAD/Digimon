@@ -445,6 +445,9 @@ notifi-box a{
   border-bottom: solid 1px black;
   padding-bottom: 5px;
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Edit Button */
