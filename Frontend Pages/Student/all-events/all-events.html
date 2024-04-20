@@ -98,26 +98,60 @@
              <button type="submit" class="button" id="submit">Search</button>
          </div>
      </div>
-    <div class="gallery">
-        <div class=" grid-colum-span">
-          <a href="" id="event-card-link">
-          <div class="eventCard">
-            <div class="dateBlock">
-              <p class="day"><span id="event-day">26</span>th</p>
-              <p class="month"><span id="event-month">Mar</span></p>
-              <p class="year"><span id="event-year">2024</span></p>
-            </div>
-            <div class="titleBlock">
-              <h3 id="event-name">Iftar Program</h3>
-            </div>
-          </div>
-          </a>
-          <div class="locationBlock">
-            <p class="location">Location: <span id="event-location">Eyup, Istanbul</span></p>
-            <p class="time">Time: <span id="event-time">18:30</span></p>
-          </div>
-        </div>
-    </div>
+     <div class="gallery" id="event-gallery">
+      <!-- Cards will be dynamically inserted here -->
+  </div>
+
+  <script>
+      // Function to fetch data from the server and create event cards
+      async function fetchEvents() {
+          try {
+              // Fetch data from the server
+              const response = await fetch('/api/Event/getAllEvents');
+              const chunkedEvents = await response.json(); // Parse the JSON response
+
+              // Get the gallery container where cards will be inserted
+              const gallery = document.getElementById('event-gallery');
+
+              // Iterate over the events and create a card for each
+              chunkedEvents.forEach(events => {
+                events.forEach(event=>{
+                  // Create a card element
+                  const card = document.createElement('div');
+                  card.classList.add('grid-colum-span');
+
+                  // Set the card content
+                  card.innerHTML = `
+                      <a href="../Event_details/Event_details.html" id="event-card-link">
+                          <div class="eventCard">
+                              <div class="dateBlock">
+                                  <p class="day"><span id="event-day">${new Date(event.eventDate).getDate()}</span>th</p>
+                                  <p class="month"><span id="event-month">${new Date(event.eventDate).toLocaleString('default', { month: 'short' })}</span></p>
+                                  <p class="year"><span id="event-year">${new Date(event.eventDate).getFullYear()}</span></p>
+                              </div>
+                              <div class="titleBlock">
+                                  <h3 id="event-name">${event.eventName}</h3>
+                              </div>
+                          </div>
+                      </a>
+                      <div class="locationBlock">
+                          <p class="location">Location: <span id="event-location">${event.eventPlace}</span></p>
+                          <p class="time">Time: <span id="event-time">${event.eventTime}</span></p>
+                      </div>
+                  `;
+
+                  // Append the card to the gallery
+                  gallery.appendChild(card);
+              })
+            });
+          } catch (error) {
+              console.error('Error fetching events:', error);
+          }
+      }
+
+      // Fetch events when the page loads
+      window.addEventListener('load', fetchEvents);
+  </script>
     </main>
   </div>
   <script src="script.js"> </script>

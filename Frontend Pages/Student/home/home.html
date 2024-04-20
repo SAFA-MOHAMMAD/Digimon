@@ -89,15 +89,58 @@
              <button type="submit" class="button" id="submit">Search</button>
          </div>
      </div>
-    <div class="gallery">
-      <!-- the link of this card is inside the javascript -->
-      <div class="gallery-item grid-colum-span" id="club-card">
-          
-            <img src="images/club-img.png" alt="club-img" class="club-logo">
-            <h3 id="club-name">Club name</h3>
-            <p><span id="club-summry">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam necessitatibus atque! Iure ut dicta veritatis deserunt delectus soluta distinctio.</span><p>
-      </div>
-    </div>
+     <div class="gallery" id="club-gallery">
+      <!-- Cards will be dynamically inserted here -->
+  </div>
+
+  <script>
+    // Function to fetch data from the server and create club cards
+    async function fetchchunkedClubs() {
+        try {
+            // Fetch data from the server
+            const response = await fetch('/api/Club/getAllClubs');
+            const chunkedClubs = await response.json(); // Parse the JSON response
+
+            // Get the gallery container where cards will be inserted
+            const gallery = document.getElementById('club-gallery');
+
+            // Iterate over the chunkedClubs and create a card for each
+            chunkedClubs.forEach((clubs, index) => {
+              clubs.forEach(club=>{
+                // Create a card element
+                const card = document.createElement('div');
+                card.classList.add('gallery-item', 'grid-colum-span');
+                
+                // Set the ID for each card, using `club-card-{index}` to distinguish them
+                card.id = `club-card-${index}`;
+
+                // Set the card content
+                card.innerHTML = `
+                <div class="gallery-item grid-colum-span" id="club-card">
+                  <img src="images/club-img.png" alt="club-img" class="club-logo">
+                    <h3 id="club-name">Club name</h3>
+                    <p><span id="club-summry">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam necessitatibus atque! Iure ut dicta veritatis deserunt delectus soluta distinctio.</span><p>
+              </div>
+                `;
+
+                // Append the card to the gallery
+                gallery.appendChild(card);
+
+                // Add a click event listener to the card
+                card.addEventListener("click", function() {
+                    // Redirect to the club page when the card is clicked
+                    window.location.href = "../Club-page/Club-page.html";
+                });
+            });
+          })
+        } catch (error) {
+            console.error('Error fetching chunkedClubs:', error);
+        }
+    }
+
+    // Fetch chunkedClubs when the page loads
+    window.addEventListener('load', fetchchunkedClubs);
+</script>
     </main>
   </div>
   <script src="script.js">

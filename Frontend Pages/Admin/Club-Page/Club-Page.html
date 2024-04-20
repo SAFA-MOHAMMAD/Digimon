@@ -332,11 +332,72 @@
             </div>
          </div>
          <div class="ctrlButtons">
-            <form action="">
-              <button class="deleteBtn">Delete Club</button>
-              <button class="cancelBtn">Cancel Changes</button>
-              <button class="saveBtn">Save Changes</button>
+          <body>
+            <form id="clubForm" action="#">
+                <button type="button" class="deleteBtn" id="deleteBtn">Delete Club</button>
+                <button type="button" class="cancelBtn" id="cancelBtn">Cancel Changes</button>
+                <button type="button" class="saveBtn" id="saveBtn">Save Changes</button>
             </form>
+        
+            <script>
+                // Get the buttons from the HTML
+                const deleteBtn = document.getElementById('deleteBtn');
+                const saveBtn = document.getElementById('saveBtn');
+                const cancelBtn = document.getElementById('cancelBtn');
+        
+                // Get the club ID 
+                const clubID = club.clubID;
+        
+                // Function to handle the deletion of a club
+                async function deleteClub() {
+                    try {
+                        const response = await fetch(`/api/Club/${clubID}`, {
+                            method: 'DELETE'
+                        });
+                        if (response.ok) {
+                            alert('Club deleted successfully.');
+                        } else {
+                            alert('Failed to delete club.');
+                        }
+                    } catch (error) {
+                        console.error('Error deleting club:', error);
+                    }
+                }
+        
+                // Function to handle updating a club
+                async function updateClub() {
+                    try {
+                        const formData = new FormData(document.getElementById('clubForm'));
+                        const response = await fetch(`/api/Club/${clubID}`, {
+                            method: 'PUT',
+                            body: JSON.stringify(Object.fromEntries(formData)),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        });
+                        if (response.ok) {
+                            alert('Club updated successfully.');
+                        } else {
+                            alert('Failed to update club.');
+                        }
+                    } catch (error) {
+                        console.error('Error updating club:', error);
+                    }
+                }
+        
+                // Event listener for the delete button
+                deleteBtn.addEventListener('click', deleteClub);
+        
+                // Event listener for the save button
+                saveBtn.addEventListener('click', updateClub);
+        
+                // Event listener for the cancel button
+                cancelBtn.addEventListener('click', () => {
+                    document.getElementById('clubForm').reset();
+                    alert('Changes canceled.');
+                });
+            </script>
+        </body>
           </div>
       </footer>
    </div>
