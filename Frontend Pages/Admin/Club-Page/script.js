@@ -67,7 +67,140 @@ function toggleNotifi(){
       behavior: 'smooth'
     });
   });
+    /* ========================================================================== */
+   // Function to show edit textarea and save button
+  // Function to resize textarea based on content
+function resizeTextarea(textarea) {
+  textarea.style.height = 'auto'; // Reset height to auto
+  textarea.style.height = (textarea.scrollHeight) + 'px'; // Set height to scrollHeight
+}
+
+// Function to show edit textarea and save button
+function toggleEdit() {
+  var clubName = document.getElementById('club-name');
+  var clubDescription = document.getElementById('club-description');
+  var clubActivities = document.getElementById('club-activities');
+  var clubImage = document.getElementById('club-logo');
+  var ClubPresident = document.getElementById('club-president-name');
+  var ContactInfo = document.getElementById('club-president-email');
+  var ClubVicePresident = document.getElementById('club-viPresident-name');
+  var VicePresidentContactInfo = document.getElementById('club-viPresident-email');
+  var phoneNumber = document.getElementById('phone-number');
+  var instgramUsername = document.getElementById('instgram-username');
+  var clubEmail = document.getElementById('email');
   
+  var editedClubName = document.getElementById('edited-club-name');
+  var editedDescription = document.getElementById('edited-description');
+  var editedActivities = document.getElementById('edited-activities');
+  var editedImage = document.getElementById('edited-image');
+  var editButton = document.getElementById('edit-button');
+  var editedClubPresident = document.getElementById('edited-president-name');
+  var editedContactInfo = document.getElementById('edited-president-email');
+  var editedClubVicePresident = document.getElementById('edited-viPresident-name');
+  var editedViceContactInfo = document.getElementById('edited-viPresident-email');
+  var editedPhoneNumber = document.getElementById('edited-phone-number');
+  var editedInstgramUsername = document.getElementById('edited-instgram-username');
+  var editedClubEmail = document.getElementById('edited-email');
+  
+  if (editButton.textContent === 'Edit') {
+      editedClubName.value = clubName.textContent.trim();
+      editedDescription.value = clubDescription.textContent.trim();
+      editedActivities.value = clubActivities.textContent.trim();
+      editedClubPresident.value = ClubPresident.textContent.trim();
+      editedContactInfo.value = ContactInfo.textContent.trim();
+      editedClubVicePresident.value =  ClubVicePresident.textContent.trim();
+      editedViceContactInfo.value = VicePresidentContactInfo.textContent.trim();
+      editedPhoneNumber.value = phoneNumber.textContent.trim();
+      editedInstgramUsername.value = instgramUsername.textContent.trim();
+      editedClubEmail.value = clubEmail.textContent.trim();
+
+      editedImage.value = ''; // Clear input value to prevent re-uploading same image
+
+      clubName.style.display = 'none';
+      clubDescription.style.display = 'none';
+      clubActivities.style.display = 'none';
+      editedClubName.style.display = 'inline';
+      editedDescription.style.display = 'block';
+      editedActivities.style.display = 'block';
+      editedImage.style.display = 'block';
+      editButton.textContent = 'Save';
+
+      ClubPresident.style.display = 'none';
+      ContactInfo.style.display = 'none';
+      ClubVicePresident.style.display = 'none';
+      VicePresidentContactInfo.style.display = 'none';
+      editedClubPresident.style.display = 'inline';
+      editedContactInfo.style.display = 'inline';
+      editedClubVicePresident.style.display = 'inline';
+      editedViceContactInfo.style.display = 'inline';
+
+
+      phoneNumber.style.display = 'none';
+      instgramUsername.style.display = 'none';
+      clubEmail.style.display = 'none';
+      editedPhoneNumber.style.display = 'inline';
+      editedInstgramUsername.style.display = 'inline';
+      editedClubEmail.style.display = 'inline';
+
+
+
+      // Resize textarea initially
+      resizeTextarea(editedDescription);
+      resizeTextarea(editedActivities);
+  } else {
+      clubName.textContent = editedClubName.value.trim();
+      clubDescription.textContent = editedDescription.value.trim();
+      clubActivities.textContent = editedActivities.value.trim();
+
+      ClubPresident.textContent = editedClubPresident.value.trim();
+      ContactInfo.textContent = editedContactInfo.value.trim();
+      ClubVicePresident.textContent = editedClubVicePresident.value.trim();
+      VicePresidentContactInfo.textContent = editedViceContactInfo.value.trim();
+
+      phoneNumber.textContent = editedPhoneNumber.value.trim();
+      instgramUsername.textContent = editedInstgramUsername.value.trim();
+      clubEmail.textContent =  editedClubEmail.value.trim();
+
+      // Update image if a new one is selected
+      if (editedImage.files.length > 0) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+              clubImage.src = e.target.result;
+          };
+          reader.readAsDataURL(editedImage.files[0]);
+      }
+      clubName.style.display = 'inline';
+      clubDescription.style.display = 'block';
+      clubActivities.style.display = 'block';
+      editedDescription.style.display = 'none';
+      editedActivities.style.display = 'none';
+      editedImage.style.display = 'none';
+      editedClubName.style.display = 'none';
+
+
+      ClubPresident.style.display = 'inline';
+      ContactInfo.style.display = 'inline';
+      ClubVicePresident.style.display = 'inline';
+      VicePresidentContactInfo.style.display = 'inline';
+      editedClubPresident.style.display = 'none';
+      editedContactInfo.style.display = 'none';
+      editedClubVicePresident.style.display = 'none';
+      editedViceContactInfo.style.display = 'none';
+      editButton.textContent = 'Edit';
+      
+      phoneNumber.style.display = 'inline';
+      instgramUsername.style.display = 'inline';
+      clubEmail.style.display = 'inline';
+      editedPhoneNumber.style.display = 'none';
+      editedInstgramUsername.style.display = 'none';
+      editedClubEmail.style.display = 'none';
+
+  }
+}
+
+// Event listener for edit button
+document.getElementById('edit-button').addEventListener('click', toggleEdit);
+
 
   document.getElementById('club-card').addEventListener("click", function() {
     window.location.href = "../eve";
