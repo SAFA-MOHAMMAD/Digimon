@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Sets the character encoding of the document to UTF-8, ensuring proper rendering of international characters and symbols -->
+  <meta charset="UTF-8">
+  <title>HomePage</title>
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Boxicons CDN Link, Used to load the icons -->
+  <script src="https://kit.fontawesome.com/14f233c83a.js" crossorigin="anonymous"></script>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="images/logo.png" class="icon">
+      <div class="logo_name">Club Mangment</div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="../home/home.html">
+          <i class='bx bx-home'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <a href="../weekly-events/weekly-Events.html">
+          <i class='bx bx-calendar-event'></i>
+          <span class="links_name">Weekly activities</span>
+        </a>
+        <span class="tooltip">Weekly activities</span>
+      </li>
+      <li class="profile">
+        <div class="profile-details">
+          <img src="images/profile.png" alt="profileImg">
+          <div class="name_job">
+            <div class="name">Micheal salman</div>
+            <div class="job">Student</div>
+          </div>
+        </div>
+        <div>
+          <a href="../Log-in page/Club_Member.html">
+            <i class='bx bx-log-out' id="log_out">
+
+            </i>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="home-section">
+
+    
+    
+    <div class="text">
+      HomePage
+    </div>
+  <main>
+
+    <div class="search-container">
+        <div class="category-container">
+          <div class="select-btn">
+            <span class="btn-text">
+              select 
+            </span>
+            <span class="arrow-dwn">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+          </div>
+   
+          <ul class="list-items">
+             <li class="item"> 
+               <span class="checkbox">
+                   <i class="fa-solid fa-check check-icon"></i>
+               </span>
+               <span class="item-text">
+                 MATH
+               </span>
+             </li>
+          </ul>
+        </div>
+
+        <div class="search-form-container">
+             <input type="text" class="input" placeholder="search" id="search">
+             <button type="submit" class="button" id="submit">Search</button>
+         </div>
+     </div>
+     <div class="gallery" id="club-gallery">
+      <!-- Cards will be dynamically inserted here -->
+  </div>
+
+  <script>
+    // Function to fetch data from the server and create club cards
+    async function fetchchunkedClubs() {
+        try {
+            // Fetch data from the server
+            const response = await fetch('/api/Club/getAllClubs');
+            const chunkedClubs = await response.json(); // Parse the JSON response
+
+            // Get the gallery container where cards will be inserted
+            const gallery = document.getElementById('club-gallery');
+
+            // Iterate over the chunkedClubs and create a card for each
+            chunkedClubs.forEach((clubs, index) => {
+              clubs.forEach(club=>{
+                // Create a card element
+                const card = document.createElement('div');
+                card.classList.add('gallery-item', 'grid-colum-span');
+                
+                // Set the ID for each card, using `club-card-{index}` to distinguish them
+                card.id = `club-card-${index}`;
+
+                // Set the card content
+                card.innerHTML = `
+                <div class="gallery-item grid-colum-span" id="club-card">
+                  <img src="images/club-img.png" alt="club-img" class="club-logo">
+                    <h3 id="club-name">Club name</h3>
+                    <p><span id="club-summry">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam necessitatibus atque! Iure ut dicta veritatis deserunt delectus soluta distinctio.</span><p>
+              </div>
+                `;
+
+                // Append the card to the gallery
+                gallery.appendChild(card);
+
+                // Add a click event listener to the card
+                card.addEventListener("click", function() {
+                    // Redirect to the club page when the card is clicked
+                    window.location.href = "../Club-page/Club-page.html";
+                });
+            });
+          })
+        } catch (error) {
+            console.error('Error fetching chunkedClubs:', error);
+        }
+    }
+
+    // Fetch chunkedClubs when the page loads
+    window.addEventListener('load', fetchchunkedClubs);
+</script>
+    </main>
+  </div>
+  <script src="script.js">
+  
+  </script>
+</body>
+</html>

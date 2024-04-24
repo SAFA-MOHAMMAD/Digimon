@@ -26,7 +26,10 @@ router.post('/uploadImage',upload.single('Club Logo'),(req,res)=>{
 router.post('/newClub',upload.single('image'),ClubControllar.newClub);
 
 
-router.get('/getAllClubs',ClubControllar.getAllClubs)
+router.get('/getAllClubs',ClubControllar.getAllClubs);
+
+router.get('/:id',ClubControllar.getOneClub);
+
 
 router.put('/:id',ClubControllar.updateClub);
 

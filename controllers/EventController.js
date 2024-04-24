@@ -2,6 +2,7 @@ const db=require('../models');
 const Event=db.event
 
 const newEvent=async(req,res)=>{
+    try {
     console.log(req.body);
     let info={
         idclubEvent:req.body.idclubEvent,
@@ -21,18 +22,34 @@ const newEvent=async(req,res)=>{
     res.status(200).send(event);
     console.log(event);
 }
+catch (error) {
+    console.error('Error fetching Events:', error);
+    res.status(500).send('Internal Server Error');
+}
+}
 
 const deleteEvent=async(req,res)=>{
+    try {
     let id=req.params.id;
     await Event.destroy({where:{idclubEvent:id}});
     res.status(200).send('event is deleted')
+    }
+    catch (error) {
+        console.error('Error fetching Events:', error);
+        res.status(500).send('Internal Server Error');
+    }
 }
 
 
 const updateEevnt=async(req,res)=>{
+    try {
     let id=req.params.id;
     const event=await Event.update(req.body,{where:{idclubEvent:id}});
     res.status(200).send(event);
+    }catch (error) {
+        console.error('Error fetching Events:', error);
+        res.status(500).send('Internal Server Error');
+    }
 }
 
 
@@ -57,9 +74,22 @@ const getAllEvents=async(req,res)=>{
     res.status(500).send('Internal Server Error');
     }
 }
+
+
+const getOneEvent=async(req,res)=>{
+    try {
+    let id=req.params.id
+    const event=await Event.findOne({where:{idclubEvent:id}});
+    res.status(200).send(event);
+}catch (error) {
+    console.error('Error fetching Events:', error);
+    res.status(500).send('Internal Server Error');
+    }
+}
 module.exports={
     newEvent,
     deleteEvent,
     updateEevnt,
-    getAllEvents
+    getAllEvents,
+    getOneEvent
 }

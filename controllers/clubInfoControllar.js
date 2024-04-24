@@ -37,10 +37,8 @@ const newClub = (upload.single('file'),async (req, res) => {
             clubActivitiesInfo: req.body.clubActivitiesInfo,
             clubLogo: req.file.filename // Use the filename from the uploaded file
         };
-
         // Create a new club entry in the database
         const club = await Club.create(info);
-
         // Send the created club information as the response
         res.status(200).send(club);
         console.log('Club created:', club);
@@ -72,6 +70,13 @@ const getAllClubs = async (req, res) => {
     }
 };
 
+const getOneClub=async(req,res)=>{
+    let id=req.params.id
+    const club=await Club.findOne({where:{clubID:id}});
+    res.status(200).send(club);
+}
+
+
 
 const deleteClub=async(req,res)=>{
     let id=req.params.id
@@ -85,9 +90,11 @@ const updateClub=async(req,res)=>{
     const club=await Club.update(req.body,{where:{clubID:id}});
     res.status(200).send(club);
 }
+
 module.exports={
     newClub,
     getAllClubs,
+    getOneClub,
     deleteClub,
     updateClub
 }
