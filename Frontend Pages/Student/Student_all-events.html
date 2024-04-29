@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Sets the character encoding of the document to UTF-8, ensuring proper rendering of international characters and symbols -->
+  <meta charset="UTF-8">
+  <title>All Events</title>
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="Student_all-events_style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Boxicons CDN Link, Used to load the icons -->
+  <script src="https://kit.fontawesome.com/14f233c83a.js" crossorigin="anonymous"></script>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="images/logo.png" class="icon">
+      <div class="logo_name">Club Mangment</div>
+      <i class='bx bx-menu' id="btn"></i>
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="Student_home.html">
+          <i class='bx bx-home'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <a href="Student_weekly-Events.html">
+          <i class='bx bx-calendar-event'></i>
+          <span class="links_name">Weekly activities</span>
+        </a>
+        <span class="tooltip">Weekly activities</span>
+      </li>
+      <li class="profile">
+        <div class="profile-details">
+          <img src="images/profile.png" alt="profileImg">
+          <div class="name_job">
+            <div class="name">Micheal salman</div>
+            <div class="job">Student</div>
+          </div>
+        </div>
+        <div>
+          <a href="Student_Club_Member.html">
+            <i class='bx bx-log-out' id="log_out">
+
+            </i>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="home-section">
+    
+    
+  
+    <div class="text">
+      All Events
+    </div>
+  </header>
+  <main>
+
+    <div class="search-container">
+      <div class="date-container">
+         <input type="date" name="date" id="date" class="date-input">
+       </div>
+   
+   
+       
+        <div class="category-container">
+          <div class="select-btn">
+            <span class="btn-text">
+              select 
+            </span>
+            <span class="arrow-dwn">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+          </div>
+   
+          <ul class="list-items">
+             <li class="item"> 
+               <span class="checkbox">
+                   <i class="fa-solid fa-check check-icon"></i>
+               </span>
+               <span class="item-text">
+                 MATH
+               </span>
+             </li>
+          </ul>
+        </div>
+   
+   
+   
+        <div class="search-form-container">
+             <input type="text" class="input" placeholder="search" id="search">
+             <button type="submit" class="button" id="submit">Search</button>
+         </div>
+     </div>
+    <div class="gallery">
+        <div class=" grid-colum-span">
+          <a href="" id="event-card-link">
+          <div class="eventCard">
+            <div class="dateBlock">
+              <p class="day"><span id="event-day">26</span>th</p>
+              <p class="month"><span id="event-month">Mar</span></p>
+              <p class="year"><span id="event-year">2024</span></p>
+            </div>
+            <div class="titleBlock">
+              <h3 id="event-name">Iftar Program</h3>
+            </div>
+          </div>
+          </a>
+          <div class="locationBlock">
+            <p class="location">Location: <span id="event-location">Eyup, Istanbul</span></p>
+            <p class="time">Time: <span id="event-time">18:30</span></p>
+          </div>
+        </div>
+    </div>
+    </main>
+  </div>
+  <script src="Student_all-events_script.js"> </script>
+</body>
+</html>
