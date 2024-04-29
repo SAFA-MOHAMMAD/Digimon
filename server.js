@@ -17,7 +17,6 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.use(express.static('public/Student'));
 app.use(express.static('uploads'));
 // app.use(express.static('./public/Admin/Log-in'));
 // app.use(express.static('./public/Admin/all-events'));
@@ -50,7 +49,7 @@ app.use(express.static('uploads'));
 // app.use(express.static('./public/Student/Club-Page'));
 // app.use(express.static('./public/Student/Event details'));
 // app.use(express.static('./public/Student/home'));
-app.use(express.static('./public/Student/Log-in page'));
+// app.use(express.static('public/Student/Log-in page'));
 // app.use(express.static('./public/Student/home'));
 // app.use(express.static('./public/Student/Post details'));
 // app.use(express.static('./public/Student/weekly-events'));
@@ -72,13 +71,21 @@ app.use('/api/Post',PostRouter);
 // app.get('/',(req, res)=>{
 //     res.json({message:'hello from api'})
 // });
-app.use(express.static('./public/Admin/all-posts'));
+// app.use(express.static('./public/Admin/all-posts'));
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname+'/public/home.html');
+    res.sendFile(__dirname+'/public/Admin/home/home.html');
 });
-// // app.use('/userk',expresconsole.log(path.join(__dirname, '/public/Student/home/home.html'));
-// s.static(path.join(__dirname+'/public/SKS_Admin.html')));
-app.use('/public/Student/home/home.html',express.static(path.join(__dirname+'/public/Student/home/home.html')));
+app.get('/club',(req,res)=>{
+    res.sendFile(__dirname+'/public/Admin/Club-Page/Club-Page.html');
+});
+app.get('/createClub',(req,res)=>{
+    res.sendFile(__dirname+'/public/Admin/create club page/create_club_page.html');
+});
+//  app.get('/set',(req,res)=>{
+//    res.sendFile(__dirname+'/public/Admin/weekly-events/weekly-Events.html');
+// });
+
+
 app.use('/public/Admin/Log-in/Club_Manager.html',express.static(path.join(__dirname+"/public/Admin/Log-in/SKS_Admin.html")));
 app.listen(port,()=>{
     console.log(`server is running on port ${port}`);

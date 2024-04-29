@@ -35,7 +35,7 @@ const newClub = (upload.single('file'),async (req, res) => {
             clubVicePresidentEmail: req.body.clubVicePresidentEmail,
             clubDescription: req.body.clubDescription,
             clubActivitiesInfo: req.body.clubActivitiesInfo,
-            clubLogo: req.file.filename // Use the filename from the uploaded file
+            clubLogo: req.file ? req.file.path : null // Use the filename from the uploaded file
         };
         // Create a new club entry in the database
         const club = await Club.create(info);

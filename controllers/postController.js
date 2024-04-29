@@ -2,31 +2,19 @@ const db=require('../models');
 const Post=db.post
 
 const newPost=async(req,res)=>{
-    try {
-    console.log(req.body);
-    let info={
-        idclubPost:req.body.idclubPost,
-        clubName: req.body.clubName,
-        PostType:req.body.PostType,
-        PostName:req.body.PostName,
-        PostDate:req.body.PostDate,
-        PostSpeaker:req.body.PostSpeaker,
-        PostContent:req.body.PostContent,
-        PostPlace:req.body.PostPlace,
-        PostSpecialService:req.body.PostSpecialService,
-        PostImage:req.body.PostImage,
-        PostTime:req.body.PostTime,
-        PostApproval:req.body.PostApproval
+        try {
+            const post = await db.postInfo.create({
+                postTitle: req.body.postTitle,
+                postDescription: req.body.postDescription,
+                postImage: req.file ? req.file.path : null, // Assuming image is being uploaded and stored locally
+                postDate: new Date() // Automatically setting the post date to current date
+            });
+            res.status(201).send(post);
+        } catch (error) {
+            console.error("Failed to create post:", error);
+            res.status(400).send(error);
     }
-    const post=await Post.create(info);
-    res.status(200).send(post);
-    console.log(post);
-}
-catch (error) {
-    console.error('Error fetching Events:', error);
-    res.status(500).send('Internal Server Error');
-}
-}
+};
 
 const deletePost=async(req,res)=>{
     try {
