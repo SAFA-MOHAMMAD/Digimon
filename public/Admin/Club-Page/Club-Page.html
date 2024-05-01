@@ -402,7 +402,6 @@ window.addEventListener('load', displayClubInfo);
               const clubData = getQueryParams();
               // Get the club ID 
               const clubID = clubData.clubID;
-              const editbtn=document.getElementById('edit-button')
               // Function to handle the deletion of a club
               // Event listener for the delete button
 deleteBtn.addEventListener('click', async function(event) {
@@ -449,12 +448,12 @@ saveBtn.addEventListener('click', async function(event) {
       //console.log('clubLogo files:', clubLogoInput.files);
       if (clubLogoInput.files && clubLogoInput.files.length > 0) {
         formData.append('clubLogo', clubLogoInput.files[0]);
+        console.log(`show value: ${clubLogoInput.files[0]}`);
     }
     
       console.log('Updated data:', updatedData);
       // Create a FormData object to handle file upload if there's a new image
       //const formData = new FormData();
-      console.log('Initializing formData');
 
     console.log('Initialized formData:', formData);
 for (const [key, value] of Object.entries(updatedData)) {
@@ -469,7 +468,7 @@ for (const [key, value] of formData) {
       console.log('Update query conditions:', { clubID });
       // Send a PUT request to the server with the updated data
       const response = await fetch(`/api/Club/${clubID}`, {
-          method: 'PUT',
+          method: 'PATCH',
           body: formData,
           headers: {
           'Accept': 'application/json' // Specify the content type the server should respond with
@@ -481,9 +480,8 @@ for (const [key, value] of formData) {
 
           // Refresh the page data
           const updatedClub = await response.json();
-          console.log('Updated club:', updatedClub);
           // Update the URL with the new data using pushState
-          const newUrl = `./Club-Page.html?clubID=${updatedClub.clubID}
+          /*const newUrl = `./Club-Page.html?clubID=${updatedClub.clubID}
     &clubName=${encodeURIComponent(updatedClub.clubName)}
     &clubDescription=${encodeURIComponent(updatedClub.clubDescription)}
     &clubPresident=${encodeURIComponent(updatedClub.clubPresident)}
@@ -492,10 +490,11 @@ for (const [key, value] of formData) {
     &clubOfficialEmail=${encodeURIComponent(updatedClub.clubOfficialEmail)}
     &clubPresidentEmail=${encodeURIComponent(updatedClub.clubPresidentEmail)}
     &clubVicePresidentEmail=${encodeURIComponent(updatedClub.clubVicePresidentEmail)}
-    &clubLogo=${encodeURIComponent(updatedClub.clubLogo)}`;
+    &clubLogo=${encodeURIComponent(updatedClub.clubLogo)}`;*/
+    console.log('Updated club:', updatedClub);
 
 // Replace the current URL with the new URL
-window.location.replace(newUrl);
+window.location.href = '/';
           // Optionally, reload the page if needed
           // window.location.reload();
       } else {

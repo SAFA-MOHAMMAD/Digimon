@@ -2,29 +2,19 @@ const db = require('../models');
 const Club = db.club;
 const multer = require('multer');
 
-var storage=multer.diskStorage({
-    destination:function(req,file,cb){
-        cb(null,'uploads/images');
-    },
-    filename:function(req,file,cb){
-        cb(null,file.fieldname+"_"+Date.now+"_"+file.originalname);
-    },
-})
+// var storage=multer.diskStorage({
+//     destination:function(req,file,cb){
+//         cb(null,'uploads/images');
+//     },
+//     filename:function(req,file,cb){
+//         cb(null,file.fieldname+"_"+Date.now+"_"+file.originalname);
+//     },
+// })
 
-var upload = multer({ storage: storage });
+// var upload = multer({ storage: storage });
 
-const newClub = (upload.single('file'),async (req, res) => {
+const newClub = async (req, res) => {
     try {
-        // Log the body and file to debug
-        // console.log('Request body:', req.body);
-        // console.log('Uploaded file:', req.file);
-        
-        // if (!req.file) {
-        //     // No file was uploaded, handle this case
-        //     res.status(400).send('File is required.');
-        //     return;
-        // }
-        // Extract information from the request
         let info = {
             clubID: req.body.clubID,
             clubName: req.body.clubName,
@@ -35,7 +25,7 @@ const newClub = (upload.single('file'),async (req, res) => {
             clubVicePresidentEmail: req.body.clubVicePresidentEmail,
             clubDescription: req.body.clubDescription,
             clubActivitiesInfo: req.body.clubActivitiesInfo,
-            clubLogo: req.file ? req.file.path : null // Use the filename from the uploaded file
+            clubLogo:  req.file ? req.file.path : null // Use the filename from the uploaded file
         };
         // Create a new club entry in the database
         const club = await Club.create(info);
@@ -46,7 +36,7 @@ const newClub = (upload.single('file'),async (req, res) => {
         console.error('Error creating club:', error);
         res.status(500).send('Internal Server Error');
     }
-});
+};
 
 const getAllClubs = async (req, res) => {
     try {
