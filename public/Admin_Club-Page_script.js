@@ -94,6 +94,7 @@ function toggleEdit() {
   var editedActivities = document.getElementById('edited-activities');
   var editedImage = document.getElementById('edited-image');
   var editButton = document.getElementById('edit-button');
+  var cancelButton = document.getElementById('cancel-button'); 
   var editedClubPresident = document.getElementById('edited-president-name');
   var editedContactInfo = document.getElementById('edited-president-email');
   var editedClubVicePresident = document.getElementById('edited-viPresident-name');
@@ -141,7 +142,7 @@ function toggleEdit() {
       editedPhoneNumber.style.display = 'inline';
       editedInstgramUsername.style.display = 'inline';
       editedClubEmail.style.display = 'inline';
-
+      cancelButton.style.display = 'inline';
 
 
       // Resize textarea initially
@@ -194,8 +195,15 @@ function toggleEdit() {
       editedPhoneNumber.style.display = 'none';
       editedInstgramUsername.style.display = 'none';
       editedClubEmail.style.display = 'none';
+      cancelButton.style.display = 'none';
 
   }
+}
+
+function cancelEdit() {
+  var editButton = document.getElementById('edit-button');
+  editButton.textContent = 'Edit'; // Reset edit button text
+  toggleEdit(); // Call toggleEdit to reset changes
 }
 
 // Event listener for edit button

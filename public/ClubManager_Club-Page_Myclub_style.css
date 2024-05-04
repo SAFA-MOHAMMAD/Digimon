@@ -268,8 +268,8 @@ a {
 
 .home-section{
   position: relative;
-  overflow: hidden;
   background-color: #eef6f9;
+  height: 2200px; 
   top: 0;
   left: 78px;
   width: calc(100% - 78px);
@@ -315,6 +315,12 @@ a {
     grid-template-columns: 90% 10%;
   
   
+}
+
+.nav-grid>.text {
+  border-bottom: 10px  #000000;
+  border-bottom-style: solid;
+  width: 250px;
 }
 /* notfication icon div */
 
@@ -363,6 +369,12 @@ a {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   z-index: 3;
   overflow: auto; /* Enable scrolling */
+  border-radius: 15px;
+  background-color: black;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  scrollbar-color: #fff;
+  padding: 0 20px;
 }
 
 /* each notfication message picture/image */
@@ -620,6 +632,20 @@ color:#013238
   font-size: 10px;
   color: black;
 }
+
+.club-leader-info, 
+.club-description, 
+.club-activities, 
+.club-events,
+.club-posts,
+.contact-us-container,
+.info {
+  background-color: #85c3be;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px 5px #00000077;
+  padding: 10px;
+  border-bottom: 5px solid #000000;
+}
 /* ============================= */
 .posts-gallery-container {
   position: relative;
@@ -726,6 +752,15 @@ color:#013238
 .titleBlock h3 {
   font-size: 15px;
   color: black;
+}
+/* =================================== */
+
+.event-scroll-button-right:hover,
+.event-scroll-button-left:hover,
+.post-scroll-button-right:hover,
+.post-scroll-button-left:hover {
+  box-shadow: 0px 0px 2px 2px #00000077;
+  transition: all linear 200ms;
 }
 
 
@@ -858,19 +893,6 @@ border: none !important;
 
 /*new*/
 
-.club-leader-info, 
-.club-description, 
-.club-activities, 
-.club-events,
-.club-posts,
-.contact-us-container,
-.info {
-  background-color: #85c3be;
-  border-radius: 15px;
-  box-shadow: 0px 0px 20px 5px #00000077;
-  padding: 10px;
-  border-bottom: 5px solid #000000;
-}
 
 .section-header a {
   color: black;
@@ -893,26 +915,4 @@ border: none !important;
 .contact-us-info .grid-colum-span-1 h3,
 .contact-us-info .grid-colum-span-1 p {
   font-size: 1.15vw;
-}
-
-.event-scroll-button-right:hover,
-.event-scroll-button-left:hover,
-.post-scroll-button-right:hover,
-.post-scroll-button-left:hover {
-  box-shadow: 0px 0px 2px 2px #00000077;
-  transition: all linear 200ms;
-}
-
-.nav-grid>.text {
-  border-bottom: 10px  #000000;
-  border-bottom-style: solid;
-  width: 250px;
-}
-
-.notifi-box {
-  border-radius: 15px;
-  background-color: black;
-  scrollbar-width: none;
-  scroll-behavior: smooth;
-  padding: 0 20px;
 }
