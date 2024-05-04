@@ -32,7 +32,7 @@ a {
   top: 0;
   height: 100%;
   width: 78px;
-  background-image: linear-gradient(to bottom, rgb(22, 139, 175), rgb(0, 82, 80));
+  background-image: linear-gradient(-90deg, #85c3be, #016d77);
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
@@ -268,13 +268,19 @@ a {
 
 .home-section{
   position: relative;
-  background-image: linear-gradient(to left, rgb(207, 214, 214), rgb(185, 188, 188));
-  height: 1600px;
+  overflow: hidden;
+  background-color: #eef6f9;
   top: 0;
   left: 78px;
   width: calc(100% - 78px);
   transition: all 0.5s ease;
   z-index: 2;
+  /*
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 100px, #ffddd3 100px, #ffddd3 200px);
+  background-color: #ffffff;
+  border: 20px #0000004d solid;*/
+  /*linear-gradient(to left, rgb(207, 214, 214), rgb(185, 188, 188));*/
+
 }
 
 
@@ -346,17 +352,23 @@ a {
 
 
 .notifi-box {
-  background-color: #FFF;
   width: 300px;
   height: 200px; /* Set a fixed height for the notification box */
   opacity: 0;
   position: absolute;
   top: 80px;
   right: 35px;
-  transition: 1s opacity, 250ms height;
+  transition: 200ms height;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   z-index: 3;
   overflow: auto; /* Enable scrolling */
+  border-radius: 15px;
+  background-color: black;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  scrollbar-color: #fff;
+  padding: 0 20px;
+
 }
 
 /* each notfication message picture/image */
@@ -365,10 +377,9 @@ a {
 }
 
 .notifi-box h2 {
-	font-size: 14px;
+	font-size: 1.2rem;
 	padding: 10px;
-	border-bottom: 1px solid #eee;
-	color: #999;
+	color: #ffffff;
 }
 .notifi-box h2 span {
 	color: #f00;
@@ -389,16 +400,14 @@ notifi-box a{
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 3 columns */
   grid-template-columns: 30% 70%;
-  height: 80px;
-	border-bottom: 1px solid #eee;
 	padding: 15px 5px;
-	margin-bottom: 15px;
 	cursor: pointer;
+  border-radius: 15px;
 }
 
 
 .notifi-item:hover {
-	background-color: #eee;
+	background-color: #c7c7c726;
 }
 
 
@@ -419,13 +428,13 @@ notifi-box a{
 
 
 .notifi-item .text h4 {
-	color: #777;
-	font-size: 13px;
-	margin-top: 5px;
+	color: #ffffff;
+	font-size: 0.95rem;
+  text-transform: capitalize;
 }
 .notifi-item .text p {
-	color: #aaa;
-	font-size: 12px;
+	color: #ffffff;
+	font-size: 0.75rem;
 }
 
 /* Home Section*/
@@ -445,6 +454,9 @@ notifi-box a{
   border-bottom: solid 1px black;
   padding-bottom: 5px;
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Edit Button */
@@ -489,19 +501,60 @@ notifi-box a{
 }
 
 .deleteBtn {
-  color: red;
-  font-weight: 900;
-  background-color: transparent;
-}
-.cancelBtn {
-  color: rgb(31, 30, 30);
+  color: #fff;
   font-weight: 500;
-  background-color: transparent;
+  background-color: #dc3545;
+  transition: color .15s ease-in-out,background-color 0.15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+.deleteBtn:hover {
+  color: #fff;
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.cancelBtn {
+  color: #fff;
+  font-weight: 500;
+  background-color: #6c757d;
+  transition: color .15s ease-in-out,background-color 0.15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+.cancelBtn:hover {
+  color: #fff;
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
 .saveBtn {
-background-color: #12a6d4;
+background-color: #007bff;
 color: white;
 font-weight: 500;
+transition: color .15s ease-in-out,background-color 0.15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 border: none !important;
 }
+.saveBtn:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
 /* Control Buttons: end */
+
+
+/*new theme*/
+.guestDiv,
+.infoDiv,
+.descDiv {
+  background-color: #85c3be;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px 5px #00000077;
+  padding: 10px;
+  border-bottom: 5px solid #000000;
+  margin: 20px;
+}
+
+.nav-grid>.text {
+  border-bottom: 10px  #000000;
+  border-bottom-style: solid;
+  width: 265px;
+}
