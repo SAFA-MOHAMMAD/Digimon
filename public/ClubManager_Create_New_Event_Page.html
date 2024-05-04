@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Sets the character encoding of the document to UTF-8, ensuring proper rendering of international characters and symbols -->
+  <meta charset="UTF-8">
+  <title>New Event Request Form </title>
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="ClubManager_Create_New_Event_Page_style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Boxicons CDN Link, Used to load the icons -->
+  <script src="https://kit.fontawesome.com/14f233c83a.js" crossorigin="anonymous"></script>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="images/logo.png" class="icon">
+      <div class="logo_name">Club Mangment</div>
+      <i class='bx bx-menu' id="btn"></i> <!-- the class name is taken from boxicons website -->
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="ClubManager_home.html">
+          <i class='bx bx-home'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <a href="ClubManager_weekly-Events.html">
+          <i class='bx bx-calendar-event'></i>
+          <span class="links_name">Weekly activities</span>
+        </a>
+        <span class="tooltip">Weekly activities</span>
+      </li>
+      <li>
+        <a href="ClubManager_Club-Page_Myclub.html">
+          <i class='bx bx-bullseye'></i>
+          <span class="links_name">My Club</span>
+        </a>
+        <span class="tooltip">My Club</span>
+      </li>
+      <li>
+        <a href="ClubManager_create_post_page.html">
+          <i class='bx bxs-file-plus'></i>
+          <span class="links_name">Create Post</span>
+        </a>
+        <span class="tooltip">Create Post</span>
+      </li>
+      <li>
+        <a href="ClubManager_Create_New_Event_Page.html">
+          <i class='bx bx-add-to-queue'></i>
+          <span class="links_name">Create Event</span>
+        </a>
+        <span class="tooltip">Create Event</span>
+      </li>
+      <li class="profile">
+        <div class="profile-details">
+          <img src="images/profile.png" alt="profileImg">
+          <div class="name_job">
+            <div class="name">Micheal salman</div>
+            <div class="job">Club Manager</div>
+          </div>
+        </div>
+
+        <div>
+          <a href="Club_Manager_Log_In.html">
+            <i class='bx bx-log-out' id="log_out">
+
+            </i>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+
+  <!-- ======================================== -->
+
+  <!-- homesection start -->
+  <section class="home-section">
+    
+    <div class="nav-grid">
+      <div class="text">
+        New Event Request Form
+      </div>
+      
+      <div class="icon-1" onclick="toggleNotifi()">  <!-- notfication icon div -->
+        <img class = "notfication-icon" src="images/Notification-icon.png" alt="">
+      </div>
+      <div class="notifi-box" id="box">
+        <h2>Notifications </h2>
+
+
+
+        <a href="">       <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
+          <div class="notifi-item">
+            <img class = "box-icon" src="images/notfication1 (1).png" alt="img">
+            <div class="text">
+               <h4 id="notfication=title">notfication type</h4>
+               <p id="notfication-message">more text about the notfication type</p>
+            </div> 
+          </div>
+        </a>
+
+        <a href="">     <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
+          <div class="notifi-item">  
+            <img class = "box-icon" src="images/notfication1 (2).png" alt="img">
+            <div class="text">
+              <h4 id="notfication=title">notfication type</h4>
+               <p id="notfication-message">more text about the notfication type</p>
+            </div> 
+          </div>
+        </a>
+
+        <a href="">     <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
+          <div class="notifi-item">
+            <img class = "box-icon" src="images/notfication1 (3).png" alt="img">
+            <div class="text">
+              <h4 id="notfication=title">notfication type</h4>
+               <p id="notfication-message">more text about the notfication type</p>
+            </div> 
+          </div>
+        </a>
+
+        <a href="">      <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
+          <div class="notifi-item">
+            <img class = "box-icon" src="images/notfication1 (4).png" alt="img">
+            <div class="text">
+               <h4 id="notfication=title">notfication type</h4>
+               <p id="notfication-message">more text about the notfication type</p>
+            </div> 
+          </div>
+        </a>
+
+        <a href="">      <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
+          <div class="notifi-item">
+            <img class = "box-icon" src="images/notfication1 (5).png" alt="img">
+            <div class="text">
+              <h4 id="notfication=title">notfication type</h4>
+              <p id="notfication-message">more text about the notfication type</p>
+            </div> 
+          </div>
+        </a>
+
+        <a href="">
+          <div class="notifi-item">
+            <img class = "box-icon" src="images/notfication1 (6).png" alt="img">
+            <div class="text">
+               <h4 id="notfication=title">notfication type</h4>
+               <p id="notfication-message">more text about the notfication type</p>
+            </div> 
+          </div>
+        </a>
+        
+      </div>
+    </div>
+
+      <!-- Form section -->
+      <section class="Form">
+        <!-- Form for club details -->
+        <form action="results.html" method="get" enctype="multipart/form-data">
+          <!-- Input fields -->
+          <div class="input">
+            <label class="label" for="club_name">Club Name Organizing the Event:</label><br>
+            <input class="text-input" type="text" name="club_name" id="club_name" required>
+          </div>
+
+          <div>
+            <label class="label" for="event_types">Event type</label><br>
+            <select class="drop-down" id="event_types" required>
+              <option value="Activity">Club Activity</option>
+              <option value="Seminar">Seminar</option>
+              <option value="Workshop">Workshop</option>
+             </select>
+          </div>
+          <div class="mulitple-boxs-inline">
+            <div>
+              <label class="label" for="Event_Name">Event Name</label><br>
+              <input class="text-input2" type="text" name="Event_Name" id="Event_Name" required>
+            </div>
+            <div>
+              <label class="label"  for="Event_Date">Event Date</label><br>
+              <input class ="drop-down" type="date" id="Event_Date" required>
+            </div>
+          </div>
+
+          <div class="input">
+            <label class="label" for="event_content">Subject/Content of The Event</label><br>
+            <textarea class="text-area" id="event_content" name="event_contenta" cols="30" rows="10" required></textarea>
+          </div>
+
+          <div class="speakers">
+            <div class="input">
+              <label class="label" for="Speaker1">Speaker-Participant(1)</label><br>
+              <input class="text-input3" type="text" name="Speaker1" id="Speaker1" required>
+            </div>
+            <div class="input">
+              <label class="label" for="Speaker2">Speaker-Participant(2)</label><br>
+              <input class="text-input3" type="text" name="Speaker2" id="Speaker2" required>
+            </div>
+            <div class="input">
+              <label class="label" for="Speaker3">Speaker-Participant(3)</label><br>
+              <input class="text-input3" type="text" name="Speaker3" id="Speaker3" required>
+            </div>
+            <div class="input">
+              <label class="label" for="Speaker4">Speaker-Participant(4)</label><br>
+              <input class="text-input3" type="text" name="Speaker4" id="Speaker4" required>
+            </div>
+            <div class="input">
+              <label class="label" for="Speaker5">Speaker-Participant(5)</label><br>
+              <input class="text-input3" type="text" name="Speaker5" id="Speaker5" required>
+            </div>
+            <div class="input">
+              <label class="label" for="Speaker6">Speaker-Participant(6)</label><br>
+              <input class="text-input3" type="text" name="Speaker6" id="Speaker6" required>
+            </div>
+          </div>
+          <div class="input">
+            <label class="label" for="Event_location">Place where the event will be held (Campus / Hall / Classroom / Garden etc.)</label><br>
+            <input class="text-input" type="text" name="Event_location" id="Event_location" required>
+          </div>
+          <div class="input">
+            <label class="label" for="Event_needs">Special Services Requested from Technical Services</label><br>
+            <input class="text-input" type="text" name="Event_needs" id="Event_needs" required>
+          </div>
+          <div class="mulitple-boxs-inline">
+            <div>
+              <label class="label" for="Banner_Request">Banner Request</label><br>
+              <select class="drop-down" id="Banner_Request" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+               </select>
+            </div>
+            <div class="input">
+              <label class="label" for="Poster_location">Location</label><br>
+              <input class="text-input3" type="text" name="Poster_location" id="Poster_location" required>
+            </div>
+            <div>
+              <label class="label"  for="poster_date">Date</label><br>
+              <input class ="drop-down" type="poster_date" id="poster_date" required>
+            </div>
+          </div>
+
+          <div class="input">
+            <label class="label" for="Other_requests">Other requests and information about the event:</label><br>
+            <textarea class="text-area" id="Other_requests" name="Other_requests" cols="30" rows="10" required></textarea>
+          </div>
+
+          <div class="mulitple-boxs-inline">
+            <div class="input">
+              <label class="label" for="Club_President_name">Club President full Name</label><br>
+              <input class="text-input3" type="text" name="Club_President_name" id="Club_President_name" required>
+            </div>
+            <div class="input">
+              <label class="label" for="Phone">Phone Number</label><br>
+              <input class="text-input3" type="tel" name="Phone" id="Phone" placeholder="5310000000" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required>
+            </div>
+            <div class="input">
+              <label class="label" for="advisor_name">Club Advisor Name</label><br>
+              <input class="drop-down" type="text" name="advisor_name" id="advisor_name" required>
+            </div>
+          </div>
+          <!-- Button container -->
+          <div class="button-container">
+            <button class="cancel" type="button">Cancel</button>
+            <button class="accept" type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+
+  </section>
+  <script src="ClubManager_Create_New_Event_Page_script.js"> </script>
+</body>
+</html>
