@@ -2,3 +2,10 @@ node_modules
 package-lock.json
 package.json
 seed
+controllers
+config
+public
+uploads
+routes
+server.js
+.gitignore

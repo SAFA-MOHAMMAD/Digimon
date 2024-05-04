@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>Homepage</title>
   <!-- CSS Link -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="homestyle.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Boxicons CDN Link, Used to load the icons -->
   <script src="https://kit.fontawesome.com/14f233c83a.js" crossorigin="anonymous"></script>
@@ -23,7 +23,7 @@
 
     <ul class="nav-list">
       <li>
-        <a href="../home/home.html">
+        <a href="./home.html">
           <i class='bx bx-home'></i>
           <span class="links_name">Home</span>
         </a>
@@ -236,10 +236,24 @@
                 gallery.appendChild(card);
 
                 // Add a click event listener to the card
-                card.addEventListener("click", function() {
-                    // Redirect to the club page when the card is clicked
-                    window.location.href = "../Club-page/Club-page.html";
-                });
+                card.addEventListener("click", async function() {
+                  // Fetch the specific club information
+                  const clubResponse = await fetch(`/api/Club/${club.clubID}`);
+                  const clubData = await clubResponse.json();
+                  
+                  // Redirect to the club page with the club data as query parameters
+                  // Constructing the URL with query parameters
+                  window.location.href = `./club?clubID=${club.clubID}
+                  &clubName=${encodeURIComponent(clubData.clubName)}
+                  &clubDescription=${encodeURIComponent(clubData.clubDescription)}
+                  &clubPresident=${encodeURIComponent(clubData.clubPresident)}
+                  &clubVicePresident=${encodeURIComponent(clubData.clubVicePresident)}
+                  &clubActivitiesInfo=${encodeURIComponent(clubData.clubActivitiesInfo)}
+                  &clubOfficialEmail=${encodeURIComponent(clubData.clubOfficialEmail)}
+                  &clubPresidentEmail=${encodeURIComponent(clubData.clubPresidentEmail)}
+                  &clubVicePresidentEmail=${encodeURIComponent(clubData.clubVicePresidentEmail)}
+                  &clubLogo=${encodeURIComponent(clubData.clubLogo)}`;
+              });
             });
           })
         } catch (error) {
@@ -252,7 +266,7 @@
 </script>
     </main>
   </div>
-  <script src="script.js">
+  <script src="homescript.js">
   
   </script>
 </body>
