@@ -1,6 +1,7 @@
 const db=require('../models');
 const Event=db.event
 
+
 const newEvent=async(req,res)=>{
     try {
     console.log(req.body);
@@ -28,6 +29,8 @@ catch (error) {
 }
 }
 
+
+
 const deleteEvent=async(req,res)=>{
     try {
     let id=req.params.id;
@@ -41,6 +44,8 @@ const deleteEvent=async(req,res)=>{
 }
 
 
+
+
 const updateEevnt=async(req,res)=>{
     try {
     let id=req.params.id;
@@ -51,6 +56,7 @@ const updateEevnt=async(req,res)=>{
         res.status(500).send('Internal Server Error');
     }
 }
+
 
 
 const getAllEvents=async(req,res)=>{
@@ -76,6 +82,8 @@ const getAllEvents=async(req,res)=>{
 }
 
 
+
+
 const getOneEvent=async(req,res)=>{
     try {
     let id=req.params.id
@@ -86,10 +94,33 @@ const getOneEvent=async(req,res)=>{
     res.status(500).send('Internal Server Error');
     }
 }
+
+
+// Function to fetch events by club ID
+const getEventsByClubName = async (req, res) => {
+    try {
+        // Get the club ID from the URL parameters
+        const clubName = req.params.clubName;
+
+        // Fetch events associated with the specified club ID
+        const events = await Event.findAll({
+            where: {
+                clubName: clubName, // Assuming clubName contains the club ID
+            },
+        });
+
+        // Send the events as the response
+        res.status(200).json(events);
+    } catch (error) {
+        console.error('Error fetching events by club ID:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
 module.exports={
     newEvent,
     deleteEvent,
     updateEevnt,
     getAllEvents,
-    getOneEvent
+    getOneEvent,
+    getEventsByClubName
 }

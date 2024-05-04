@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Sets the character encoding of the document to UTF-8, ensuring proper rendering of international characters and symbols -->
+  <meta charset="UTF-8">
+  <title>Club Details</title>
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Boxicons CDN Link, Used to load the icons -->
+  <script src="https://kit.fontawesome.com/14f233c83a.js" crossorigin="anonymous"></script>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+  <div class="sidebar">
+
+    <div class="logo-details">
+      <img src="images/logo.png" class="icon">
+      <div class="logo_name">Club Mangment</div>
+      <i class='bx bx-menu' id="btn"></i> <!-- the class name is taken from boxicons website -->
+    </div>
+
+
+    <ul class="nav-list">
+      <li>
+        <a href="../home/home.html">
+          <i class='bx bx-home'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+
+
+      <li>
+        <a href="../weekly-events/weekly-Events.html">
+          <i class='bx bx-calendar-event'></i>
+          <span class="links_name">Weekly activities</span>
+        </a>
+        <span class="tooltip">Weekly activities</span>
+      </li>
+
+
+      <li>
+        <a href="../Incoming requests/Incoming_requessts.html">
+          <i class='bx bxl-telegram'></i>
+          <span class="links_name">Event Requests</span>
+        </a>
+        <span class="tooltip">Event Requests</span>
+      </li>
+
+
+      <li>
+        <a href="../incoming post requests/incoming_post_requests.html">
+          <i class='bx bx-detail'></i>
+          <span class="links_name">Post Requests</span>
+        </a>
+        <span class="tooltip">Post Requests</span>
+      </li>
+
+
+      <li>
+        <a href="../create club page/create_club_page.html">
+          <i class='bx bx-plus'></i>
+          <span class="links_name">Create Club</span>
+        </a>
+        <span class="tooltip">Create Club</span>
+      </li>
+
+
+      <li class="profile">
+        <div class="profile-details">
+          <img src="images/profile.png" alt="profileImg">
+          <div class="name_job">
+            <div class="name">Micheal salman</div>
+            <div class="job">Admin</div>
+          </div>
+        </div>
+        <div>
+          <a href="../Log-in page/SKS_Admin.html">
+            <i class='bx bx-log-out' id="log_out"></i>
+          </a>
+        </div>
+      </li>
+
+
+    </ul>
+  </div>
+
+  <!-- ======================================== -->
+
+  <!-- homesection start -->
+  <section class="home-section">
+    
+    <div class="nav-grid">
+      <div class="text">
+        Club Details
+      </div>
+      
+      <div class="icon-1" onclick="toggleNotifi()">  <!-- notfication icon div -->
+        <img class = "notfication-icon" src="images/Notification-icon.png" alt="">
+      </div>
+      <div class="notifi-box" id="box">
+        <h2>Notifications </h2>
+
+
+
+        <a href="">       <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
+          <div class="notifi-item">
+            <img class = "box-icon" src="images/notfication1 (1).png" alt="img">
+            <div class="text">
+               <h4 id="notfication=title">notfication type</h4>
+               <p id="notfication-message">more text about the notfication type</p>
+            </div> 
+          </div>
+        </a>
+
+        <a href="">     <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
+          <div class="notifi-item">  
+            <img class = "box-icon" src="images/notfication1 (2).png" alt="img">
+            <div class="text">
+              <h4 id="notfication=title">notfication type</h4>
+               <p id="notfication-message">more text about the notfication type</p>
+            </div> 
+          </div>
+        </a>
+
+        <a href="">     <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
+          <div class="notifi-item">
+            <img class = "box-icon" src="images/notfication1 (3).png" alt="img">
+            <div class="text">
+              <h4 id="notfication=title">notfication type</h4>
+               <p id="notfication-message">more text about the notfication type</p>
+            </div> 
+          </div>
+        </a>
+
+        <a href="">      <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
+          <div class="notifi-item">
+            <img class = "box-icon" src="images/notfication1 (4).png" alt="img">
+            <div class="text">
+               <h4 id="notfication=title">notfication type</h4>
+               <p id="notfication-message">more text about the notfication type</p>
+            </div> 
+          </div>
+        </a>
+
+        <a href="">      <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
+          <div class="notifi-item">
+            <img class = "box-icon" src="images/notfication1 (5).png" alt="img">
+            <div class="text">
+              <h4 id="notfication=title">notfication type</h4>
+              <p id="notfication-message">more text about the notfication type</p>
+            </div> 
+          </div>
+        </a>
+
+        <a href="">
+          <div class="notifi-item">
+            <img class = "box-icon" src="images/notfication1 (6).png" alt="img">
+            <div class="text">
+               <h4 id="notfication=title">notfication type</h4>
+               <p id="notfication-message">more text about the notfication type</p>
+            </div> 
+          </div>
+        </a>
+        
+      </div>
+    </div>
+    <script>
+      // Function to parse query parameters from the URL
+function getQueryParams() {
+  const params = new URLSearchParams(window.location.search);
+  const clubID = params.get('clubID');
+  const clubName = params.get('clubName');
+  const clubDescription = params.get('clubDescription');
+  const clubPresident = params.get('clubPresident');
+  const clubVicePresident = params.get('clubVicePresident');
+  const clubActivitiesInfo = params.get('clubActivitiesInfo');
+  const clubOfficialEmail = params.get('clubOfficialEmail');
+  const clubPresidentEmail = params.get('clubPresidentEmail');
+  const clubVicePresidentEmail = params.get('clubVicePresidentEmail');
+  const clubLogo = params.get('clubLogo');
+  
+  return {
+      clubID,
+      clubName,
+      clubDescription,
+      clubPresident,
+      clubVicePresident,
+      clubActivitiesInfo,
+      clubOfficialEmail,
+      clubPresidentEmail,
+      clubVicePresidentEmail,
+      clubLogo
+  };
+  // Function to parse query parameters from the URL
+function getQueryParams() {
+  const params = new URLSearchParams(window.location.search);
+  const clubID = params.get('clubID');
+  const clubName = params.get('clubName');
+  const clubDescription = params.get('clubDescription');
+  const clubPresident = params.get('clubPresident');
+  const clubVicePresident = params.get('clubVicePresident');
+  const clubActivitiesInfo = params.get('clubActivitiesInfo');
+  const clubOfficialEmail = params.get('clubOfficialEmail');
+  const clubPresidentEmail = params.get('clubPresidentEmail');
+  const clubVicePresidentEmail = params.get('clubVicePresidentEmail');
+  const clubLogo = params.get('clubLogo');
+  
+  return {
+      clubID,
+      clubName,
+      clubDescription,
+      clubPresident,
+      clubVicePresident,
+      clubActivitiesInfo,
+      clubOfficialEmail,
+      clubPresidentEmail,
+      clubVicePresidentEmail,
+      clubLogo
+  };
+}
+
+}
+
+    </script>
+       
+      <main>
+         <div class="grid">
+         <div class="club-img-name divs grid-colum-span-2">
+            <section class="logoAndName">
+              <img src="imgs/club1.webp" alt="Club Logo" id="club-logo" >
+              <input type="file" id="edited-image" class="choose-file-button">
+               <div class="info">
+                  <div class="section-header">
+                     <h2><span id="club-name">Club Name</span><input id="edited-club-name" style="display: none;"></h2>
+                     <i class="fa-regular fa-pen-to-square" id="edit-logo-name-info-btn"></i>
+                  </div>
+                  <p><span id="club-info">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus magni nostrum illum fuga ad facere dolor corporis qui obcaecati provident in itaque, inventore incidunt. Sequi dignissimos.</span></p>
+                  <br><br><br>
+               </div>
+            </section>
+         </div>
+   
+         <div class="club-leader-info divs ">
+            <aside class="aside">
+               <div class="section-header">
+                  <h2>Club Leaders</h2>
+                  <i class="fa-regular fa-pen-to-square" id="edit-club-leader-info-btn"></i>
+               </div>
+               <hr>  
+               <address>
+                <p>Club President: <span id="club-president-name">Jeon Jung-kook</span><input id="edited-president-name" style="display: none;"></p>
+                <p>Contact Info: <span id="club-president-email">jklollmao@gmail.com</span><input id="edited-president-email" style="display: none;"></p>
+                <p>Club Vice President: <span id="club-viPresident-name">Michael Jackson</span><input id="edited-viPresident-name" style="display: none;"></p>
+                <p>Contact Info: <span id="club-viPresident-email">webexamplebruh@gmail.com</span><input id="edited-viPresident-email" style="display: none;"></p>
+            </address>
+            </aside>
+         </div>
+   
+         <div class="club-description divs grid-colum-span-2">
+            <section class="Description">
+               <div class="section-header">
+                  <h2>Club Description</h2>
+                  <i class="fa-regular fa-pen-to-square" id="edit-club-description-btn"></i>
+               </div>
+               <hr>
+               <p><span id="club-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus a saepe aliquam sunt veritatis nemo doloremque? Sequi quos quisquam, velit aliquid vero laboriosam quae beatae in earum maiores. Vel nulla illum quos optio atque in distinctio aperiam harum soluta, sed perferendis labore facere molestiae sint quod dolores ullam odit excepturi.sfdddddddddf Ofoidjoijdsf:OIJo;jifsvdnoNdoin;fOin fjnfnk ofomvofm po mko kok oko kok o kkok okk ok ok oko ko</span> </p>
+               <textarea id="edited-description" class="edited-textarea"></textarea>
+            </section>
+         </div>
+   
+         <div class="club-activities divs grid-colum-span-2">
+            <section class="Activities">
+               <div class="section-header">
+                  <h2>Club Activities</h2>
+                  <i class="fa-regular fa-pen-to-square" id="edit-club-activities-btn"></i>
+               </div>
+               <hr>
+               <p><span id="club-activities">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus a saepe aliquam sunt veritatis nemo doloremque? Sequi quos quisquam, velit aliquid vero laboriosam quae beatae in earum maiores. Vel nulla illum quos optio atque in distinctio aperiam harum soluta, sed perferendis labore facere molestiae sint quod dolores ullam odit excepturi.</span></p>
+               <textarea id="edited-activities" class="edited-textarea"></textarea>
+            </section>
+         </div>
+         </div>
+         <br><br><br><br>
+
+
+
+
+         <div class="club-events">
+            <div class="section-header">
+                <h2>Club Events</h2>
+                <a href="../all-events/all-events.html">see all</a>
+            </div>
+            <hr>
+            <div class="events-gallery-container">
+                <div class="event-scroll-button-right" onclick="scrollGalleryRight()"> &gt; </div>
+                <div class="event-scroll-button-left" onclick="scrollGalleryLeft()"> &lt; </div>
+                <div class="gallery">
+                    <div class="item-wrap">
+                        <a href="../Event details/Event_details.html" id="all-event-page-link">
+                            <div class="eventCard">
+                              <div class="dateBlock">
+                                  <p class="day" id="event-day">26th</p>
+                                  <p class="month" id="event-month">Mar</p>
+                                  <p class="year" id="event-year">2024</p>
+                              </div>
+                              <div class="titleBlock">
+                                  <h3 id="event-name">Iftar Program</h3>
+                              </div>
+                          </div>
+                            
+                        </a>
+                        <div class="locationBlock">
+                            <p class="location">Location: <span id="event-location">Eyup, Istanbul</span></p>
+                            <p class="time">Time: <span id="event-time">18:30</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+         <br><br><br>
+
+         <div class="club-posts">
+            <div class="section-header">
+                <h2>Club Posts</h2>
+                <a href="../all-posts/allPosts.html" id="all-post-page-link">see all</a>
+            </div>
+            <hr>
+        
+            <div class="posts-gallery-container">
+                <div class="post-scroll-button-right" onclick="scrollGalleryRight()"> > </div>
+                <div class="post-scroll-button-left" onclick="scrollGalleryLeft()"> < </div>
+                <div class="post-gallery">
+                    <div class="item-wrap">
+                        <a href="../all-posts/allPosts.html" id="post-link">
+                            <a href="../Post details/Post_details.html">
+                              <div class="postCard">
+                                <div class="dateBlock">
+                                    <p class="day" id="post-day">26th</p>
+                                    <p class="month" id="post-month">Mar</p>
+                                    <p class="year" id="post-year">2024</p>
+                                </div>
+                                <div class="titleBlock">
+                                    <h3 id="post-name">Iftar Program</h3>
+                                </div>
+                            </div>
+                            </a>
+                        </a>    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br><br>
+
+
+
+
+        
+      </main>
+      <footer>
+         <div class="contact-us-container">
+            <div class="section-header">
+               <h2><span id="contact-us">Contact us</span></h2>
+                  <i class="fa-regular fa-pen-to-square" id="edit-contact-us-btn"></i>
+            </div>
+            <hr>
+
+
+            <br><br>
+
+
+
+            <div class="contact-us-info grid">
+               <div class="grid-colum-span-1">
+                  <i class="fa-solid fa-phone"></i>
+                  <h3>Phone Number</h3>
+                  <p><span id="phone-number">055372931</span><input id="edited-phone-number" type="text" style="display: none;"></p>
+               </div>
+               <div class="grid-colum-span-1">
+                  <i class="fa-brands fa-instagram"></i>
+                  <h3>Instagram</h3>
+                  <p>@<span id="instgram-username">digoni</span><input id="edited-instgram-username" type="text" style="display: none;"></p>
+               </div>
+               <div class="grid-colum-span-1">
+                  <i class="fa-regular fa-envelope"></i>
+                  <h3>Email</h3>
+                  <p><span id="email">Emailforexample@google.com</span><input id="edited-email" type="text" style="display: none;"></p>
+               </div>
+            </div>
+         </div>
+         <button id="edit-button">Edit</button>
+         <div class="ctrlButtons">
+            <form action="">
+              <button class="deleteBtn">Delete Club</button>
+              <button class="cancelBtn">Cancel Changes</button>
+              <button class="saveBtn">Save Changes</button>
+            </form>
+            <script>
+              // Get the buttons from the HTML
+              const deleteBtn = document.getElementById('deleteBtn');
+              const saveBtn = document.getElementById('saveBtn');
+              const cancelBtn = document.getElementById('cancelBtn');
+      
+              // Get the club ID 
+              const clubID = club.clubID;
+      
+              // Function to handle the deletion of a club
+              async function deleteClub() {
+                  try {
+                      const response = await fetch(`/api/Club/${clubID}`, {
+                          method: 'DELETE'
+                      });
+                      if (response.ok) {
+                          alert('Club deleted successfully.');
+                      } else {
+                          alert('Failed to delete club.');
+                      }
+                  } catch (error) {
+                      console.error('Error deleting club:', error);
+                  }
+              }
+      
+              // Function to handle updating a club
+              async function updateClub() {
+                  try {
+                      const formData = new FormData(document.getElementById('clubForm'));
+                      const response = await fetch(`/api/Club/${clubID}`, {
+                          method: 'PUT',
+                          body: JSON.stringify(Object.fromEntries(formData)),
+                          headers: {
+                              'Content-Type': 'application/json'
+                          }
+                      });
+                      if (response.ok) {
+                          alert('Club updated successfully.');
+                      } else {
+                          alert('Failed to update club.');
+                      }
+                  } catch (error) {
+                      console.error('Error updating club:', error);
+                  }
+              }
+      
+              // Event listener for the delete button
+              deleteBtn.addEventListener('click', deleteClub);
+      
+              // Event listener for the save button
+              saveBtn.addEventListener('click', updateClub);
+      
+              // Event listener for the cancel button
+              cancelBtn.addEventListener('click', () => {
+                  document.getElementById('clubForm').reset();
+                  alert('Changes canceled.');
+              });
+          </script>
+
+          </div>
+      </footer>
+   </div>
+   <script src="script.js"></script>
+</body>
+</html>
+

@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
+      clubName: {
+        type: DataTypes.STRING,
+      },
       postTitle: {
         type: DataTypes.STRING,
       },

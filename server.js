@@ -4,12 +4,15 @@ const sequelize=require('./config/dbConfig');
 const model_event=require('./models/index');
 const path=require('path')
 const bodyParser=require('body-parser');
+const multer=require('multer');
 const port=process.env.PORT || 5000;
 const app=express()
 
 var corOptions ={
     origin: 'http://localhost:8081'
 }
+
+//middlewares
 app.set('view engine', 'ejs');
 app.use(cors(corOptions));
 app.use(express.urlencoded({extended: true}));
@@ -17,69 +20,92 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.use(express.static('public/Student'));
 app.use(express.static('uploads'));
-// app.use(express.static('./public/Admin/Log-in'));
-// app.use(express.static('./public/Admin/all-events'));
-// app.use(express.static('./public/Admin/all-posts'));
-// app.use(express.static('./public/Admin/Club-Page'));
-// app.use(express.static('./public/Admin/create club page'));
-// app.use(express.static('./public/Admin/Event details'));
-// app.use(express.static('./public/Admin/event request information'));
-// app.use(express.static('./public/Admin/home'));
-// app.use(express.static('./public/Admin/Incoming Post Requests'));
-// app.use(express.static('./public/Admin/Incoming requests'));
-// app.use(express.static('./public/Admin/Log-in'));
-// app.use(express.static('./public/Admin/Post details'));
-// app.use(express.static('./public/Admin/post request infromation'));
 
-// app.use(express.static('./public/Club Manager/all-events'));
-// app.use(express.static('./public/Club Manager/all-events-Myclub'));
-// app.use(express.static('./public/Club Manager/all-posts'));
-// app.use(express.static('./public/Club Manager/all-posts-Myclub'));
-// app.use(express.static('./public/Club Manager/create event page'));
-// app.use(express.static('./public/Club Manager/Create post page'));
-// app.use(express.static('./public/Club Manager/Event details'));
-// app.use(express.static('./public/Club Manager/Event details-myclub'));
-// app.use(express.static('./public/Club Manager/home'));
-// app.use(express.static('./public/Club Manager/Log-in page'));
-
-
-// app.use(express.static('./public/Student/all-events'));
-// app.use(express.static('./public/Student/all-posts'));
-// app.use(express.static('./public/Student/Club-Page'));
-// app.use(express.static('./public/Student/Event details'));
-// app.use(express.static('./public/Student/home'));
-app.use(express.static('./public/Student/Log-in page'));
-// app.use(express.static('./public/Student/home'));
-// app.use(express.static('./public/Student/Post details'));
-// app.use(express.static('./public/Student/weekly-events'));
-
-
-//Router
-const UserRouter=require('./routes/userControllerRoute.js')
+//Routers
+const UserRouter=require('./routes/UserRoute.js')
 app.use('/api/User',UserRouter);
 
-const ClubRouter=require('./routes/Club-Details-Route.js');
+
+const ClubRouter=require('./routes/ClubRoute.js');
 app.use('/api/Club',ClubRouter);
+
 
 const EventRouter=require('./routes/EventRouter.js');
 app.use('/api/Event',EventRouter);
+
+
 const PostRouter=require('./routes/PostRouter.js');
 app.use('/api/Post',PostRouter);
 
 
-// app.get('/',(req, res)=>{
-//     res.json({message:'hello from api'})
-// });
-app.use(express.static('./public/Admin/all-posts'));
+
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname+'/public/home.html');
+    res.sendFile(__dirname+'/public/Admin_Log_in.html');
 });
-// // app.use('/userk',expresconsole.log(path.join(__dirname, '/public/Student/home/home.html'));
-// s.static(path.join(__dirname+'/public/SKS_Admin.html')));
-app.use('/public/Student/home/home.html',express.static(path.join(__dirname+'/public/Student/home/home.html')));
-app.use('/public/Admin/Log-in/Club_Manager.html',express.static(path.join(__dirname+"/public/Admin/Log-in/SKS_Admin.html")));
+
+app.get('/ClubManager_home.html',(req,res)=>{
+    res.sendFile(__dirname+'/public/ClubManager_home.html');
+});
+
+app.get('/Student_home.html',(req,res)=>{
+    res.sendFile(__dirname+'/public/Student_home.html');
+});
+app.get('/club',(req,res)=>{
+    res.sendFile(__dirname+'/public/Admin_Club-Page.html');
+});
+
+app.get('/createClub',(req,res)=>{
+    res.sendFile(__dirname+'/public/Admin/create club page/create_club_page.html');
+});
+
+
+
+//for images
+app.get('/uploads/Imagenum1.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads/Imagenum1.jpg');
+});
+app.get('/uploads/Imagenum2.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads/Imagenum2.jpg');
+});
+app.get('/uploads/Imagenum3.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads/Imagenum3.jpg');
+});
+app.get('/uploads/Imagenum4.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads/Imagenum4.jpg');
+});
+app.get('/uploads/Imagenum5.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads/Imagenum5.png');
+});
+app.get('/uploads/Imagenum6.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads/Imagenum6.jpg');
+});
+app.get('/uploads/Imagenum7.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads/Imagenum7.jpg');
+});
+app.get('/uploads/Imagenum8.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads/Imagenum8.jpg');
+});
+app.get('/uploads/Imagenum9.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads/Imagenum9.png');
+});
+app.get('/uploads/Imagenum10.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads//Imagenum10.jpg');
+});
+app.get('/uploads/Imagenum11.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads/Imagenum11.jpg');
+});
+app.get('/uploads/Imagenum12.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads/Imagenum12.jpg');
+});
+
+app.get('/set',(req,res)=>{
+res.sendFile(__dirname+'/public/Admin/weekly-events/weekly-Events.html');
+});
+
+
+
+
 app.listen(port,()=>{
     console.log(`server is running on port ${port}`);
 });
