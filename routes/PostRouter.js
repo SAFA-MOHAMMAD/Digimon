@@ -1,25 +1,26 @@
-const PostControllar=require('../controllers/PostController');
-const router=require('express').Router();
-const multer=require('multer');
+const express = require('express');
+const router = express.Router();
+const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
+const PostController = require('../controllers/PostController');
 
-//create post route
-router.post('/newPost',PostControllar.newPost);
+// Create post route
+router.post('/newPost', upload.single('file'), PostController.newPost);
 
-//get all route
-router.get('/getAllPosts',PostControllar.getAllPosts);
+// Get all posts route
+router.get('/getAllPosts', PostController.getAllPosts);
 
-//get one route
-router.get('/:id',PostControllar.getOnePost);
+// Get one post route
+router.get('/:id', PostController.getOnePost);
 
-//update route
-router.put('/:id',PostControllar.updatePost);
+// Update post route
+router.put('/:id', PostController.updatePost);
 
-//update route
-router.patch('/:id',upload.single('file'),PostControllar.updatePost);
+// Update post route with file upload
+router.patch('/:id', upload.single('file'), PostController.updatePost);
 
-//delete route
-router.delete('/:id',PostControllar.deletePost);
+// Delete post route
+router.delete('/:id', PostController.deletePost);
 
-module.exports=router;
+module.exports = router;

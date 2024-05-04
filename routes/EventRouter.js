@@ -1,24 +1,24 @@
-const EventControllar=require('../controllers/EventController');
-const router=require('express').Router();
-const multer=require('multer');
+const EventController = require('../controllers/EventController');
+const router = require('express').Router();
+const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
-//create event route
-router.post('/newEvent',EventControllar.newEvent);
+// Create event route
+router.post('/newEvent', EventController.newEvent);
 
-//get all route
-router.get('/getAllEvents',EventControllar.getAllEvents);
+// Get all events route
+router.get('/getAllEvents', EventController.getAllEvents);
 
-//get one route
-router.get('/:id',EventControllar.getOneEvent);
+// Get one event route
+router.get('/:id', EventController.getOneEvent);
 
-//update route
-router.put('/:id',EventControllar.updateEevnt);
+// Update event route (using PUT method)
+router.put('/:id', EventController.updateEvent);
 
-//update route
-router.patch('/:id',upload.single('file'),EventControllar.updateEevnt);
+// Update event route (using PATCH method for file upload)
+router.patch('/:id', upload.single('file'), EventController.updateEvent);
 
-//delete route
-router.delete('/:id',EventControllar.deleteEvent);
+// Delete event route
+router.delete('/:id', EventController.deleteEvent);
 
-module.exports=router;
+module.exports = router;
