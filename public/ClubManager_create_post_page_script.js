@@ -1,7 +1,48 @@
 let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
 let searchBtn = document.querySelector(".bx-search");
+const cancel = document.getElementById('cancel');
 
+
+document.querySelector('form').addEventListener('submit', async function(event) {
+  // Prevent default form submission behavior
+  event.preventDefault();
+
+  // Create FormData from the form element
+  const form = event.target;
+  const formData = new FormData(form);
+
+  // Log the FormData contents to check what's being sent
+  for (const [key, value] of formData.entries()) {
+      console.log(`Key: ${key}, Value: ${value}`);
+  }
+
+  try {
+      // Send the FormData to the server via a POST request
+      const response = await fetch('/api/Post/newPost', {
+          method: 'POST',
+          body: formData,
+      });
+
+      // Handle the response
+      if (response.ok) {
+          const createdPost = await response.json();
+          window.location.href = './ClubManager_home.html';
+          console.log('Post created successfully:', createdPost);
+      } else {
+          console.error('Failed to create Post:', response.statusText);
+      }
+  } catch (error) {
+      console.error('Error creating Post:', error);
+  }
+});
+cancel.addEventListener('click', function(event) {
+  // Prevent default behavior (page reload)
+  event.preventDefault();
+  
+  // Navigate back to the previous page
+  window.history.back();
+});
 closeBtn.addEventListener("click", () => {
   sidebar.classList.toggle("open");
   menuBtnChange(); // calling the function(optional)
@@ -35,18 +76,18 @@ function toggleNotifi(){
 /* ========================================= */
 
 
-  document.querySelector('.event-scroll-button-right').addEventListener('click', function() {
-    document.querySelector('.gallery').scrollBy({
-      top: 0,
-      left: 600, // Change this value to adjust the scroll distance
-      behavior: 'smooth'
-    });
-  });
+  // document.querySelector('.event-scroll-button-right').addEventListener('click', function() {
+  //   document.querySelector('.gallery').scrollBy({
+  //     top: 0,
+  //     left: 600, // Change this value to adjust the scroll distance
+  //     behavior: 'smooth'
+  //   });
+  // });
   
-  document.querySelector('.event-scroll-button-left').addEventListener('click', function() {
-    document.querySelector('.gallery').scrollBy({
-      top: 0,
-      left: -600, // Change this value to adjust the scroll distance
-      behavior: 'smooth'
-    });
-  });
+  // document.querySelector('.event-scroll-button-left').addEventListener('click', function() {
+  //   document.querySelector('.gallery').scrollBy({
+  //     top: 0,
+  //     left: -600, // Change this value to adjust the scroll distance
+  //     behavior: 'smooth'
+  //   });
+  // });

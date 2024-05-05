@@ -1,5 +1,6 @@
 const db=require('../models');
 const Post=db.post
+const multer = require('multer');
 
 
 const newPost=async(req,res)=>{
@@ -8,7 +9,7 @@ const newPost=async(req,res)=>{
                 postTitle: req.body.postTitle,
                 clubName:req.body.clubName,
                 postDescription: req.body.postDescription,
-                postImage: req.file ? req.file.path : null, // Assuming image is being uploaded and stored locally
+                postImage: req.file ? req.file.path : null,
                 postDate: new Date()
             }
             const post=await Post.create(info);
@@ -24,8 +25,8 @@ const newPost=async(req,res)=>{
 
 const deletePost=async(req,res)=>{
     try {
-    let id=req.params.id;
-    await Post.destroy({where:{postID:id}});
+    let name=req.params.name;
+    await Post.destroy({where:{postname:name}});
     res.status(200).send('Post is deleted')
 }
 catch (error) {
@@ -38,8 +39,8 @@ catch (error) {
 
 const updatePost=async(req,res)=>{
     try {
-    let id=req.params.id;
-    const post=await Post.update(req.body,{where:{postID:id}});
+    let name=req.params.name;
+    const post=await Post.update(req.body,{where:{postname:name}});
     res.status(200).send(post);
 }
 catch (error) {
@@ -54,7 +55,7 @@ const getAllPosts=async(req,res)=>{
     try {
         // Fetch all Posts from the database
     const post = await Post.findAll({}); 
-        // Function to chunk the clubs array into subarrays of 3 elements each
+        // Function to chunk the posts array into subarrays of 3 elements each
     const chunkArray = (array, size) => {
         const chunkedArr = [];
         for (let i = 0; i < array.length; i += size) {
@@ -62,7 +63,7 @@ const getAllPosts=async(req,res)=>{
         }
         return chunkedArr;
     };
-        // Chunk the clubs array
+        // Chunk the postss array
     const chunkedPosts = chunkArray(post, 3);
         // Send the chunked array as the response
     res.json(chunkedPosts);
@@ -70,7 +71,6 @@ const getAllPosts=async(req,res)=>{
     console.error('Error fetching Posts:', error);
     res.status(500).send('Internal Server Error');
     }
-
 }
 
 
@@ -86,20 +86,18 @@ const getOnePost=async(req,res)=>{
     }
 }
 
-// Function to fetch events by club ID
+// Function to fetch posts by club name
 const getPostsByClubName = async (req, res) => {
     try {
-        // Get the club ID from the URL parameters
+        // Get the club name from the URL parameters
         const clubName = req.params.clubName;
-
-        // Fetch events associated with the specified club ID
+        // Fetch posts associated with the specified club name
         const posts = await Post.findAll({
             where: {
-                clubName: clubName, // Assuming clubName contains the club ID
+                clubName: clubName,
             },
         });
-
-        // Send the events as the response
+        // Send the posts as the response
         res.status(200).json(posts);
     } catch (error) {
         console.error('Error fetching events by club Name:', error);

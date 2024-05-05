@@ -1,5 +1,6 @@
 const db=require('../models');
 const Event=db.event
+const multer = require('multer');
 
 
 const newEvent=async(req,res)=>{
@@ -15,7 +16,7 @@ const newEvent=async(req,res)=>{
         eventContent:req.body.eventContent,
         eventPlace:req.body.eventPlace,
         eventSpecialService:req.body.eventSpecialService,
-        eventImage:req.body.eventImage,
+        eventImage: req.file ? req.file.path : null,
         eventTime:req.body.eventTime,
         eventApproval:req.body.eventApproval
     }
@@ -96,19 +97,17 @@ const getOneEvent=async(req,res)=>{
 }
 
 
-// Function to fetch events by club ID
+// Function to fetch events by club Name
 const getEventsByClubName = async (req, res) => {
     try {
-        // Get the club ID from the URL parameters
+        // Get the club Name from the URL parameters
         const clubName = req.params.clubName;
-
-        // Fetch events associated with the specified club ID
+        // Fetch events associated with the specified club Name
         const events = await Event.findAll({
             where: {
-                clubName: clubName, // Assuming clubName contains the club ID
+                clubName: clubName,
             },
         });
-
         // Send the events as the response
         res.status(200).json(events);
     } catch (error) {
@@ -116,6 +115,8 @@ const getEventsByClubName = async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 };
+
+
 module.exports={
     newEvent,
     deleteEvent,

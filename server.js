@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.use(express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 //Routers
 const UserRouter=require('./routes/UserRoute.js')
@@ -62,47 +62,18 @@ app.get('/createClub',(req,res)=>{
 
 
 //for images
-app.get('/uploads/Imagenum1.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum1.jpg');
-});
-app.get('/uploads/Imagenum2.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum2.jpg');
-});
-app.get('/uploads/Imagenum3.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum3.jpg');
-});
-app.get('/uploads/Imagenum4.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum4.jpg');
-});
 app.get('/uploads/Imagenum5.jpg',(req,res)=>{
     res.sendFile(__dirname+'/uploads/Imagenum5.png');
-});
-app.get('/uploads/Imagenum6.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum6.jpg');
-});
-app.get('/uploads/Imagenum7.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum7.jpg');
-});
-app.get('/uploads/Imagenum8.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum8.jpg');
 });
 app.get('/uploads/Imagenum9.jpg',(req,res)=>{
     res.sendFile(__dirname+'/uploads/Imagenum9.png');
 });
-app.get('/uploads/Imagenum10.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads//Imagenum10.jpg');
+app.get('/uploads/Imagenum7.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads/Imagenum7.jpg');
 });
-app.get('/uploads/Imagenum11.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum11.jpg');
-});
-app.get('/uploads/Imagenum12.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum12.jpg');
-});
-
 app.get('/set',(req,res)=>{
 res.sendFile(__dirname+'/public/Admin/weekly-events/weekly-Events.html');
 });
-
 
 
 

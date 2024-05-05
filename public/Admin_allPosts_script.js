@@ -84,26 +84,21 @@ async function fetchchunkedPosts() {
       const response = await fetch(`/api/Post/posts/club/${clubName}`);
       const Posts = await response.json(); // Parse the JSON response
       console.log(Posts);
-
       // Get the gallery container where cards will be inserted
       const gallery = document.getElementById('post-gallery');
-
       // Iterate over the chunkedposts and create a card for each
       Posts.forEach((post, index) => {
           // Create a card element
           const card = document.createElement('div');
           card.classList.add('gallery-item', 'grid-colum-span');
-          
           // Set the ID for each card, using `post-card-{index}` to distinguish them
           card.id = `post-card-${index}`;
-
           // Set the card content
           let imageUrl = '';
           if (post.postImage) {
               // Convert backslashes to forward slashes in the image URL
               imageUrl = post.postImage.replace(/\\/g, '/');
           }
-
           card.innerHTML = `
     <div class="postCard" style="background-image: url(${imageUrl});">
     <div class="dateBlock">
@@ -114,12 +109,9 @@ async function fetchchunkedPosts() {
     <div class="titleBlock">
     <h3 id="post-name">${post.postTitle}</h3>
     </div>
-    </div>
-`;
-
+    </div>`;
           // Append the card to the gallery
           gallery.appendChild(card);
-
           // Add a click post listener to the card
           card.addEventListener("click", async function() {
               // Fetch the specific post information

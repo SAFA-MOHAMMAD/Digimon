@@ -63,10 +63,8 @@ async function fetchchunkedClubs() {
       // Fetch data from the server
       const response = await fetch('/api/Club/getAllClubs');
       const chunkedClubs = await response.json(); // Parse the JSON response
-
       // Get the gallery container where cards will be inserted
       const gallery = document.getElementById('club-gallery');
-
       // Iterate over the chunkedClubs and create a card for each
       chunkedClubs.forEach((clubs, index) => {
         clubs.forEach(club=>{
@@ -76,7 +74,6 @@ async function fetchchunkedClubs() {
           
           // Set the ID for each card, using `club-card-{index}` to distinguish them
           card.id = `club-card-${index}`;
-
           // Set the card content
           card.innerHTML = `
               <img src="${club.clubLogo}" alt="${club.clubName}" class="club-logo">
@@ -85,10 +82,8 @@ async function fetchchunkedClubs() {
               <p>President: ${club.clubPresident}</p>
               <p>Vice President: ${club.clubVicePresident}</p>
           `;
-
           // Append the card to the gallery
           gallery.appendChild(card);
-
           // Add a click event listener to the card
           card.addEventListener("click", async function() {
             // Fetch the specific club information

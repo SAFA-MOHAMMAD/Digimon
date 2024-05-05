@@ -159,17 +159,17 @@
       <!-- Form section -->
       <section class="Form">
         <!-- Form for club details -->
-        <form action="" method="get" enctype="multipart/form-data">
+        <form action="/api/Post/newPost" method="post" enctype="multipart/form-data">
           <!-- Input fields -->
           <div class="grid">
             <div >
               <div class="input">
-                <label class="label" for="post_title">Post Title</label><br>
-                <input class="text-input2" type="text" name="post_title" id="post_title" required>
+                <label class="label" for="postTitle">Post Title</label><br>
+                <input class="text-input2" type="text" name="postTitle" id="postTitle" required>
               </div>
               <div class="input">
-                <label class="label" for="post-description">Post Description</label><br>
-                <textarea class="text-area" id="post-description" name="post-description" cols="30" rows="10" required></textarea>
+                <label class="label" for="postDescription">Post Description</label><br>
+                <textarea class="text-area" id="postDescription" name="postDescription" cols="30" rows="10" required></textarea>
               </div>
             </div>
               <div class="posterDiv">
@@ -184,7 +184,7 @@
       
           <!-- Button container -->
           <div class="button-container">
-            <button class="cancel" type="button">Cancel</button>
+            <button class="cancel" id="cancel" type="button">Cancel</button>
             <button class="accept" type="submit">Submit</button>
           </div>
         </form>

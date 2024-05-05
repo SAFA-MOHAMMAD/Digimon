@@ -57,7 +57,7 @@ let sidebar = document.querySelector(".sidebar");
          });
        })
 
-// Function to retrieve the club ID from the URL
+// Function to retrieve the club ID and name from the URL
 function getQueryParams() {
   // Parse query parameters from the URL
   const params = new URLSearchParams(window.location.search);
@@ -86,30 +86,24 @@ async function fetchchunkedEvents() {
       const Events = await response.json(); // Parse the JSON response
       const numberOfEvents=Events.length
       console.log(Events);
-
       // Get the gallery container where cards will be inserted
       const gallery = document.getElementById('event-gallery');
-
       // Iterate over the chunkedevents and create a card for each
       Events.forEach((event, index) => {
         if (numberOfEvents<index){
           window.location.reload();
-
         }
           // Create a card element
           const card = document.createElement('div');
           card.classList.add('gallery-item', 'grid-colum-span');
-          
           // Set the ID for each card, using `event-card-{index}` to distinguish them
           card.id = `event-card-${index}`;
-
           // Set the card content
           let imageUrl = '';
           if (event.eventImage) {
               // Convert backslashes to forward slashes in the image URL
               imageUrl = event.eventImage.replace(/\\/g, '/');
           }
-
           card.innerHTML = `
           <div class=" grid-colum-span">
               <a href="Admin_Event_details.html?id=${event.idclubEvent}" id="event-card-link">
@@ -130,16 +124,13 @@ async function fetchchunkedEvents() {
               </div>
               </div>
           `;
-
           // Append the card to the gallery
           gallery.appendChild(card);
-
           // Add a click event listener to the card
           card.addEventListener("click", async function() {
               // Fetch the specific event information
               const eventResponse = await fetch(`/api/event/${event.idclubEvent}`);
               const eventData = await eventResponse.json();
-              
               // Redirect to the event page with the event data as query parameters
               // Constructing the URL with query parameters
               window.location.href = `./Admin_Event_details.html?idclubEvent=${encodeURIComponent(event.idclubEvent)}

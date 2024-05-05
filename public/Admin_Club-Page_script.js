@@ -101,7 +101,6 @@ document.getElementById('club-logo').src = clubData.clubLogo;
 }
 
 // Call the displayClubInfo function when the page loads
-
 window.addEventListener('load', displayClubInfo);
 
 // Event listener for edit button
@@ -123,7 +122,7 @@ try {
       if (response.ok) {
           alert('Club deleted successfully.');
           // Redirect to home page or desired page after successful deletion
-          window.location.href = './home.html';
+          window.location.href = './Admin_home.html';
       } else {
           alert('Failed to delete club.');
       }
@@ -148,32 +147,23 @@ saveBtn.addEventListener('click', async function(event) {
           clubVicePresident: document.getElementById('edited-viPresident-name').value.trim(),
           clubVicePresidentEmail: document.getElementById('edited-viPresident-email').value.trim(),
           // Include other fields as necessary
-          //clubLogo: document.getElementById('edited-image').files[0] // Only append file if provided
       };
       const clubLogoInput = document.getElementById('edited-image');
-      //console.log('clubLogo input:', clubLogoInput);
-      //console.log('clubLogo files:', clubLogoInput.files);
       if (clubLogoInput.files && clubLogoInput.files.length > 0) {
         formData.append('clubLogo', clubLogoInput.files[0]);
         console.log(`show value: ${clubLogoInput.files[0]}`);
     }
-    
       console.log('Updated data:', updatedData);
-      // Create a FormData object to handle file upload if there's a new image
-      //const formData = new FormData();
-
     console.log('Initialized formData:', formData);
 for (const [key, value] of Object.entries(updatedData)) {
     formData.append(key, value);
     console.log(`Appended key: ${key}, value: ${value}`);
-    //console.log('FormData object:', formData);
 }
 for (const [key, value] of formData) {
   console.log(`show key: ${key}, show value: ${value}`);
-  //console.log('FormData object:', formData);
 }
       console.log('Update query conditions:', { clubID });
-      // Send a PUT request to the server with the updated data
+      // Send a PATCH request to the server with the updated data
       const response = await fetch(`/api/Club/${clubID}`, {
           method: 'PATCH',
           body: formData,
@@ -184,26 +174,8 @@ for (const [key, value] of formData) {
       // Check the server response
       if (response.ok) {
           alert('Club updated successfully.');
-
           // Refresh the page data
           const updatedClub = await response.json();
-          // Update the URL with the new data using pushState
-    //       const newUrl = `/Club?clubID=${updatedClub.clubID}
-    // &clubName=${encodeURIComponent(updatedClub.clubName)}
-    // &clubDescription=${encodeURIComponent(updatedClub.clubDescription)}
-    // &clubPresident=${encodeURIComponent(updatedClub.clubPresident)}
-    // &clubVicePresident=${encodeURIComponent(updatedClub.clubVicePresident)}
-    // &clubActivitiesInfo=${encodeURIComponent(updatedClub.clubActivitiesInfo)}
-    // &clubOfficialEmail=${encodeURIComponent(updatedClub.clubOfficialEmail)}
-    // &clubPresidentEmail=${encodeURIComponent(updatedClub.clubPresidentEmail)}
-    // &clubVicePresidentEmail=${encodeURIComponent(updatedClub.clubVicePresidentEmail)}
-    // &clubLogo=${encodeURIComponent(updatedClub.clubLogo)}`;
-    // console.log('Updated club:', updatedClub);
-    // window.location.replace(newUrl);
-// Replace the current URL with the new URL
-//window.location.href = './Admin_home.html';
-          // Optionally, reload the page if needed
-          // window.location.reload();
       } else {
           alert('Failed to update club.');
       }

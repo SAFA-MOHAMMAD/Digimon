@@ -127,7 +127,7 @@ function toggleNotifi(){
                 // Add a click post listener to the card
                 card.addEventListener("click", async function() {
                     // Fetch the specific post information
-                    const postResponse = await fetch(`/api/post/${post.postID}`);
+                    const postResponse = await fetch(`/api/Post/${post.postID}`);
                     const postData = await postResponse.json();
                     
                     // Redirect to the post page with the post data as query parameters
