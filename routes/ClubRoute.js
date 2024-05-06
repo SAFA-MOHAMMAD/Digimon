@@ -1,27 +1,25 @@
-const ClubControllar=require('../controllers/ClubControllar');
-const router=require('express').Router();
-const multer=require('multer');
+const express = require('express');
+const router = express.Router();
+const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
-const path = require('path');
+const ClubController = require('../controllers/ClubControllar');
 
+// Create club route
+router.post('/newClub', upload.single('file'), ClubController.newClub);
 
-//create club route
-router.post('/newClub',upload.single('file'),ClubControllar.newClub);
+// Get all clubs route
+router.get('/getAllClubs', ClubController.getAllClubs);
 
-//get all route
-router.get('/getAllClubs',ClubControllar.getAllClubs);
+// Get one club route
+router.get('/:id', ClubController.getOneClub);
 
-//get one route
-router.get('/:id',ClubControllar.getOneClub);
+// Update club route
+router.put('/:id', ClubController.updateClub);
 
-//update route
-router.put('/:id',ClubControllar.updateClub);
+// Update club with new logo route
+router.patch('/:id', upload.single('club-logo'), ClubController.updateClub);
 
-//update route
-router.patch('/:id',upload.single('club-logo'),ClubControllar.updateClub);
+// Delete club route
+router.delete('/:id', ClubController.deleteClub);
 
-//delete route
-router.delete('/:id',ClubControllar.deleteClub);
-
-
-module.exports=router;
+module.exports = router;

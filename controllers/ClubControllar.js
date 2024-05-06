@@ -8,7 +8,6 @@ const multer = require('multer');
 const newClub = async (req, res) => {
     try {
         let info = {
-            clubID: req.body.clubID,
             clubName: req.body.clubName,
             clubPresident: req.body.clubPresident,
             clubVicePresident: req.body.clubVicePresident,
@@ -17,11 +16,9 @@ const newClub = async (req, res) => {
             clubVicePresidentEmail: req.body.clubVicePresidentEmail,
             clubDescription: req.body.clubDescription,
             clubActivitiesInfo: req.body.clubActivitiesInfo,
-            clubLogo:  req.file ? req.file.path : null
+            clubLogo: req.file ? req.file.path : null // Ensure that the 'file' is the name in your form
         };
-        // Create a new club entry in the database
         const club = await Club.create(info);
-        // Send the created club information as the response
         res.status(200).send(club);
         console.log('Club created:', club);
     } catch (error) {
@@ -30,58 +27,56 @@ const newClub = async (req, res) => {
     }
 };
 
-
-
-
 const getAllClubs = async (req, res) => {
     try {
-      // Fetch all clubs from the database
-    const club = await Club.findAll({}); 
-      // Function to chunk the clubs array into subarrays of 3 elements each
-    const chunkArray = (array, size) => {
-        const chunkedArr = [];
-        for (let i = 0; i < array.length; i += size) {
-        chunkedArr.push(array.slice(i, i + size));
-        }
-        return chunkedArr;
-    };
-      // Chunk the clubs array
-    const chunkedClubs = chunkArray(club, 3);
-      // Send the chunked array as the response
-    res.json(chunkedClubs);
+        const clubs = await Club.findAll({});
+        res.json(clubs);
     } catch (error) {
-    console.error('Error fetching clubs:', error);
-    res.status(500).send('Internal Server Error');
+        console.error('Error fetching clubs:', error);
+        res.status(500).send('Internal Server Error');
     }
 };
 
+const getOneClub = async (req, res) => {
+    try {
+        const club = await Club.findOne({ where: { clubID: req.params.id } });
+        if (club) {
+            res.status(200).send(club);
+        } else {
+            res.status(404).send('Club not found');
+        }
+    } catch (error) {
+        console.error('Error fetching club:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
 
+const deleteClub = async (req, res) => {
+    try {
+        const id = req.params.id;
+        await Club.destroy({ where: { clubID: id } });
+        res.status(200).send('Club is deleted');
+    } catch (error) {
+        console.error('Error deleting club:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
 
-const getOneClub=async(req,res)=>{
-    let id=req.params.id
-    const club=await Club.findOne({where:{clubID:id}});
-    res.status(200).send(club);
-}
+const updateClub = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const club = await Club.update(req.body, { where: { clubID: id } });
+        res.status(200).send(club);
+    } catch (error) {
+        console.error('Error updating club:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
 
-
-
-const deleteClub=async(req,res)=>{
-    let id=req.params.id
-    await Club.destroy({where:{clubID:id}});
-    res.status(200).send('club is deleted')
-}
-
-
-const updateClub=async(req,res)=>{
-    let id=req.params.id
-    const club=await Club.update(req.body,{where:{clubID:id}});
-    res.status(200).send(club);
-}
-
-module.exports={
+module.exports = {
     newClub,
     getAllClubs,
     getOneClub,
     deleteClub,
     updateClub
-}
+};

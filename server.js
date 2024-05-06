@@ -28,10 +28,12 @@ const UserController = require('./controllers/UserController');
 const EventRouter = require('./routes/EventRouter');
 const PostRouter = require('./routes/PostRouter');
 const UserRouter = require('./routes/UserRoute');
+const ClubRouter = require('./routes/ClubRoute');
 
 app.use('/api/Event', EventRouter);
 app.use('/api/Post', PostRouter);
 app.use('/api/User', UserRouter); 
+app.use('/api/Club', ClubRouter);
 
 
 // Serve static files
