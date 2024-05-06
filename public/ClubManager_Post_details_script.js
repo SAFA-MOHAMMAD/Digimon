@@ -61,6 +61,7 @@ function getQueryParams() {
   const params = new URLSearchParams(window.location.search);
   const postID = params.get('postID');
   const clubName = params.get('clubName');
+  const clubLogo = params.get('clubLogo');
   const postTitle = params.get('postTitle');
   const postDate = params.get('postDate');
   const postDescription = params.get('postDescription');
@@ -70,6 +71,7 @@ function getQueryParams() {
   return {
     postID,
       clubName,
+      clubLogo,
       postTitle,
       postDate,
       postDescription,
@@ -80,6 +82,7 @@ function displayPostInfo() {
   const postData = getQueryParams();
     // Update the HTML elements with the club data
   document.getElementById('clubNameImg').textContent = postData.clubName;
+  document.getElementById('clubLogo').src = postData.clubLogo;
   document.getElementById('posterImg').src = postData.postImage;
   document.getElementById('title').textContent = postData.postTitle;
   document.getElementById('releaseDate').textContent = postData.postDate;

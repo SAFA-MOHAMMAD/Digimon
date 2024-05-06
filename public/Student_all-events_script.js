@@ -47,21 +47,23 @@ function getQueryParams() {
   const params = new URLSearchParams(window.location.search);
   
   // Retrieve and decode query parameters
-  const clubID = params.get('clubID');
+  const clubLogo = params.get('clubLogo');
   const clubName = params.get('clubName');
   
   // Decode and trim the parameters to remove extra spaces
   const decodedClubName = decodeURIComponent(clubName).trim();
-  
+  const decodedclubLogo = decodeURIComponent(clubLogo).trim();
+
   // Return the processed parameters
   return {
-      clubID,
+      clubLogo:decodedclubLogo,
       clubName: decodedClubName,
   };
 }
 
 async function fetchchunkedEvents() {
   const clubName = getQueryParams().clubName;
+  const clubLogo=getQueryParams().clubLogo
   console.log(clubName);
 
   try {
@@ -127,17 +129,18 @@ async function fetchchunkedEvents() {
               // Redirect to the event page with the event data as query parameters
               // Constructing the URL with query parameters
               window.location.href = `./Student_Event_details.html?idclubEvent=${encodeURIComponent(event.idclubEvent)}
-                  &clubName=${encodeURIComponent(eventData.clubName)}
-                  &eventType=${encodeURIComponent(eventData.eventType)}
-                  &eventName=${encodeURIComponent(eventData.eventName)}
-                  &eventDate=${encodeURIComponent(eventData.eventDate)}
-                  &eventSpeaker=${encodeURIComponent(eventData.eventSpeaker)}
-                  &eventContent=${encodeURIComponent(eventData.eventContent)}
-                  &eventPlace=${encodeURIComponent(eventData.eventPlace)}
-                  &eventSpecialService=${encodeURIComponent(eventData.eventSpecialService)}
-                  &eventImage=${encodeURIComponent(eventData.eventImage)}
-                  &eventTime=${encodeURIComponent(eventData.eventTime)}
-                  &eventApproval=${encodeURIComponent(eventData.eventApproval)}`;
+              &clubName=${encodeURIComponent(eventData.clubName)}
+              &clubLogo=${encodeURIComponent(clubLogo)}
+              &eventType=${encodeURIComponent(eventData.eventType)}
+              &eventName=${encodeURIComponent(eventData.eventName)}
+              &eventDate=${encodeURIComponent(eventData.eventDate)}
+              &eventSpeaker=${encodeURIComponent(eventData.eventSpeaker)}
+              &eventContent=${encodeURIComponent(eventData.eventContent)}
+              &eventPlace=${encodeURIComponent(eventData.eventPlace)}
+              &eventSpecialService=${encodeURIComponent(eventData.eventSpecialService)}
+              &eventImage=${encodeURIComponent(eventData.eventImage)}
+              &eventTime=${encodeURIComponent(eventData.eventTime)}
+              &eventApproval=${encodeURIComponent(eventData.eventApproval)}`;
           });
       });
   } catch (error) {

@@ -9,7 +9,7 @@
 /*==================================================*/
 
 /*Anchor deafult class*/
-.postCard
+
 
 a {
   text-decoration: none; /* Remove underlining */
@@ -482,6 +482,9 @@ hr {
   border: none;  
 }  
 
+#club-logo{
+  width: 125px;
+}
 
 .section-header{
   display: flex;
@@ -568,7 +571,7 @@ color:#013238
   flex-direction: column-reverse;
   justify-content: flex-end;
   align-items: center;
-  background-image: url(public/Events.jpg);
+  background-image: url(images/iftar-programi-44538.webp);
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -702,7 +705,7 @@ color:#013238
   flex-direction: column-reverse;
   justify-content: flex-end;
   align-items: center;
-  background-image: url(public/Events.jpg);
+  background-image: url(images/image\ 115.png);
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;

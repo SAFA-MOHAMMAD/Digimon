@@ -126,7 +126,8 @@ function getQueryParams() {
           if (response.ok) {
               alert('event deleted successfully.');
               // Redirect to home page or desired page after successful deletion
-              window.location.href = `Admin_all-events.html?clubName=${encodeURIComponent(eventData.clubName)}`;
+              window.location.href = `Admin_all-events.html?clubName=${encodeURIComponent(eventData.clubName)}&
+              clubLogo=${encodeURIComponent(eventData.clubLogo)}`;
           } else {
               alert('Failed to delete event.');
           }
@@ -193,6 +194,6 @@ function getQueryParams() {
       event.preventDefault();
       
       // Navigate back to the previous page
-      window.location.href = `Admin_all-events.html?clubName=${encodeURIComponent(eventData.clubName)}`;
-    });
+      window.location.href = `Admin_all-events.html?clubName=${encodeURIComponent(eventData.clubName)}&
+      clubLogo=${encodeURIComponent(eventData.clubLogo)}`;    });
     

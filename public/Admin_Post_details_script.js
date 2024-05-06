@@ -116,8 +116,9 @@ function displayPostInfo() {
         if (response.ok) {
             alert('post deleted successfully.');
             // Redirect to home page or desired page after successful deletion
-            window.location.href =  `Admin_allPosts.html?clubName=${encodeURIComponent(postData.clubName)}`;
-        } else {
+            window.location.href =  `Admin_allPosts.html?clubName=${encodeURIComponent(postData.clubName)}
+            &clubLogo=${encodeURIComponent(eventData.clubLogo)}`;        
+          } else {
             alert('Failed to delete post.');
         }
     } catch (error) {
@@ -183,7 +184,8 @@ function displayPostInfo() {
     event.preventDefault();
     
     // Navigate back to the previous page
-    window.location.href =  `Admin_allPosts.html?clubName=${encodeURIComponent(postData.clubName)}`;
+    window.location.href =  `Admin_allPosts.html?clubName=${encodeURIComponent(postData.clubName)}
+    &clubLogo=${encodeURIComponent(eventData.clubLogo)}`;
   });
   
 
