@@ -65,6 +65,7 @@ function getQueryParams() {
       const params = new URLSearchParams(window.location.search);
       const idclubEvent = params.get('idclubEvent');
       const clubName = params.get('clubName');
+      const clubLogo = params.get('clubLogo');
       const eventType = params.get('eventType');
       const eventName = params.get('eventName');
       const eventDate = params.get('eventDate');
@@ -80,6 +81,7 @@ function getQueryParams() {
       return {
         idclubEvent,
           clubName,
+          clubLogo,
           eventType,
           eventName,
           eventDate,
@@ -97,6 +99,7 @@ function getQueryParams() {
     const eventData = getQueryParams();
       // Update the HTML elements with the club data
     document.getElementById('clubNameImg').textContent = eventData.clubName;
+    document.getElementById('clubLogo').src = eventData.clubLogo;
     document.getElementById('posterImg').src = eventData.eventImage;
     document.getElementById('guestName').textContent = eventData.eventSpeaker;
     document.getElementById('InfoDate').textContent = eventData.eventDate;

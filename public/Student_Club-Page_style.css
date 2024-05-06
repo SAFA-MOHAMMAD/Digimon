@@ -25,9 +25,7 @@ a {
   font-family: "Poppins" , sans-serif;
 }
 
-body{
-  background-image: linear-gradient(to left, rgb(207, 214, 214), rgb(185, 188, 188));
-}
+
 
 /*side bar (closed)*/
 .sidebar{
@@ -36,7 +34,7 @@ body{
   top: 0;
   height: 100%;
   width: 78px;
-  background-image: linear-gradient(to bottom, rgb(22, 139, 175), rgb(0, 82, 80));
+  background-image: linear-gradient(-90deg, #85c3be, #016d77);
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
@@ -272,13 +270,21 @@ body{
 
 .home-section{
   position: relative;
-  background-image: linear-gradient(to left, rgb(207, 214, 214), rgb(185, 188, 188));
-  height: 1600px;
+  background-color:  #eef6f9;
+  height: 2200px;
   top: 0;
   left: 78px;
   width: calc(100% - 78px);
   transition: all 0.5s ease;
   z-index: 2;
+}
+
+.home-section >.text{
+  
+    border-bottom: 10px  #000000;
+    border-bottom-style: solid;
+    width: 250px;
+  
 }
 
 
@@ -493,6 +499,19 @@ color:#013238
   font-size: 10px;
   color: black;
 }
+.club-leader-info, 
+.club-description, 
+.club-activities, 
+.club-events,
+.club-posts,
+.contact-us-container,
+.info {
+  background-color: #85c3be;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px 5px #00000077;
+  padding: 10px;
+  border-bottom: 5px solid #000000;
+}
 /* ============================= */
 .posts-gallery-container {
   position: relative;
@@ -600,6 +619,15 @@ color:#013238
   font-size: 15px;
   color: black;
 }
+/* =================================== */
+
+.event-scroll-button-right:hover,
+.event-scroll-button-left:hover,
+.post-scroll-button-right:hover,
+.post-scroll-button-left:hover {
+  box-shadow: 0px 0px 2px 2px #00000077;
+  transition: all linear 200ms;
+}
 
 
 /* ================================== */
@@ -620,6 +648,14 @@ footer{
   align-items: center;
   justify-content: center;
   text-align: center; /* Added for text alignment */
+  cursor: pointer;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.contact-us-info .grid-colum-span-1:hover {
+  background-color: #0000001b;
+  transition: all linear 200ms;
 }
 
 .contact-us-info img {
@@ -657,3 +693,25 @@ footer{
 
 /* ============================== */
 
+.section-header a {
+  color: black;
+  background-color: #ffddd3;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+  text-transform: capitalize ;
+  font-weight: 600;
+}
+
+.section-header a:hover {
+  background-color: #e29579;
+  transform: scale(1.05);
+  transition: linear all 0.09s;
+  box-shadow: 0px 0px 2px 2px #00000077;
+}
+
+
+.contact-us-info .grid-colum-span-1 h3,
+.contact-us-info .grid-colum-span-1 p {
+  font-size: 1.15vw;
+}

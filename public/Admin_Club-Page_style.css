@@ -9,7 +9,7 @@
 /*==================================================*/
 
 /*Anchor deafult class*/
-
+.postCard
 
 a {
   text-decoration: none; /* Remove underlining */
@@ -32,7 +32,7 @@ a {
   top: 0;
   height: 100%;
   width: 78px;
-  background-image: linear-gradient(to bottom, rgb(22, 139, 175), rgb(0, 82, 80));
+  background-image: linear-gradient(-90deg, #85c3be, #016d77);
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
@@ -268,8 +268,8 @@ a {
 
 .home-section{
   position: relative;
-  background-image: linear-gradient(to left, rgb(207, 214, 214), rgb(185, 188, 188));
-  height: 2200px;
+  background-color: #eef6f9;
+  height: 2200px;  
   top: 0;
   left: 78px;
   width: calc(100% - 78px);
@@ -309,6 +309,12 @@ a {
     grid-template-columns: 90% 10%;
   
   
+}
+
+.nav-grid>.text {
+  border-bottom: 10px  #000000;
+  border-bottom-style: solid;
+  width: 250px;
 }
 /* notfication icon div */
 
@@ -353,10 +359,16 @@ a {
   position: absolute;
   top: 80px;
   right: 35px;
-  transition: 1s opacity, 250ms height;
+  transition: 200ms height;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   z-index: 2;
   overflow: auto; /* Enable scrolling */
+  border-radius: 15px;
+  background-color: black;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  scrollbar-color: #fff;
+  padding: 0 20px;
 }
 
 /* each notfication message picture/image */
@@ -365,10 +377,9 @@ a {
 }
 
 .notifi-box h2 {
-	font-size: 14px;
+	font-size: 1.2rem;
 	padding: 10px;
-	border-bottom: 1px solid #eee;
-	color: #999;
+	color: #ffffff;
 }
 .notifi-box h2 span {
 	color: #f00;
@@ -389,16 +400,14 @@ notifi-box a{
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 3 columns */
   grid-template-columns: 30% 70%;
-  height: 80px;
-	border-bottom: 1px solid #eee;
 	padding: 15px 5px;
-	margin-bottom: 15px;
 	cursor: pointer;
+  border-radius: 15px;
 }
 
 
 .notifi-item:hover {
-	background-color: #eee;
+	background-color: #c7c7c726;
 }
 
 
@@ -419,13 +428,13 @@ notifi-box a{
 
 
 .notifi-item .text h4 {
-	color: #777;
-	font-size: 13px;
-	margin-top: 5px;
+	color: #ffffff;
+	font-size: 0.95rem;
+  text-transform: capitalize;
 }
 .notifi-item .text p {
-	color: #aaa;
-	font-size: 12px;
+	color: #ffffff;
+	font-size: 0.75rem;
 }
 /* =============================================================== */
 
@@ -559,7 +568,7 @@ color:#013238
   flex-direction: column-reverse;
   justify-content: flex-end;
   align-items: center;
-  background-image: url(images/iftar-programi-44538.webp);
+  background-image: url(public/Events.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -613,6 +622,20 @@ color:#013238
   padding-left: 10px;
   font-size: 10px;
   color: black;
+}
+
+.club-leader-info, 
+.club-description, 
+.club-activities, 
+.club-events,
+.club-posts,
+.contact-us-container,
+.info {
+  background-color: #85c3be;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px 5px #00000077;
+  padding: 10px;
+  border-bottom: 5px solid #000000;
 }
 /* ============================= */
 .posts-gallery-container {
@@ -679,7 +702,7 @@ color:#013238
   flex-direction: column-reverse;
   justify-content: flex-end;
   align-items: center;
-  background-image: url(images/image\ 115.png);
+  background-image: url(public/Events.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
@@ -723,6 +746,16 @@ color:#013238
 }
 
 
+/* =================================== */
+
+.event-scroll-button-right:hover,
+.event-scroll-button-left:hover,
+.post-scroll-button-right:hover,
+.post-scroll-button-left:hover {
+  box-shadow: 0px 0px 2px 2px #00000077;
+  transition: all linear 200ms;
+}
+
 /* ================================== */
 .contact-us-info {
   margin: 30px;
@@ -738,6 +771,13 @@ color:#013238
   align-items: center;
   justify-content: center;
   text-align: center; /* Added for text alignment */
+  cursor: pointer;
+  border-radius: 15px;
+  padding: 10px;
+}
+.contact-us-info .grid-colum-span-1:hover {
+  background-color: #0000001b;
+  transition: all linear 200ms;
 }
 
 .contact-us-info img {
@@ -845,4 +885,30 @@ height: auto;
 /* Style for choose file button */
 .choose-file-button {
 display: none;
+}
+
+/* ========================================== */
+
+
+.section-header a {
+  color: black;
+  background-color: #ffddd3;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+  text-transform: capitalize ;
+  font-weight: 600;
+}
+
+.section-header a:hover {
+  background-color: #e29579;
+  transform: scale(1.05);
+  transition: linear all 0.09s;
+  box-shadow: 0px 0px 2px 2px #00000077;
+}
+
+
+.contact-us-info .grid-colum-span-1 h3,
+.contact-us-info .grid-colum-span-1 p {
+  font-size: 1.15vw;
 }

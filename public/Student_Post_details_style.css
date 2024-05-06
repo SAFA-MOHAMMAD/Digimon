@@ -32,7 +32,7 @@ a {
   top: 0;
   height: 100%;
   width: 78px;
-  background-image: linear-gradient(to bottom, rgb(22, 139, 175), rgb(0, 82, 80));
+  background-image: linear-gradient(-90deg, #85c3be, #016d77);
   padding: 6px 14px;
   z-index: 99;
   transition: all 0.5s ease;
@@ -268,13 +268,18 @@ a {
 
 .home-section{
   position: relative;
-  background-image: linear-gradient(to left, rgb(207, 214, 214), rgb(185, 188, 188));
-  height: 1600px;
+  overflow: hidden;
+  background-color: #eef6f9;
   top: 0;
   left: 78px;
   width: calc(100% - 78px);
   transition: all 0.5s ease;
   z-index: 2;
+      /*
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 100px, #ffddd3 100px, #ffddd3 200px);
+  background-color: #ffffff;
+  border: 20px #0000004d solid;*/
+  /*linear-gradient(to left, rgb(207, 214, 214), rgb(185, 188, 188));*/
 }
 
 
@@ -298,6 +303,10 @@ a {
     display: none;
   }
 }
+
+/* home section end */
+/* ====================================== */
+
 
 /* Home Section*/
 
@@ -410,3 +419,21 @@ border: none !important;
 }
 /* Control Buttons: end */
 
+/*new theme*/
+.clubNameDiv,
+.titleSecDiv,
+.descDiv {
+  background-color: #85c3be;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px 5px #00000077;
+  padding: 10px;
+  border-bottom: 5px solid #000000;
+  margin: 20px;
+  padding-bottom: 25px;
+}
+
+.text {
+  border-bottom: 10px  #000000;
+  border-bottom-style: solid;
+  width: 240px;
+}
