@@ -37,29 +37,35 @@ document.getElementById('login_st').addEventListener('submit', async function(ev
 
   // Create FormData from the form element
   const formData = new FormData(event.target);
-  for (const [key, value] of formData.entries()) {
-    console.log(`Key: ${key}, Value: ${value}`);
-}
 
   try {
       // Send the FormData to the server via a POST request
       const response = await fetch('/api/User/login', {
           method: 'POST',
-          body: formData, // Send the form data directly as the request body
+          body: formData,
       });
 
       // Handle the response
       if (response.ok) {
-        const data = await response.json();
-        console.log('the new user:',data);
-        window.location.href = './ClubManager_home.html'; // Redirect the user if necessary
-    }
-    else {
+          const data = await response.json();
+          console.log('Login successful:', data);
+          window.location.href = './ClubManager_home.html'; // Redirect to home page
+      } else {
           const errorData = await response.json();
-          console.error('Failed to register:', errorData.message);
+          console.error('Failed to log in:', errorData.message);
+
+          // Display the error message to the user
+          const errorMessageElement = document.getElementById('loginErrorMessage');
+          errorMessageElement.textContent = errorData.message; // Set error message content
+          errorMessageElement.style.display = 'block'; // Show the error message
       }
   } catch (error) {
-      console.error('Error during registration:', error);
+      console.error('Error during login:', error);
+
+      // Display a generic error message if something goes wrong
+      const errorMessageElement = document.getElementById('loginErrorMessage');
+      errorMessageElement.textContent = 'Invalid Email or Password.';
+      errorMessageElement.style.display = 'block';
   }
 });
 document.getElementById('signupForm').addEventListener('submit', async function(event) {
@@ -68,9 +74,6 @@ document.getElementById('signupForm').addEventListener('submit', async function(
 
   // Create FormData from the form element
   const formData = new FormData(event.target);
-  for (const [key, value] of formData.entries()) {
-    console.log(`Key: ${key}, Value: ${value}`);
-}
 
   try {
       // Send the FormData to the server via a POST request
@@ -81,15 +84,24 @@ document.getElementById('signupForm').addEventListener('submit', async function(
 
       // Handle the response
       if (response.ok) {
-        const data = await response.json();
-        console.log('the new user:',data);
-        window.location.href = '/'; // Redirect the user if necessary
-    }
-    else {
+          const data = await response.json();
+          console.log('Sign-up successful:', data);
+          window.location.href = '/'; // Redirect the user to the home page
+      } else {
           const errorData = await response.json();
           console.error('Failed to register:', errorData.message);
+
+          // Display the error message to the user
+          const errorMessageElement = document.getElementById('signupErrorMessage');
+          errorMessageElement.textContent = errorData.message; // Set error message content
+          errorMessageElement.style.display = 'block'; // Show the error message
       }
   } catch (error) {
       console.error('Error during registration:', error);
+
+      // Display a generic error message if something goes wrong
+      const errorMessageElement = document.getElementById('signupErrorMessage');
+      errorMessageElement.textContent = 'The Email Or Password is Invalid. Please Check Again.';
+      errorMessageElement.style.display = 'block';
   }
 });

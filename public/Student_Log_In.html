@@ -36,6 +36,7 @@
       <i class="uil uil-times form_close"></i>
        <!-- Login Form -->
        <div class="form login_form">
+        <div id="loginErrorMessage" class="error-message" style="display: none; color: red;"></div>
         <form id="login_st"action="/api/User/login" method="POST" enctype="multipart/form-data">
           <h2>Login</h2>
           <div class="input_box">
@@ -61,8 +62,8 @@
         </form>
       </div>
 
-      Signup Form
       <div class="form signup_form">
+        <div id="signupErrorMessage" class="error-message" style="display: none; color: red;"></div>
         <form id="signupForm" action="/api/User/register" method="POST" enctype="multipart/form-data">
           <h2>Signup</h2>
 
