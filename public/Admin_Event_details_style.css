@@ -459,6 +459,10 @@ notifi-box a{
   justify-content: space-between;
 }
 
+.clubNameDiv img{
+  width: 140px;
+}
+
 /* Edit Button */
 .editBtn {
   border: none;
