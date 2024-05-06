@@ -49,6 +49,7 @@ async function fetchchunkedEvents() {
               // Fetch the specific event information
               const eventResponse = await fetch(`/api/event/${event.idclubEvent}`);
               const eventData = await eventResponse.json();
+              
               // Redirect to the event page with the event data as query parameters
               // Constructing the URL with query parameters
               window.location.href = `./Admin_Event_details.html?idclubEvent=${encodeURIComponent(event.idclubEvent)}

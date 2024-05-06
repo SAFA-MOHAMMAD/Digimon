@@ -360,6 +360,10 @@ a {
   margin-bottom: 10px;
 }
 
+.clubNameDiv img{
+  width: 140px;
+}
+
 /* Edit Button */
 .editBtn {
   border: none;

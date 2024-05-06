@@ -2,6 +2,7 @@ let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
 let searchBtn = document.querySelector(".bx-search");
 
+
 // Function to set the club ID in the "see all" link
 function setClubIDInSeeAllLink() {
   // Get the URL of the current page
@@ -100,7 +101,6 @@ document.getElementById('club-logo').src = clubData.clubLogo;
 
 window.addEventListener('load', displayClubInfo);
 
-
 const clubData = getQueryParams();
 
 
@@ -108,7 +108,6 @@ async function fetchchunkedEvents() {
   const clubName = clubData.clubName;
   const clubLogo=clubData.clubLogo
   console.log(clubName);
-
   try {
       // Fetch data from the server
       const response = await fetch(`/api/Event/events/club/${clubName}`);
@@ -191,38 +190,16 @@ async function fetchchunkedEvents() {
   }
 }
 
+
+
 // Fetch chunkedevents when the page loads
 window.addEventListener('load', fetchchunkedEvents);
 
 
-
-
-function getQueryParams() {
-  // Parse query parameters from the URL
-  const params = new URLSearchParams(window.location.search);
-  
-  // Retrieve and decode query parameters
-  const clubLogo = params.get('clubLogo');
-  const clubName = params.get('clubName');
-  
-  // Decode and trim the parameters to remove extra spaces
-  const decodedClubName = decodeURIComponent(clubName).trim();
-  const decodedclubLogo = decodeURIComponent(clubLogo).trim();
-
-  
-  // Return the processed parameters
-  return {
-      clubLogo:decodedclubLogo,
-      clubName: decodedClubName,
-  };
-}
-
-
 async function fetchchunkedPosts() {
-  const clubName = getQueryParams().clubName;
-  const clubLogo = getQueryParams().clubLogo;
+  const clubName = clubData.clubName;
+  const clubLogo=clubData.clubLogo
   console.log(clubName);
-
   try {
       // Fetch data from the server
       const response = await fetch(`/api/Post/posts/club/${clubName}`);
@@ -267,7 +244,7 @@ async function fetchchunkedPosts() {
           // Add a click post listener to the card
           card.addEventListener("click", async function() {
               // Fetch the specific post information
-              const postResponse = await fetch(`/api/post/${post.postID}`);
+              const postResponse = await fetch(`/api/Post/${post.postID}`);
               const postData = await postResponse.json();
               
               // Redirect to the post page with the post data as query parameters
@@ -303,7 +280,24 @@ function menuBtnChange() {
   }
 }
 
-/* ================================== */
+/* ================================================== */
+var box  = document.getElementById('box');
+var down = false;
+
+
+function toggleNotifi(){
+	if (down) {
+		box.style.height  = '0px';
+		box.style.opacity = 0;
+		down = false;
+	}else {
+		box.style.height  = '510px';
+		box.style.opacity = 1;
+		down = true;
+	}
+}
+/* ================================================== */
+
 
   document.querySelector('.event-scroll-button-right').addEventListener('click', function() {
     document.querySelector('.gallery').scrollBy({

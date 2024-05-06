@@ -64,7 +64,31 @@ const getOneClub=async(req,res)=>{
     res.status(200).send(club);
 }
 
+const getOneClubByname= async (req, res) => {
+    try {
+        // Get the club name from the URL parameters
+        const clubName = req.params.clubName;
 
+        // Query the database for a club with the specified club name
+        const club = await Club.findOne({
+            where: {
+                clubName: clubName
+            }
+        });
+
+        // If no club is found, return a 404 response
+        if (!club) {
+            return res.status(404).json({ error: 'Club not found' });
+        }
+
+        // Return the club information as a JSON response
+        res.json(club);
+    } catch (error) {
+        // Handle any errors that occur during the request
+        console.error('Error fetching club information:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
 
 const deleteClub=async(req,res)=>{
     let id=req.params.id
@@ -110,6 +134,7 @@ const searchForClub = async (req, res) => {
 module.exports={
     newClub,
     getAllClubs,
+    getOneClubByname,
     getOneClub,
     deleteClub,
     updateClub,
