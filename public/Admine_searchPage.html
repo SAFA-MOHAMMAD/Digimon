@@ -203,8 +203,45 @@
     </div>
     </main>
   </div>
-  <script src="Admin_home_script.js">
+  <script src="Admine_searchPage.js">
   
   </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the query parameter from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchTerm = window.location.pathname.split('=').pop();
+
+            // Fetch search results
+            fetch(`/api/Club/search/${searchTerm}`)
+                .then(response => response.json())
+                .then(results => {
+                    // Get the results container
+                    const resultsContainer = document.getElementById('results-container');
+
+                    // Display results as cards
+                    results.forEach(club => {
+                        const card = document.createElement('div');
+                        card.classList.add('card'); // Add a card class for styling
+
+                        // Populate the card with club information
+                        card.innerHTML = `
+                            <img src="${club.clubLogo}" alt="${club.clubName}" class="club-logo">
+                            <h3>${club.clubName}</h3>
+                            <p>${club.clubDescription}</p>
+                            <p>President: ${club.clubPresident}</p>
+                            <p>Vice President: ${club.clubVicePresident}</p>
+                        `;
+
+                        // Add the card to the results container
+                        resultsContainer.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                    resultsContainer.innerHTML = '<p>An error occurred while fetching search results.</p>';
+                });
+        });
+    </script>
 </body>
 </html>

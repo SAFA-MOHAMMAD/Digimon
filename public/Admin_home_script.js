@@ -56,6 +56,76 @@ items.forEach(item => {
 
   });
 })
+// document.getElementById('submit').addEventListener('click', function(event) {
+//   event.preventDefault(); // Prevent form submission
+
+//   // Get the search query from the input field
+//   const searchQuery = document.getElementById('search').value;
+
+//   // Perform the search (e.g., make an AJAX request to the server)
+//   performSearch(searchQuery);
+// });
+document.addEventListener('DOMContentLoaded', function () {
+  // Get the search input field and submit button elements
+  const searchInput = document.getElementById('search');
+  const submitButton = document.getElementById('submit');
+
+  // Add an event listener to the submit button
+  submitButton.addEventListener('click', async function (e) {
+      e.preventDefault(); // Prevent the form from submitting the traditional way
+
+      // Get the search term from the input field
+      const searchTerm = searchInput.value;
+
+      // Check if search term is empty
+      if (!searchTerm) {
+          alert('Please enter a search term.');
+          return;
+      }
+
+      try {
+          // Send an HTTP GET request to the search API endpoint
+          const response = await fetch(`/api/Club/search/${searchTerm}`);
+          const clubData = await response.json();
+          window.location.href = `./Admine_searchPage.html?clubID=${clubData.clubID}
+            &clubName=${encodeURIComponent(clubData.clubName)}
+            &clubDescription=${encodeURIComponent(clubData.clubDescription)}
+            &clubPresident=${encodeURIComponent(clubData.clubPresident)}
+            &clubVicePresident=${encodeURIComponent(clubData.clubVicePresident)}
+            &clubActivitiesInfo=${encodeURIComponent(clubData.clubActivitiesInfo)}
+            &clubOfficialEmail=${encodeURIComponent(clubData.clubOfficialEmail)}
+            &clubPresidentEmail=${encodeURIComponent(clubData.clubPresidentEmail)}
+            &clubVicePresidentEmail=${encodeURIComponent(clubData.clubVicePresidentEmail)}
+            &clubLogo=${encodeURIComponent(clubData.clubLogo)}`;
+
+
+          // Check if the response is OK (status code 200)
+          if (!response.ok) {
+              throw new Error('Failed to fetch search results');
+          }
+
+          // Parse the response JSON
+          const results = await response.json();
+
+          // Display the search results in the results container
+          const resultsContainer = document.getElementById('results-container');
+          resultsContainer.innerHTML = '';
+
+          // Create a list of results
+          results.forEach((result) => {
+              const listItem = document.createElement('div');
+              listItem.textContent = result.clubName; // Customize this as needed
+              resultsContainer.appendChild(listItem);
+          });
+
+      } catch (error) {
+          console.error('Error fetching search results:', error);
+          alert('An error occurred while fetching search results.');
+      }
+  });
+});
+
+
 
 // Function to fetch data from the server and create club cards
 async function fetchchunkedClubs() {

@@ -114,7 +114,7 @@ function menuBtnChange() {
                     
                     // Redirect to the post page with the post data as query parameters
                     // Constructing the URL with query parameters
-                    window.location.href = `./ClubManager_Post_details.html?postID=${encodeURIComponent(post.postID)}
+                    window.location.href = `./Student_Post_details.html?postID=${encodeURIComponent(post.postID)}
                         &clubName=${encodeURIComponent(postData.clubName)}
                         &postDescription=${encodeURIComponent(postData.postDescription)}
                         &postTitle=${encodeURIComponent(postData.postTitle)}

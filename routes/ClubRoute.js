@@ -14,6 +14,8 @@ router.get('/getAllClubs',ClubControllar.getAllClubs);
 //get one route
 router.get('/:id',ClubControllar.getOneClub);
 
+router.get('/search/:key',ClubControllar.searchForClub);
+
 //update route
 router.put('/:id',ClubControllar.updateClub);
 

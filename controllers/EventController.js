@@ -1,6 +1,7 @@
 const db=require('../models');
 const Event=db.event
 const multer = require('multer');
+const { Op } = require('sequelize'); // Import Sequelize operators
 
 
 const newEvent=async(req,res)=>{
@@ -84,6 +85,32 @@ const getAllEvents=async(req,res)=>{
 
 
 
+const getUpcomingEvents = async (req, res) => {
+    try {
+        // Get the current date
+        const currentDate = new Date();
+        
+        // Calculate the date 7 days from now
+        const nextWeekDate = new Date();
+        nextWeekDate.setDate(currentDate.getDate() + 7);
+
+        // Query the database for events that will happen in the next 7 days
+        const upcomingEvents = await Event.findAll({
+            where: {
+                eventDate: {
+                    [Op.between]: [currentDate, nextWeekDate] // Filter events by date range
+                }
+            }
+        });
+
+        // Send the events as a JSON response
+        res.json(upcomingEvents);
+    } catch (error) {
+        console.error('Error fetching upcoming events:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
 
 const getOneEvent=async(req,res)=>{
     try {
@@ -122,6 +149,7 @@ module.exports={
     deleteEvent,
     updateEevnt,
     getAllEvents,
+    getUpcomingEvents,
     getOneEvent,
     getEventsByClubName
 }

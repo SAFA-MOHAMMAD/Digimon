@@ -1,7 +1,8 @@
 const db = require('../models');
 const Club = db.club;
 const multer = require('multer');
-
+const Sequelize=require('sequelize');
+const { Op } = require('sequelize'); // Import Sequelize operators
 
 
 
@@ -78,10 +79,39 @@ const updateClub=async(req,res)=>{
     res.status(200).send(club);
 }
 
+const searchForClub = async (req, res) => {
+    try {
+        // Retrieve the search query from the request's query parameters
+        const query = req.params.key;
+        console.log('Search query:', query);
+        // if (!searchTerm) {
+        //     return res.status(400).json({ error: 'Query parameter q is required' });
+        // }
+        // Perform a search in the database
+        const results = await Club.findAll({
+            where: {
+                clubName: {
+                    [Sequelize.Op.like]: `%${query}%`
+                }
+                // Add more fields to search by as needed
+            }
+        });
+        console.log('Search results:', results);
+
+        // Send the search results as a JSON response
+        res.json(results);
+    } catch (error) {
+        console.error('Error handling search request:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+
 module.exports={
     newClub,
     getAllClubs,
     getOneClub,
     deleteClub,
-    updateClub
+    updateClub,
+    searchForClub
 }

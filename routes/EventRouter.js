@@ -9,6 +9,9 @@ router.post('/newEvent',upload.single('file'),EventControllar.newEvent);
 //get all route
 router.get('/getAllEvents',EventControllar.getAllEvents);
 
+router.get('/getUpcomingEvents',EventControllar.getUpcomingEvents);
+
+
 //get one route
 router.get('/:id',EventControllar.getOneEvent);
 

@@ -39,7 +39,6 @@ const PostRouter=require('./routes/PostRouter.js');
 app.use('/api/Post',PostRouter);
 
 
-
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+'/public/Admin_Log_in.html');
 });
