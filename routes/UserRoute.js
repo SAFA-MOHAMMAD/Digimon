@@ -1,8 +1,13 @@
 const userController=require('../controllers/UserController')
 const router=require('express').Router()
+const multer=require('multer');
+const upload = multer({ dest: 'uploads/' });
+const path = require('path');
 
 //create user route
-router.post('/newUser',userController.newUser)
+router.post('/newUser',upload.none(),userController.newUser)
+
+router.post('/login',upload.none(),userController.login)
 
 //get all route
 router.get('/getallUsers',userController.getAllUsers)

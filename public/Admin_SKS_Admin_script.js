@@ -30,3 +30,66 @@ loginBtn.addEventListener("click", (e) => {
   e.preventDefault();
   formContainer.classList.remove("active");
 });
+
+document.getElementById('login_st').addEventListener('submit', async function(event) {
+  // Prevent default form submission behavior
+  event.preventDefault();
+
+  // Create FormData from the form element
+  const formData = new FormData(event.target);
+  for (const [key, value] of formData.entries()) {
+    console.log(`Key: ${key}, Value: ${value}`);
+}
+
+  try {
+      // Send the FormData to the server via a POST request
+      const response = await fetch('/api/User/login', {
+          method: 'POST',
+          body: formData, // Send the form data directly as the request body
+      });
+
+      // Handle the response
+      if (response.ok) {
+        const data = await response.json();
+        console.log('the new user:',data);
+        window.location.href = './Admin_home.html'; // Redirect the user if necessary
+    }
+    else {
+          const errorData = await response.json();
+          console.error('Failed to register:', errorData.message);
+      }
+  } catch (error) {
+      console.error('Error during registration:', error);
+  }
+});
+document.getElementById('signupForm').addEventListener('submit', async function(event) {
+  // Prevent default form submission behavior
+  event.preventDefault();
+
+  // Create FormData from the form element
+  const formData = new FormData(event.target);
+  for (const [key, value] of formData.entries()) {
+    console.log(`Key: ${key}, Value: ${value}`);
+}
+
+  try {
+      // Send the FormData to the server via a POST request
+      const response = await fetch('/api/User/newUser', {
+          method: 'POST',
+          body: formData, // Send the form data directly as the request body
+      });
+
+      // Handle the response
+      if (response.ok) {
+        const data = await response.json();
+        console.log('the new user:',data);
+        window.location.href = '/'; // Redirect the user if necessary
+    }
+    else {
+          const errorData = await response.json();
+          console.error('Failed to register:', errorData.message);
+      }
+  } catch (error) {
+      console.error('Error during registration:', error);
+  }
+});
