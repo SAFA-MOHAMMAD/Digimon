@@ -483,7 +483,11 @@ hr {
   height: 1px;  
   background-color: black;  
   border: none;  
-}  
+}
+
+#club-logo{
+  width: 125px;
+}
 
 
 .section-header{

@@ -482,6 +482,9 @@ hr {
   border: none;  
 }  
 
+#club-logo{
+  width: 125px;
+}
 
 .section-header{
   display: flex;
