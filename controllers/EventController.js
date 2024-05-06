@@ -56,25 +56,26 @@ const updateEvent = async (req, res) => {
 
 const getAllEvents = async (req, res) => {
     try {
-        // Fetch all Events from the database
-        const events = await Event.findAll({});
-        // Function to chunk the events array into subarrays of 3 elements each
-        const chunkArray = (array, size) => {
-            const chunkedArr = [];
-            for (let i = 0; i < array.length; i += size) {
-                chunkedArr.push(array.slice(i, i + size));
-            }
-            return chunkedArr;
-        };
-        // Chunk the events array
-        const chunkedEvents = chunkArray(events, 3);
-        // Send the chunked array as the response
-        res.json(chunkedEvents);
+        const today = new Date();
+        const nextWeek = new Date(today);
+        nextWeek.setDate(nextWeek.getDate() + 7); // Set the date to 7 days ahead
+
+        const events = await Event.findAll({
+            where: {
+                eventDate: {
+                    [db.Sequelize.Op.gte]: today, // Greater than or equal to today
+                    [db.Sequelize.Op.lt]: nextWeek  // Less than next week
+                }
+            },
+            order: [['eventDate', 'ASC']] // Order by date ascending
+        });
+        res.json(events);
     } catch (error) {
         console.error('Error fetching events:', error);
         res.status(500).send('Internal Server Error');
     }
 };
+
 
 const getOneEvent = async (req, res) => {
     try {
