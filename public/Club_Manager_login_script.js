@@ -44,12 +44,16 @@ document.getElementById('login_st').addEventListener('submit', async function(ev
           method: 'POST',
           body: formData,
       });
-
       // Handle the response
       if (response.ok) {
           const data = await response.json();
           console.log('Login successful:', data);
+          const userEmail = data.userEmail;
+// Store the user's email in session storage
+          sessionStorage.setItem('userEmail', userEmail);
           window.location.href = './ClubManager_home.html'; // Redirect to home page
+
+          //window.location.href = `./ClubManager_home.html?userEmail=${encodeURIComponent(data.userEmail)}`; // Redirect to home page
       } else {
           const errorData = await response.json();
           console.error('Failed to log in:', errorData.message);

@@ -12,16 +12,12 @@ document.getElementById('form').addEventListener('submit', async function(event)
   // Create FormData from the form element
   const form = event.target;
   const formData = new FormData(form);
-  const eventL=formData.get('eventImage');
-  console.log('get image created successfully:', eventL);
-
   try {
       // Send a POST request to the server with the FormData
       const response = await fetch('/api/Event/newEvent', {
           method: 'POST',
           body: formData
       });
-
       // Handle the server response
       if (response.ok) {
           const createdEvent = await response.json();

@@ -34,7 +34,7 @@ function toggleNotifi(){
   }
 }
 async function fetchchunkedNotification() {
-  fetch('/api/Notification/getNotifications') // Adjust the URL as needed
+   fetch('/api/Notification/getNotifications') // Adjust the URL as needed
   .then(response => response.json())
   .then(notifications => {
       // Get the notification box element
@@ -94,27 +94,66 @@ async function fetchchunkedNotification() {
 window.onload = function() {
   fetchchunkedNotification();
 };
+
+
+function getQueryParams() {
+  console.log('getQueryParams function called');
+  const params = new URLSearchParams(window.location.search);
+  const postID = params.get('postID');
+  const clubName = params.get('clubName');
+  const clubLogo = params.get('clubLogo');
+  const postTitle = params.get('postTitle');
+  const postDate = params.get('postDate');
+  const postDescription = params.get('postDescription');
+  const postImage = params.get('postImage');
+  console.log('postID:', postID, 'clubName:', clubName, 'postTitle:', postTitle);
+  
+  return {
+    postID,
+      clubName,
+      clubLogo,
+      postTitle,
+      postDate,
+      postDescription,
+      postImage,
+  };
+}
+function displayPostInfo() {
+  const postData = getQueryParams();
+    // Update the HTML elements with the club data
+  document.getElementById('clubNameImg').textContent = postData.clubName;
+  document.getElementById('clubLogo').src = postData.clubLogo;
+  document.getElementById('posterImg').src = postData.postImage;
+  document.getElementById('title').textContent = postData.postTitle;
+  document.getElementById('releaseDate').textContent = postData.postDate;
+  document.getElementById('descP').textContent = postData.postDescription;
+  }
+  
+  // Call the displayEventInfo function when the page loads
+  
+  window.addEventListener('load', displayPostInfo);
+
 /* ============================ */
 
-const selectBtn = document.querySelector(".select-btn"),
-           items = document.querySelectorAll(".item");
+// const selectBtn = document.querySelector(".select-btn"),
+//            items = document.querySelectorAll(".item");
  
-     selectBtn.addEventListener("click", ()=> {
-       selectBtn.classList.toggle("open");
-     });
-     items.forEach(item => {
-       item.addEventListener("click", () =>{
-         item.classList.toggle("checked");
+//      selectBtn.addEventListener("click", ()=> {
+//        selectBtn.classList.toggle("open");
+//      });
+//      items.forEach(item => {
+//        item.addEventListener("click", () =>{
+//          item.classList.toggle("checked");
        
-         let checked = document.querySelectorAll(".checked"),
-           btnText = document.querySelector(".btn-text");
+//          let checked = document.querySelectorAll(".checked"),
+//            btnText = document.querySelector(".btn-text");
  
-           if(checked && checked.length > 0){
-              btnText.innerText = `${checked.length} selected`;
-             }else{
-               btnText.innerText = "select";
-             }
+//            if(checked && checked.length > 0){
+//               btnText.innerText = `${checked.length} selected`;
+//              }else{
+//                btnText.innerText = "select";
+//              }
  
-       });
-     })
+//        });
+//      })
 

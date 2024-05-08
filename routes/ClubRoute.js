@@ -14,6 +14,7 @@ router.get('/getAllClubs',ClubControllar.getAllClubs);
 //get one route
 router.get('/:id',ClubControllar.getOneClub);
 
+router.get('/getOneClubByemail/:userEmail',ClubControllar.getOneClubByemail);
 
 router.get('/name/:clubName',ClubControllar.getOneClubByname);
 

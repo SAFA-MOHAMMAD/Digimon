@@ -1,5 +1,6 @@
 const db = require('../models');
 const Club = db.club;
+const User=db.user;
 const multer = require('multer');
 const Sequelize=require('sequelize');
 const { Op } = require('sequelize'); // Import Sequelize operators
@@ -153,12 +154,32 @@ const searchForClub = async (req, res) => {
     }
 };
 
+const getOneClubByemail= async (req, res) => {
+    try {
+        // Get the club name from the URL parameters
+        const userEmail = req.params.userEmail;
+        // Query the database for a club with the specified club name
+        const club = await Club.findOne({ where: { clubPresidentEmail: userEmail } });
 
+        // If no club is found, return a 404 response
+        if (!club) {
+            return res.status(404).json({ error: 'Club not found' });
+        }
+
+        // Return the club information as a JSON response
+        res.send(club);
+    } catch (error) {
+        // Handle any errors that occur during the request
+        console.error('Error fetching club information:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
 module.exports={
     newClub,
     getAllClubs,
     getOneClubByname,
     getOneClub,
+    getOneClubByemail,
     deleteClub,
     updateClub,
     searchForClub
