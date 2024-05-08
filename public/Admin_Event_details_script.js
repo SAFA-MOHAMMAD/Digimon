@@ -59,7 +59,17 @@ function toggleNotifi(){
  
 //        });
 //      })
+function getQueryParamsImage() {
+  const params = new URLSearchParams(window.location.search);
+  const clubName = params.get('clubName');
+  const clubLogo = params.get('clubLogo');
+  const decodedclubLogo = decodeURIComponent(clubLogo).trim();
+  return{
+    clubName,
+    clubLogo:decodedclubLogo
+  }
 
+}
 function getQueryParams() {
       console.log('getQueryParams function called');
       const params = new URLSearchParams(window.location.search);
@@ -94,12 +104,13 @@ function getQueryParams() {
           eventApproval
       };
     }
+    const clubData=getQueryParamsImage();
     // Function to display event information on the page
     function displayEventInfo() {
     const eventData = getQueryParams();
       // Update the HTML elements with the club data
-    document.getElementById('clubNameImg').textContent = eventData.clubName;
-    document.getElementById('clubLogo').src = eventData.clubLogo;
+    document.getElementById('clubNameImg').textContent = clubData.clubName;
+    document.getElementById('clubLogo').src = clubData.clubLogo;
     document.getElementById('posterImg').src = eventData.eventImage;
     document.getElementById('guestName').textContent = eventData.eventSpeaker;
     document.getElementById('InfoDate').textContent = eventData.eventDate;
@@ -126,8 +137,8 @@ function getQueryParams() {
           if (response.ok) {
               alert('event deleted successfully.');
               // Redirect to home page or desired page after successful deletion
-              window.location.href = `Admin_all-events.html?clubName=${encodeURIComponent(eventData.clubName)}&
-              clubLogo=${encodeURIComponent(eventData.clubLogo)}`;
+              window.location.href = `Admin_all-events.html?clubLogo=${encodeURIComponent(clubData.clubLogo)}
+              &clubName=${encodeURIComponent(clubData.clubName)}`;
           } else {
               alert('Failed to delete event.');
           }
@@ -192,8 +203,8 @@ function getQueryParams() {
     cancelBtn.addEventListener('click', function(event) {
       // Prevent default behavior (page reload)
       event.preventDefault();
-      
       // Navigate back to the previous page
-      window.location.href = `Admin_all-events.html?clubName=${encodeURIComponent(eventData.clubName)}&
-      clubLogo=${encodeURIComponent(eventData.clubLogo)}`;    });
+      window.location.href = `Admin_all-events.html?clubLogo=${encodeURIComponent(clubData.clubLogo)}
+      &clubName=${encodeURIComponent(clubData.clubName)}`;
+        });
     

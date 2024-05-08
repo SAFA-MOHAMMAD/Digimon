@@ -30,7 +30,7 @@ db.event = require('./clubEventInfo.js')(sequelize, DataTypes)
 db.post = require('./postInfo.js')(sequelize, DataTypes)
 db.club = require('./clubCreateInfo.js')(sequelize, DataTypes)
 db.user = require('./users.js')(sequelize, DataTypes)
-
+db.notification=require('./Notification.js')(sequelize,DataTypes)
 db.sequelize.sync({ force: false })
 .then(() => {
     console.log('connected to db !!')

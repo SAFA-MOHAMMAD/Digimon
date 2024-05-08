@@ -68,14 +68,12 @@ const getOneClubByname= async (req, res) => {
     try {
         // Get the club name from the URL parameters
         const clubName = req.params.clubName;
-
         // Query the database for a club with the specified club name
         const club = await Club.findOne({
             where: {
                 clubName: clubName
             }
         });
-
         // If no club is found, return a 404 response
         if (!club) {
             return res.status(404).json({ error: 'Club not found' });
@@ -96,12 +94,38 @@ const deleteClub=async(req,res)=>{
     res.status(200).send('club is deleted')
 }
 
+const updateClub = async (req, res) => {
+    try {
+        // Get club ID from request params
+        const id = req.params.id;
+        // Find the club record in the database
+        const club = await Club.findOne({ where: { clubID: id } });
+        let info={
+            clubID:club.clubID,
+            clubName : req.body.clubName,
+            clubPresident : req.body.clubPresident,
+            clubVicePresident : req.body.clubVicePresident,
+            clubOfficialEmail : req.body.clubOfficialEmail,
+            clubPresidentEmail : req.body.clubPresidentEmail,
+            clubVicePresidentEmail : req.body.clubVicePresidentEmail,
+            clubDescription : req.body.clubDescription,
+            clubActivitiesInfo : req.body.clubActivitiesInfo,
+            clubLogo :   req.file ? req.file.path : club.clubLogo
+        }// Adjust as needed
+        // Save the updated club record
+        await Club.update(info,{where:{clubID:id}});
+        const updatedClub = await Club.findOne({ where: { clubID: id } });
+        // Send a success response with the updated club data
+        res.status(200).send(updatedClub);
+    } catch (error) {
+        // Handle any errors that occurred during the update process
+        console.error(error);
+        res.status(500).send({ message: 'Failed to update club' });
+    }
+};
 
-const updateClub=async(req,res)=>{
-    let id=req.params.id
-    const club=await Club.update(req.body,{where:{clubID:id}});
-    res.status(200).send(club);
-}
+
+
 
 const searchForClub = async (req, res) => {
     try {
@@ -121,7 +145,6 @@ const searchForClub = async (req, res) => {
             }
         });
         console.log('Search results:', results);
-
         // Send the search results as a JSON response
         res.json(results);
     } catch (error) {

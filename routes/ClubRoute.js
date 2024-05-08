@@ -23,7 +23,9 @@ router.get('/search/:key',ClubControllar.searchForClub);
 router.put('/:id',ClubControllar.updateClub);
 
 //update route
-router.patch('/:id',upload.single('club-logo'),ClubControllar.updateClub);
+router.patch('/:id',upload.single('clubLogo'),ClubControllar.updateClub);
+
+//router.patch('/:id',upload.single('clubLogo'),ClubControllar.updateClubLogo);
 
 //delete route
 router.delete('/:id',ClubControllar.deleteClub);

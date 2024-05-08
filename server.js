@@ -38,6 +38,8 @@ app.use('/api/Event',EventRouter);
 const PostRouter=require('./routes/PostRouter.js');
 app.use('/api/Post',PostRouter);
 
+const NotificationRouter=require('./routes/NotificationRoute.js')
+app.use('/api/Notification',NotificationRouter);
 
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+'/public/Admin_Log_in.html');
