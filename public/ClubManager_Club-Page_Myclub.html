@@ -3,7 +3,7 @@
 <head>
   <!-- Sets the character encoding of the document to UTF-8, ensuring proper rendering of international characters and symbols -->
   <meta charset="UTF-8">
-  <title>Post Details</title>
+  <title>Club Details</title>
   <!-- CSS Link -->
   <link rel="stylesheet" href="ClubManager_Club-Page_Myclub_style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -160,10 +160,10 @@
          <div class="grid">
          <div class="club-img-name divs grid-colum-span-2">
             <section class="logoAndName">
-               <img src="images/club1.webp" alt="Club Logo" id="club-logo">
+               <img src="images/club1.webp" alt="Club Logo" id="club-logo"><input type="file" id="edited-image" class="choose-file-button">
                <div class="info">
                   <div class="section-header">
-                     <h2><span id="club-name">Club Name</span></h2>
+                     <h2><span id="club-name">Club Name</span><input id="edited-club-name" style="display: none;"></h2>
                      <i class="fa-regular fa-pen-to-square" id="edit-logo-name-info-btn"></i>
                   </div>
                   <p><span id="club-info">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus magni nostrum illum fuga ad facere dolor corporis qui obcaecati provident in itaque, inventore incidunt. Sequi dignissimos.</span></p>
@@ -180,10 +180,10 @@
                </div>
                <hr>  
                <address>
-               <p>Club President: <span id="club-president-name">Jeon Jung-kook</span></p>
-               <p>Contact Info: <span id="club-president-email">jklollmao@gmail.com</span></p>
-               <p>Club Vice President : <span id="club-viPresident-name">Michael Jackson</span></p>  
-               <p>Contact Info: <span id="club-viPresident-email">webexamplebruh@gmail.com</span></p>
+               <p>Club President: <span id="club-president-name">Jeon Jung-kook</span><input id="edited-president-name" style="display: none;"></p>
+               <p>Contact Info: <span id="club-president-email">jklollmao@gmail.com</span><input id="edited-president-email" style="display: none;"></p>
+               <p>Club Vice President : <span id="club-viPresident-name">Michael Jackson</span><input id="edited-viPresident-name" style="display: none;"></p>  
+               <p>Contact Info: <span id="club-viPresident-email">webexamplebruh@gmail.com</span><input id="edited-viPresident-email" style="display: none;"></p>
             </address>
             </aside>
          </div>
@@ -196,6 +196,7 @@
                </div>
                <hr>
                <p><span id="club-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus a saepe aliquam sunt veritatis nemo doloremque? Sequi quos quisquam, velit aliquid vero laboriosam quae beatae in earum maiores. Vel nulla illum quos optio atque in distinctio aperiam harum soluta, sed perferendis labore facere molestiae sint quod dolores ullam odit excepturi.sfdddddddddf Ofoidjoijdsf:OIJo;jifsvdnoNdoin;fOin fjnfnk ofomvofm po mko kok oko kok o kkok okk ok ok oko ko</span> </p>
+               <textarea id="edited-description" class="edited-textarea"></textarea>
             </section>
          </div>
    
@@ -207,6 +208,7 @@
                </div>
                <hr>
                <p><span id="club-activities">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus a saepe aliquam sunt veritatis nemo doloremque? Sequi quos quisquam, velit aliquid vero laboriosam quae beatae in earum maiores. Vel nulla illum quos optio atque in distinctio aperiam harum soluta, sed perferendis labore facere molestiae sint quod dolores ullam odit excepturi.</span></p>
+               <textarea id="edited-activities" class="edited-textarea"></textarea>
             </section>
          </div>
          </div>
@@ -303,20 +305,24 @@
                <div class="grid-colum-span-1">
                   <i class="fa-solid fa-phone"></i>
                   <h3>Phone Number</h3>
-                  <p><span id="phone-number">055372931</span></p>
+                  <p><span id="phone-number">055372931</span><input id="edited-phone-number" type="text" style="display: none;"></p>
                </div>
                <div class="grid-colum-span-1">
                   <i class="fa-brands fa-instagram"></i>
                   <h3>Instagram</h3>
-                  <p>@<span id="instgram-username">digoni</span></p>
+                  <p>@<span id="instgram-username">digoni</span><input id="edited-instgram-username" type="text" style="display: none;"></p>
                </div>
                <div class="grid-colum-span-1">
                   <i class="fa-regular fa-envelope"></i>
                   <h3>Email</h3>
-                  <p><span id="email">Emailforexample@google.com</span></p>
+                  <p><span id="email">Emailforexample@google.com</span><input id="edited-email" type="text" style="display: none;"></p>
                </div>
             </div>
          </div>
+         <button id="edit-button">Edit</button>
+
+         <button id="cancel-button" onclick="cancelEdit()" style="display: none;">Cancel</button>
+         
          <div class="ctrlButtons">
             <form action="">
               <button class="deleteBtn">Delete Club</button>

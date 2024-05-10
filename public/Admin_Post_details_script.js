@@ -35,25 +35,79 @@ function toggleNotifi(){
 }
 /* ============================ */
 
-const selectBtn = document.querySelector(".select-btn"),
-           items = document.querySelectorAll(".item");
- 
-     selectBtn.addEventListener("click", ()=> {
-       selectBtn.classList.toggle("open");
-     });
-     items.forEach(item => {
-       item.addEventListener("click", () =>{
-         item.classList.toggle("checked");
-       
-         let checked = document.querySelectorAll(".checked"),
-           btnText = document.querySelector(".btn-text");
- 
-           if(checked && checked.length > 0){
-              btnText.innerText = `${checked.length} selected`;
-             }else{
-               btnText.innerText = "select";
-             }
- 
-       });
-     })
+// Function to show edit textarea and save button
+// Function to resize textarea based on content
+function resizeTextarea(textarea) {
+  textarea.style.height = 'auto'; // Reset height to auto
+  textarea.style.height = (textarea.scrollHeight) + 'px'; // Set height to scrollHeight
+}
 
+// Function to show edit textarea and save button
+function toggleEdit() {
+
+  var PosterImage = document.getElementById('posterImg');
+  var postTitle = document.getElementById('postTitle');
+  var postDescription = document.getElementById('postDescription');
+
+  var editedPosterImage = document.getElementById('edited-posterImg');
+  var editedpostTitle = document.getElementById('edited-postTitle');
+  var editedpostDescription = document.getElementById('edited-postDescription');
+  
+
+  var cancelButton = document.getElementById('cancel-button');
+  var editButton = document.getElementById('edit-button');
+
+  if (editButton.textContent === 'Edit') {
+      editButton.textContent = 'Save';
+      cancelButton.style.display = 'inline';
+
+      editedpostTitle.value = postTitle.textContent.trim();
+      editedpostDescription.value = postDescription.textContent.trim(); 
+      editedPosterImage.value = ''; // Clear input value to prevent re-uploading same image
+      
+      
+      editedpostTitle.style.width = postTitle.offsetWidth + 'px';
+      editedpostDescription.style.width = postDescription.offsetWidth + 'px';
+
+      editedPosterImage.style.display = 'block';
+      editedpostTitle.style.display = 'block';
+      editedpostDescription.style.display = 'block';
+      postTitle.style.display = 'none';
+      postDescription.style.display = 'none';
+
+      // Resize textarea initially
+      resizeTextarea(editedpostTitle);
+      resizeTextarea(editedpostDescription);
+
+  } else {
+      postTitle.textContent = editedpostTitle.value.trim();
+      postDescription.textContent = editedpostDescription.value.trim();
+
+      if (editedPosterImage.files.length > 0) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          PosterImage.src = e.target.result;
+        };
+        reader.readAsDataURL(editedPosterImage.files[0]);
+      }
+      editedPosterImage.style.display = 'none';
+      editedpostTitle.style.display = 'none';
+      editedpostDescription.style.display = 'none';
+      postTitle.style.display = 'block';
+      postDescription.style.display = 'block';
+
+       editButton.textContent = 'Edit';
+       cancelButton.style.display = 'none';
+    
+  }
+}
+
+
+function cancelEdit() {
+  var editButton = document.getElementById('edit-button');
+  editButton.textContent = 'Edit'; // Reset edit button text
+  toggleEdit(); // Call toggleEdit to reset changes
+}
+
+// Ensure that the toggleEdit function is defined before this line
+document.getElementById('edit-button').addEventListener('click', toggleEdit);
