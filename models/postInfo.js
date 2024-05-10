@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       postDescription: {
         type: DataTypes.TEXT,
       },
+      PostApproval: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
       postImage: {
         type: DataTypes.STRING,
       },

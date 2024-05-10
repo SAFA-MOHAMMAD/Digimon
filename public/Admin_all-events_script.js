@@ -171,7 +171,7 @@ async function fetchchunkedNotification() {
       // Loop through each notification and create HTML elements
       notifications.forEach(notification => {
           const link = document.createElement('a');
-          link.href = './Admin_weekly-Events.html'; // You can set the link URL based on the notification
+          link.href = './Admin_Incoming_requessts.html'; // You can set the link URL based on the notification
 
           const itemDiv = document.createElement('div');
           itemDiv.classList.add('notifi-item');

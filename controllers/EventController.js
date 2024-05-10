@@ -1,7 +1,7 @@
 const db=require('../models');
 const Event=db.event
 const multer = require('multer');
-const { Op } = require('sequelize'); // Import Sequelize operators
+const { Op, where } = require('sequelize'); // Import Sequelize operators
 
 
 const newEvent=async(req,res)=>{
@@ -60,6 +60,37 @@ const updateEevnt=async(req,res)=>{
 }
 
 
+const approveEvent=async(req,res)=>{
+    try {
+        // Get the event ID and the approval status from the request
+        const eventId = req.params.id; // Event ID from URL parameters
+        const { eventApproval } = req.body; // Approval status from request body
+
+        // Find the event by its ID
+        const event = await Event.findOne({ where: { idclubEvent: eventId } });
+
+        if (!event) {
+            // If the event is not found, respond with a 404 Not Found error
+            return res.status(404).json({ error: 'Event not found' });
+        }
+
+        // Update the event's approval status
+        event.eventApproval = eventApproval;
+
+        // Save the changes to the database
+        await event.save();
+
+        // Respond with a success message
+        res.status(200).json({ message: 'Event approval status updated successfully', event });
+    } catch (error) {
+        console.error('Error updating event approval:', error);
+        // Respond with a 500 Internal Server Error message
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+
+
 
 const getAllEvents=async(req,res)=>{
     try {
@@ -85,6 +116,18 @@ const getAllEvents=async(req,res)=>{
 
 
 
+const getAllNotAproveEvents=async(req,res)=>{
+    try {
+        // Fetch all Events from the database
+    const events = await Event.findAll({where:{eventApproval: false}}); 
+        // Function to chunk the clubs array into subarrays of 3 elements each
+        res.json(events);
+    } catch (error) {
+    console.error('Error fetching Events:', error);
+    res.status(500).send('Internal Server Error');
+    }
+}
+
 const getUpcomingEvents = async (req, res) => {
     try {
         // Get the current date
@@ -93,7 +136,6 @@ const getUpcomingEvents = async (req, res) => {
         // Calculate the date 7 days from now
         const nextWeekDate = new Date();
         nextWeekDate.setDate(currentDate.getDate() + 7);
-
         // Query the database for events that will happen in the next 7 days
         const upcomingEvents = await Event.findAll({
             where: {
@@ -133,6 +175,25 @@ const getEventsByClubName = async (req, res) => {
         const events = await Event.findAll({
             where: {
                 clubName: clubName,
+                eventApproval: true,
+            },
+        });
+        // Send the events as the response
+        res.status(200).json(events);
+    } catch (error) {
+        console.error('Error fetching events by club ID:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
+const getNotAprovesEventsByClubName = async (req, res) => {
+    try {
+        // Get the club Name from the URL parameters
+        const clubName = req.params.clubName;
+        // Fetch events associated with the specified club Name
+        const events = await Event.findAll({
+            where: {
+                clubName: clubName,
+                eventApproval: false,
             },
         });
         // Send the events as the response
@@ -143,12 +204,14 @@ const getEventsByClubName = async (req, res) => {
     }
 };
 
-
 module.exports={
     newEvent,
     deleteEvent,
     updateEevnt,
     getAllEvents,
+    getNotAprovesEventsByClubName,
+    approveEvent,
+    getAllNotAproveEvents,
     getUpcomingEvents,
     getOneEvent,
     getEventsByClubName

@@ -9,6 +9,9 @@ router.post('/newEvent',upload.single('file'),EventControllar.newEvent);
 //get all route
 router.get('/getAllEvents',EventControllar.getAllEvents);
 
+router.get('/getAllNotAproveEvents',EventControllar.getAllNotAproveEvents);
+
+
 router.get('/getUpcomingEvents',EventControllar.getUpcomingEvents);
 
 
@@ -18,8 +21,12 @@ router.get('/:id',EventControllar.getOneEvent);
 //get all by clubname route
 router.get('/events/club/:clubName', EventControllar.getEventsByClubName);
 
+router.get('/Notevents/club/:clubName', EventControllar.getNotAprovesEventsByClubName);
+
 //update route
 router.put('/:id',EventControllar.updateEevnt);
+
+router.put('/approveEvent/:id',EventControllar.approveEvent);
 
 //update route
 router.patch('/:id',upload.single('file'),EventControllar.updateEevnt);

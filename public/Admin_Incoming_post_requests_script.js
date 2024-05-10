@@ -2,10 +2,10 @@ let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
 let searchBtn = document.querySelector(".bx-search");
 
-closeBtn.addEventListener("click", ()=>{
-  sidebar.classList.toggle("open");
-  menuBtnChange();//calling the function(optional)
-});
+// closeBtn.addEventListener("click", ()=>{
+//   sidebar.classList.toggle("open");
+//   menuBtnChange();//calling the function(optional)
+// });
 
 // following are the code to change sidebar button(optional)
 function menuBtnChange() {
@@ -56,6 +56,114 @@ function toggleNotifi(){
  
 //        });
     // })
+
+
+    async function fetchNotApprovedPosts() {
+      try {
+          // Fetch data from the server
+          const response = await fetch(`/api/Post/getAllNotAprovePosts`);
+          const posts = await response.json(); // Parse the JSON response
+    
+          const mainGrid = document.getElementById('home-section');
+    
+          // Clear previous content from the mainGrid container
+          mainGrid.innerHTML = '';
+    
+          // Iterate over the posts and create a card for each
+          posts.forEach(async (post) => {
+              // Fetch club data for each post
+              const clubResponse = await fetch(`/api/Club/name/${post.clubName}`);
+              const clubData = await clubResponse.json();
+    
+              // Create a container for each post card
+              const cardContainer = document.createElement('div');
+    
+              // Set the content of the post card using post and club data
+              cardContainer.innerHTML = `
+              <div class="mainGrid" id="mainGrid">
+                  <div class="clubInfo">
+                      <img src="${clubData.clubLogo || 'images/default-logo.png'}" alt="clubLogo">
+                      <h4 class="clubName">${clubData.clubName}</h4>
+                      <p>${clubData.clubDescription || 'No description available'}</p>
+                  </div>
+    
+                  <div class="postInfo">
+                  <p id="postName">${post.postTitle}</p>
+                  <br>
+                  <p id="postDesc">${post.postDescription}</p>
+                </div>
+          
+    
+                  <div class="buttons">
+                  <form action="">
+                  <div><button type="button" class="approve" data-post-id="${post.postID}">Approve</button></div>
+                  <div><button type="button" class="deny" data-post-id="${post.postID}">Deny</button></div>
+                      <a href="Admin_post request infromation.html?postID=${post.postID}
+                      &clubName=${encodeURIComponent(clubData.clubName)}
+                      &postTitle=${encodeURIComponent(post.postTitle)}
+                      &postDescription=${encodeURIComponent(post.postDescription)}
+                      &postDate=${encodeURIComponent(post.postDate)}
+                      &postImage=${encodeURIComponent(post.postImage)}
+                      &postApproval=${encodeURIComponent(post.PostApproval)}"><div>
+                          <button type="button" class="seeMore">See more details</button>
+                          </div></a>
+                      </form>
+                  </div>
+                  <hr>
+    
+              `;
+    
+              // Append each card container as a separate row in the mainGrid container
+              mainGrid.appendChild(cardContainer);
+    
+              // Add post listeners for the Approve and Deny buttons
+              const approveButton = cardContainer.querySelector('.approve');
+              const denyButton = cardContainer.querySelector('.deny');
+    
+              approveButton.addEventListener('click', async () => {
+                  await handleApproval(post.postID, true);
+              });
+    
+              denyButton.addEventListener('click', async () => {
+                const response = await fetch(`/api/Post/${post.postID}`, {
+                  method: 'DELETE'
+              });
+              window.location.reload();
+              });
+          });
+      } catch (error) {
+          console.error('Error fetching not approved posts:', error);
+      }
+    }
+    
+    // Function to handle the approval or denial of posts
+    async function handleApproval(postID, isApproved) {
+      try {
+          const response = await fetch(`/api/post/approvePost/${postID}`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                PostApproval: isApproved,
+              }),
+          });
+    
+          if (response.ok) {
+              // Refresh the page to show updated list of not approved posts
+              fetchNotApprovedPosts();
+          } else {
+              console.error('Failed to update post approval:', response.statusText);
+          }
+      } catch (error) {
+          console.error('Error updating post approval:', error);
+      }
+    }
+    
+    // Fetch not approved posts when the page loads
+    window.addEventListener('load', fetchNotApprovedPosts);
+    
+
 
     async function fetchchunkedNotification() {
       fetch('/api/Notification/getNotifications') // Adjust the URL as needed

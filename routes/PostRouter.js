@@ -8,6 +8,7 @@ router.post('/newPost',upload.single('file'),PostControllar.newPost);
 
 //get all route
 router.get('/getAllPosts',PostControllar.getAllPosts);
+router.get('/getAllNotAprovePosts',PostControllar.getAllNotAprovePosts);
 
 //get one route
 router.get('/:id',PostControllar.getOnePost);
@@ -16,7 +17,7 @@ router.get('/:id',PostControllar.getOnePost);
 router.get('/posts/club/:clubName',PostControllar.getPostsByClubName);
 //update route
 router.put('/:id',PostControllar.updatePost);
-
+router.put('/approvePost/:id',PostControllar.approvePost);
 //update route
 router.patch('/:id',upload.single('file'),PostControllar.updatePost);
 

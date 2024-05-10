@@ -286,7 +286,7 @@ saveBtn.addEventListener('click', async function(event) {
       const updatedData = {
           clubName: document.getElementById('edited-club-name').value.trim(),
           clubDescription: document.getElementById('edited-description').value.trim(),
-          clubActivities: document.getElementById('edited-activities').value.trim(),
+          clubActivitiesInfo: document.getElementById('edited-activities').value.trim(),
           clubPresident: document.getElementById('edited-president-name').value.trim(),
           clubPresidentEmail: document.getElementById('edited-president-email').value.trim(),
           clubVicePresident: document.getElementById('edited-viPresident-name').value.trim(),

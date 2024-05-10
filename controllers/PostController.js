@@ -10,7 +10,8 @@ const newPost=async(req,res)=>{
                 clubName:req.body.clubName,
                 postDescription: req.body.postDescription,
                 postImage: req.file ? req.file.path : null,
-                postDate: new Date()
+                postDate: new Date(),
+                PostApproval:req.body.PostApproval
             }
             const post=await Post.create(info);
             res.status(200).send(post);
@@ -25,12 +26,12 @@ const newPost=async(req,res)=>{
 
 const deletePost=async(req,res)=>{
     try {
-    let name=req.params.name;
-    await Post.destroy({where:{postname:name}});
+    let id=req.params.id;
+    await Post.destroy({where:{postID:id}});
     res.status(200).send('Post is deleted')
 }
 catch (error) {
-    console.error('Error fetching Events:', error);
+    console.error('Error fetching posts:', error);
     res.status(500).send('Internal Server Error');
 }
 }
@@ -44,7 +45,7 @@ const updatePost=async(req,res)=>{
     res.status(200).send(post);
 }
 catch (error) {
-    console.error('Error fetching Events:', error);
+    console.error('Error fetching posts:', error);
     res.status(500).send('Internal Server Error');
 }
 }
@@ -81,7 +82,7 @@ const getOnePost=async(req,res)=>{
     res.status(200).send(post);
     }
     catch (error) {
-        console.error('Error fetching Events:', error);
+        console.error('Error fetching posts:', error);
         res.status(500).send('Internal Server Error');
     }
 }
@@ -95,22 +96,69 @@ const getPostsByClubName = async (req, res) => {
         const posts = await Post.findAll({
             where: {
                 clubName: clubName,
+                PostApproval:true,
             },
         });
         // Send the posts as the response
         res.status(200).json(posts);
     } catch (error) {
-        console.error('Error fetching events by club Name:', error);
+        console.error('Error fetching posts by club Name:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
+const getAllNotAprovePosts= async (req, res) => {
+    try {
+        const posts = await Post.findAll({
+            where: {
+                PostApproval: false,
+            },
+        });
+        // Send the posts as the response
+        res.status(200).json(posts);
+    } catch (error) {
+        console.error('Error fetching not aproved posts:', error);
         res.status(500).send('Internal Server Error');
     }
 };
 
 
+
+const approvePost=async(req,res)=>{
+    try {
+        // Get the post ID and the approval status from the request
+        const id = req.params.id; // post ID from URL parameters
+        const { PostApproval } = req.body; // Approval status from request body
+
+        // Find the post by its ID
+        const post = await Post.findOne({ where: { postID: id } });
+
+        if (!post) {
+            // If the post is not found, respond with a 404 Not Found error
+            return res.status(404).json({ error: 'post not found' });
+        }
+
+        // Update the post's approval status
+        post.PostApproval = PostApproval;
+
+        // Save the changes to the database
+        await post.save();
+
+        // Respond with a success message
+        res.status(200).json({ message: 'post approval status updated successfully', post });
+    } catch (error) {
+        console.error('Error updating post approval:', error);
+        // Respond with a 500 Internal Server Error message
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
 module.exports={
     newPost,
     deletePost,
     updatePost,
     getAllPosts,
+    approvePost,
+    getAllNotAprovePosts,
     getOnePost,
     getPostsByClubName
 }

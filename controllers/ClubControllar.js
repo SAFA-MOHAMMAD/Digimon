@@ -79,7 +79,6 @@ const getOneClubByname= async (req, res) => {
         if (!club) {
             return res.status(404).json({ error: 'Club not found' });
         }
-
         // Return the club information as a JSON response
         res.json(club);
     } catch (error) {

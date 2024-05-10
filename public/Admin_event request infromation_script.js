@@ -35,21 +35,82 @@ function toggleNotifi(){
 /* ========================================= */
 
 
-  document.querySelector('.event-scroll-button-right').addEventListener('click', function() {
-    document.querySelector('.gallery').scrollBy({
-      top: 0,
-      left: 600, // Change this value to adjust the scroll distance
-      behavior: 'smooth'
-    });
-  });
+  // document.querySelector('.event-scroll-button-right').addEventListener('click', function() {
+  //   document.querySelector('.gallery').scrollBy({
+  //     top: 0,
+  //     left: 600, // Change this value to adjust the scroll distance
+  //     behavior: 'smooth'
+  //   });
+  // });
   
-  document.querySelector('.event-scroll-button-left').addEventListener('click', function() {
-    document.querySelector('.gallery').scrollBy({
-      top: 0,
-      left: -600, // Change this value to adjust the scroll distance
-      behavior: 'smooth'
-    });
-  });
+  // document.querySelector('.event-scroll-button-left').addEventListener('click', function() {
+  //   document.querySelector('.gallery').scrollBy({
+  //     top: 0,
+  //     left: -600, // Change this value to adjust the scroll distance
+  //     behavior: 'smooth'
+  //   });
+  // });
+
+  function getQueryParams() {
+    console.log('getQueryParams function called');
+    const params = new URLSearchParams(window.location.search);
+    const idclubEvent = params.get('idclubEvent');
+    const clubName = params.get('clubName');
+    const clubPresident = params.get('clubPresident');
+    const eventType = params.get('eventType');
+    const eventName = params.get('eventName');
+    const eventDate = params.get('eventDate');
+    const eventSpeaker = params.get('eventSpeaker');
+    const eventContent = params.get('eventContent');
+    const eventPlace = params.get('eventPlace');
+    const eventSpecialService = params.get('eventSpecialService');
+    const eventImage = params.get('eventImage');
+    const eventTime = params.get('eventTime');
+    const eventApproval = params.get('eventApproval');
+    console.log('idclubEvent:', idclubEvent, 'clubName:', clubName, 'eventName:', eventName);
+    
+    return {
+      idclubEvent,
+        clubName,
+        clubPresident,
+        eventType,
+        eventName,
+        eventDate,
+        eventSpeaker,
+        eventContent,
+        eventPlace,
+        eventSpecialService,
+        eventImage,
+        eventTime,
+        eventApproval
+    };
+  }
+
+
+
+
+
+  function displayEventInfo() {
+    const eventData = getQueryParams();
+      // Update the HTML elements with the club data
+    document.getElementById('club_name').textContent = eventData.clubName;
+    document.getElementById('event_types').textContent = eventData.eventType;
+    document.getElementById('Event_Name').textContent = eventData.eventName;
+    document.getElementById('Event_Date').textContent = eventData.eventDate;
+    document.getElementById('Event_Time').textContent = eventData.eventTime;
+    document.getElementById('event_content').textContent = eventData.eventContent;
+    document.getElementById('Speaker').textContent = eventData.eventSpeaker;
+    document.getElementById('Event_location').textContent = eventData.eventPlace;
+    document.getElementById('Event_needs').textContent = eventData.eventSpecialService;
+    document.getElementById('Club_President_name').textContent = eventData.clubPresident;
+    
+    }
+    // Call the displayEventInfo function when the page loads
+    window.addEventListener('load', displayEventInfo);
+  
+
+
+
   async function fetchchunkedNotification() {
     fetch('/api/Notification/getNotifications') // Adjust the URL as needed
     .then(response => response.json())
@@ -63,7 +124,7 @@ function toggleNotifi(){
         // Loop through each notification and create HTML elements
         notifications.forEach(notification => {
             const link = document.createElement('a');
-            link.href = './Admin_weekly-Events.html'; // You can set the link URL based on the notification
+            link.href = './Admin_Incoming_requessts.html'; // You can set the link URL based on the notification
   
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('notifi-item');
