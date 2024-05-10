@@ -21,7 +21,7 @@ router.get('/name/:clubName',ClubControllar.getOneClubByname);
 router.get('/search/:key',ClubControllar.searchForClub);
 
 //update route
-router.put('/:id',ClubControllar.updateClub);
+router.put('/:id',upload.single('clubLogo'),ClubControllar.updateClub);
 
 //update route
 router.patch('/:id',upload.single('clubLogo'),ClubControllar.updateClub);

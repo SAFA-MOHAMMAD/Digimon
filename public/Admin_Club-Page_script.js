@@ -310,7 +310,7 @@ for (const [key, value] of formData) {
       console.log('Update query conditions:', { clubID });
       // Send a PATCH request to the server with the updated data
       const response = await fetch(`/api/Club/${clubID}`, {
-          method: 'PATCH',
+          method: 'PUT',
           body: formData,
           headers: {
           'Accept': 'application/json' // Specify the content type the server should respond with
