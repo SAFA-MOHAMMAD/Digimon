@@ -35,7 +35,6 @@ function toggleNotifi(){
 }
 /* ============================ */
 
-
 // Function to show edit textarea and save button
 // Function to resize textarea based on content
 function resizeTextarea(textarea) {
@@ -57,9 +56,11 @@ function toggleEdit() {
 
   var cancelButton = document.getElementById('cancel-button');
   var editButton = document.getElementById('edit-button');
+  var saveButton = document.getElementById('save-button');
 
   if (editButton.textContent === 'Edit') {
-      editButton.textContent = 'Save';
+      editButton.style.display = 'none';
+      saveButton.style.display = 'inline';
       cancelButton.style.display = 'inline';
 
       editedpostTitle.value = postTitle.textContent.trim();
@@ -67,8 +68,6 @@ function toggleEdit() {
       editedPosterImage.value = ''; // Clear input value to prevent re-uploading same image
       
       
-      editedpostTitle.style.width = postTitle.offsetWidth + 'px';
-      editedpostDescription.style.width = postDescription.offsetWidth + 'px';
 
       editedPosterImage.style.display = 'block';
       editedpostTitle.style.display = 'block';
@@ -80,7 +79,20 @@ function toggleEdit() {
       resizeTextarea(editedpostTitle);
       resizeTextarea(editedpostDescription);
 
-  } else {
+  } 
+
+}
+
+function saveEdit() {
+      var PosterImage = document.getElementById('posterImg');
+      var postTitle = document.getElementById('postTitle');
+      var postDescription = document.getElementById('postDescription');
+
+      var editedPosterImage = document.getElementById('edited-posterImg');
+      var editedpostTitle = document.getElementById('edited-postTitle');
+      var editedpostDescription = document.getElementById('edited-postDescription');
+
+
       postTitle.textContent = editedpostTitle.value.trim();
       postDescription.textContent = editedpostDescription.value.trim();
 
@@ -91,16 +103,21 @@ function toggleEdit() {
         };
         reader.readAsDataURL(editedPosterImage.files[0]);
       }
+      
       editedPosterImage.style.display = 'none';
       editedpostTitle.style.display = 'none';
       editedpostDescription.style.display = 'none';
       postTitle.style.display = 'block';
       postDescription.style.display = 'block';
 
-       editButton.textContent = 'Edit';
-       cancelButton.style.display = 'none';
+      var editButton = document.getElementById('edit-button');
+      var cancelButton = document.getElementById('cancel-button');
+      var saveButton = document.getElementById('save-button');
+
+      editButton.style.display = 'inline';
+      saveButton.style.display = 'none';
+      cancelButton.style.display = 'none';
     
-  }
 }
 
 
@@ -110,5 +127,8 @@ function cancelEdit() {
   toggleEdit(); // Call toggleEdit to reset changes
 }
 
-// Ensure that the toggleEdit function is defined before this line
+// Event listener for edit button
 document.getElementById('edit-button').addEventListener('click', toggleEdit);
+
+// Event listener for save button
+document.getElementById('save-button').addEventListener('click', saveEdit);

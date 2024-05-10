@@ -66,10 +66,13 @@ var editedEventDescription = document.getElementById('edited-EventDescription');
 
 var cancelButton = document.getElementById('cancel-button');
 var editButton = document.getElementById('edit-button');
+var saveButton = document.getElementById('save-button');
 
 if (editButton.textContent === 'Edit') {
-    editButton.textContent = 'Save';
+    editButton.style.display = 'none';
+    saveButton.style.display = 'inline';
     cancelButton.style.display = 'inline';
+
     editedguestName1.value = guestName1.textContent.trim();
     editedguestContact1.value = guestContact1.textContent.trim(); 
     editedguestName2.value = guestName2.textContent.trim();
@@ -108,7 +111,30 @@ if (editButton.textContent === 'Edit') {
     // Resize textarea initially
     resizeTextarea(editedEventDescription);
 
-} else {
+  }
+}
+
+function saveEdit(){
+    var PosterImage = document.getElementById('posterImg');
+    var guestName1 = document.getElementById('guestName1');
+    var guestContact1 = document.getElementById('guestContact1');
+    var guestName2 = document.getElementById('guestName2');
+    var guestContact2 = document.getElementById('guestContact2');
+    var EventDate = document.getElementById('EventDate');
+    var EventTime = document.getElementById('EventTime');
+    var EventLocation = document.getElementById('EventLocation');
+    var EventDescription = document.getElementById('EventDescription');
+
+    var editedPosterImage = document.getElementById('edited-posterImg');
+    var editedguestName1 = document.getElementById('edited-guestName1');
+    var editedguestContact1 = document.getElementById('edited-guestContact1');
+    var editedguestContact2 = document.getElementById('edited-guestContact2');
+    var editedguestName2 = document.getElementById('edited-guestName2');
+    var editedEventDate = document.getElementById('edited-EventDate');
+    var editedEventTime = document.getElementById('edited-EventTime');
+    var editedEventLocation = document.getElementById('edited-EventLocation');
+    var editedEventDescription = document.getElementById('edited-EventDescription');
+
     guestName1.textContent = editedguestName1.value.trim();
     guestContact1.textContent = editedguestContact1.value.trim();
     
@@ -137,34 +163,41 @@ if (editButton.textContent === 'Edit') {
     guestContact1.style.display = 'inline';
     editedguestContact1.style.display = 'none';
   
-  guestName2.style.display = 'inline';
-  editedguestName2.style.display = 'none';
-  guestContact2.style.display = 'inline';
-  editedguestContact2.style.display = 'none';
-  
-  EventDate.style.display = 'inline';
-  editedEventDate.style.display = 'none';
-  EventTime.style.display = 'inline';
-  editedEventTime.style.display = 'none';
-  EventLocation.style.display = 'inline';
-  editedEventLocation.style.display = 'none';
+    guestName2.style.display = 'inline';
+    editedguestName2.style.display = 'none';
+    guestContact2.style.display = 'inline';
+    editedguestContact2.style.display = 'none';
+    
+    EventDate.style.display = 'inline';
+    editedEventDate.style.display = 'none';
+    EventTime.style.display = 'inline';
+    editedEventTime.style.display = 'none';
+    EventLocation.style.display = 'inline';
+    editedEventLocation.style.display = 'none';
 
-  EventDescription.style.display = 'block';
-  editedEventDescription.style.display = 'none';
-  editButton.textContent = 'Edit';
-  cancelButton.style.display = 'none';
-  
-}
+    EventDescription.style.display = 'block';
+    editedEventDescription.style.display = 'none';
+
+    var editButton = document.getElementById('edit-button');
+    var cancelButton = document.getElementById('cancel-button');
+    var saveButton = document.getElementById('save-button');
+
+    editButton.style.display = 'inline';
+    saveButton.style.display = 'none';
+    cancelButton.style.display = 'none';
 }
 
 
 
 function cancelEdit() {
-var editButton = document.getElementById('edit-button');
-editButton.textContent = 'Edit'; // Reset edit button text
-toggleEdit(); // Call toggleEdit to reset changes
+  var editButton = document.getElementById('edit-button');
+  editButton.textContent = 'Edit'; // Reset edit button text
+  toggleEdit(); // Call toggleEdit to reset changes
 }
 
-// Ensure that the toggleEdit function is defined before this line
+// Event listener for edit button
 document.getElementById('edit-button').addEventListener('click', toggleEdit);
+
+// Event listener for save button
+document.getElementById('save-button').addEventListener('click', saveEdit);
 

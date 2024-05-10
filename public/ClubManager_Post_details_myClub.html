@@ -212,7 +212,7 @@
     </div> <!--layout container: end-->
     <div>
       <button id="edit-button">Edit</button>
-      <button id="cancel-button" onclick="cancelEdit()" style="display: none;">Cancel</button>
+      <button class="cancelBtn" id="cancel-button" onclick="cancelEdit()" style="display: none;">Cancel Changes</button>
     </div>
     <!--Control buttons section-->
     <div class="ctrlButtons">
@@ -220,8 +220,7 @@
         <button class="deleteBtn">Delete Post <span class="deleteIcon">
           🗑️
           </span></button>
-        <button class="cancelBtn">Cancel Changes</button>
-        <button class="saveBtn">Save Changes</button>
+          <button class="saveBtn" id="save-button" style="display: none;" onclick="saveEdit()">Save Changes</button>
       </form>
     </div>
 

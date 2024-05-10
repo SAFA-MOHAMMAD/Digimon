@@ -321,14 +321,13 @@
          </div>
          <div>
           <button id="edit-button">Edit</button>
-          <button id="cancel-button" onclick="cancelEdit()" style="display: none;">Cancel</button>
+          <button class="cancelBtn" id="cancel-button" onclick="cancelEdit()" style="display: none;">Cancel Changes</button>
         </div>
          
          <div class="ctrlButtons">
             <form action="">
               <button class="deleteBtn">Delete Club</button>
-              <button class="cancelBtn">Cancel Changes</button>
-              <button class="saveBtn">Save Changes</button>
+              <button class="saveBtn" id="save-button" style="display: none;" onclick="saveEdit()">Save Changes</button>
             </form>
           </div>
       </footer>
