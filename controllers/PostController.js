@@ -40,9 +40,20 @@ catch (error) {
 
 const updatePost=async(req,res)=>{
     try {
-    let name=req.params.name;
-    const post=await Post.update(req.body,{where:{postname:name}});
-    res.status(200).send(post);
+    let id=req.params.id;
+    const post=await Post.findOne({where:{postID:id}});
+    let info={
+        postTitle: req.body.postTitle,
+        clubName:req.body.clubName,
+        postDescription: req.body.postDescription,
+        postImage: req.file ? req.file.path : post.postImage,
+        postDate: new Date(),
+        PostApproval:req.body.PostApproval
+    }
+    await Post.update(info,{where:{postID:id}});
+    const updatedPost = await Post.findOne({ where: { postID: id } });
+
+    res.status(200).send(updatedPost);  
 }
 catch (error) {
     console.error('Error fetching posts:', error);

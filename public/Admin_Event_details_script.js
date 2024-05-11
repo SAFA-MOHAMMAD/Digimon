@@ -2,8 +2,7 @@ let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
 let searchBtn = document.querySelector(".bx-search");
 const deleteBtn = document.getElementById('deleteBtn');
-const saveBtn = document.getElementById('saveBtn');
-const cancelBtn = document.getElementById('cancelBtn');
+const saveBtn = document.getElementById('save-button');
 
 closeBtn.addEventListener("click", ()=>{
   sidebar.classList.toggle("open");
@@ -37,45 +36,163 @@ function toggleNotifi(){
   }
 }
 /* ============================ */
+// Function to show edit textarea and save button
+// Function to resize textarea based on content
+function resizeTextarea(textarea) {
+textarea.style.height = 'auto'; // Reset height to auto
+textarea.style.height = (textarea.scrollHeight) + 'px'; // Set height to scrollHeight
+}
 
-// const selectBtn = document.querySelector(".select-btn"),
-//            items = document.querySelectorAll(".item");
- 
-//      selectBtn.addEventListener("click", ()=> {
-//        selectBtn.classList.toggle("open");
-//      });
-//      items.forEach(item => {
-//        item.addEventListener("click", () =>{
-//          item.classList.toggle("checked");
-       
-//          let checked = document.querySelectorAll(".checked"),
-//            btnText = document.querySelector(".btn-text");
- 
-//            if(checked && checked.length > 0){
-//               btnText.innerText = `${checked.length} selected`;
-//              }else{
-//                btnText.innerText = "select";
-//              }
- 
-//        });
-//      })
+// Function to show edit textarea and save button
+function toggleEdit() {
+
+var PosterImage = document.getElementById('posterImg');
+var guestName = document.getElementById('guestName');
+var EventDate = document.getElementById('EventDate');
+var EventTime = document.getElementById('EventTime');
+var EventLocation = document.getElementById('EventLocation');
+var EventDescription = document.getElementById('EventDescription');
+
+var editedPosterImage = document.getElementById('edited-posterImg');
+var editedguestName1 = document.getElementById('edited-guestName1');
+var editedEventDate = document.getElementById('edited-EventDate');
+var editedEventTime = document.getElementById('edited-EventTime');
+var editedEventLocation = document.getElementById('edited-EventLocation');
+var editedEventDescription = document.getElementById('edited-EventDescription');
+
+var cancelButton = document.getElementById('cancel-button');
+var editButton = document.getElementById('edit-button');
+var saveButton = document.getElementById('save-button');
+
+if (editButton.textContent === 'Edit') {
+    editButton.style.display = 'none';
+    saveButton.style.display = 'inline';
+    cancelButton.style.display = 'inline';
+
+    editedguestName1.value = guestName.textContent.trim();
+    editedEventDate.value = EventDate.textContent.trim();
+    editedEventTime.value = EventTime.textContent.trim();
+    editedEventLocation.value = EventLocation.textContent.trim();
+    editedEventDescription.value = EventDescription.textContent.trim();
+
+    editedPosterImage.value = ''; // Clear input value to prevent re-uploading same image
+    
+
+    editedPosterImage.style.display = 'block';
+    guestName.style.display = 'none';
+    editedguestName1.style.display = 'inline';
+    
+    
+    EventDate.style.display = 'none';
+    editedEventDate.style.display = 'inline';
+    EventTime.style.display = 'none';
+    editedEventTime.style.display = 'inline';
+    EventLocation.style.display = 'none';
+    editedEventLocation.style.display = 'inline';
+
+    EventDescription.style.display = 'none';
+    editedEventDescription.style.display = 'block';
+
+
+
+    // Resize textarea initially
+    resizeTextarea(editedEventDescription);
+
+  }
+}
+
+function saveEdit(){
+    var PosterImage = document.getElementById('posterImg');
+    var guestName = document.getElementById('guestName');
+    var EventDate = document.getElementById('EventDate');
+    var EventTime = document.getElementById('EventTime');
+    var EventLocation = document.getElementById('EventLocation');
+    var EventDescription = document.getElementById('EventDescription');
+
+    var editedPosterImage = document.getElementById('edited-posterImg');
+    var editedguestName1 = document.getElementById('edited-guestName1');
+    var editedEventDate = document.getElementById('edited-EventDate');
+    var editedEventTime = document.getElementById('edited-EventTime');
+    var editedEventLocation = document.getElementById('edited-EventLocation');
+    var editedEventDescription = document.getElementById('edited-EventDescription');
+
+    guestName.textContent = editedguestName1.value.trim();
+    
+    
+    EventDate.textContent = editedEventDate.value.trim();
+    EventTime.textContent = editedEventTime.value.trim();
+    EventLocation.textContent = editedEventLocation.value.trim();
+    EventDescription.textContent = editedEventDescription.value.trim();
+    
+  
+
+    if (editedPosterImage.files.length > 0) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        PosterImage.src = e.target.result;
+      };
+      reader.readAsDataURL(editedPosterImage.files[0]);
+    }
+    
+    editedPosterImage.style.display = 'none';
+    editedPosterImage.style.display = 'block';
+    guestName.style.display = 'inline';
+    editedguestName1.style.display = 'none';
+    
+    EventDate.style.display = 'inline';
+    editedEventDate.style.display = 'none';
+    EventTime.style.display = 'inline';
+    editedEventTime.style.display = 'none';
+    EventLocation.style.display = 'inline';
+    editedEventLocation.style.display = 'none';
+
+    EventDescription.style.display = 'block';
+    editedEventDescription.style.display = 'none';
+
+    var editButton = document.getElementById('edit-button');
+    var cancelButton = document.getElementById('cancel-button');
+    var saveButton = document.getElementById('save-button');
+
+    editButton.style.display = 'inline';
+    saveButton.style.display = 'none';
+    cancelButton.style.display = 'none';
+}
+
+
+
+function cancelEdit() {
+  var editButton = document.getElementById('edit-button');
+  editButton.textContent = 'Edit'; // Reset edit button text
+  toggleEdit(); // Call toggleEdit to reset changes
+}
+
+// Event listener for edit button
+document.getElementById('edit-button').addEventListener('click', toggleEdit);
+
+// Event listener for save button
+document.getElementById('save-button').addEventListener('click', saveEdit);
+
+
+
+
 function getQueryParamsImage() {
   const params = new URLSearchParams(window.location.search);
   const clubName = params.get('clubName');
   const clubLogo = params.get('clubLogo');
+  const decodedclubName = decodeURIComponent(clubName).trim();
   const decodedclubLogo = decodeURIComponent(clubLogo).trim();
   return{
-    clubName,
+    clubName:decodedclubName,
     clubLogo:decodedclubLogo
   }
-
 }
+
 function getQueryParams() {
       console.log('getQueryParams function called');
       const params = new URLSearchParams(window.location.search);
       const idclubEvent = params.get('idclubEvent');
-      const clubName = params.get('clubName');
       const clubLogo = params.get('clubLogo');
+      const clubName = params.get('clubName');
       const eventType = params.get('eventType');
       const eventName = params.get('eventName');
       const eventDate = params.get('eventDate');
@@ -87,11 +204,10 @@ function getQueryParams() {
       const eventTime = params.get('eventTime');
       const eventApproval = params.get('eventApproval');
       console.log('idclubEvent:', idclubEvent, 'clubName:', clubName, 'eventName:', eventName);
-      
       return {
         idclubEvent,
-          clubName,
           clubLogo,
+          clubName,
           eventType,
           eventName,
           eventDate,
@@ -109,14 +225,14 @@ function getQueryParams() {
     function displayEventInfo() {
     const eventData = getQueryParams();
       // Update the HTML elements with the club data
-    document.getElementById('clubNameImg').textContent = clubData.clubName;
-    document.getElementById('clubLogo').src = clubData.clubLogo;
+    document.getElementById('clubLogo').src = eventData.clubLogo;
+    document.getElementById('clubNameImg').textContent = eventData.clubName;
     document.getElementById('posterImg').src = eventData.eventImage;
     document.getElementById('guestName').textContent = eventData.eventSpeaker;
-    document.getElementById('InfoDate').textContent = eventData.eventDate;
-    document.getElementById('infoTime').textContent = eventData.eventTime;
-    document.getElementById('infoLocation').textContent = eventData.eventPlace;
-    document.getElementById('descP').textContent = eventData.eventContent;
+    document.getElementById('EventDate').textContent = eventData.eventDate;
+    document.getElementById('EventTime').textContent = eventData.eventTime;
+    document.getElementById('EventLocation').textContent = eventData.eventPlace;
+    document.getElementById('EventDescription').textContent = eventData.eventContent;
     }
     // Call the displayEventInfo function when the page loads
     window.addEventListener('load', displayEventInfo);
@@ -146,65 +262,52 @@ function getQueryParams() {
           console.error('Error deleting event:', error);
       }
     });
+
+
+// Add a click event listener to the save button
+saveBtn.addEventListener('click', async function(event) {
+    // Prevent default behavior (page reload)
+    event.preventDefault();
     
+    const formData = new FormData();
     
-    // saveBtn.addEventListener('click', async function(event) {
-    //   // Prevent default behavior (page reload)
-    //   event.preventDefault();
-    //   const formData = new FormData();
-    //   try {
-    //       // Gather updated information from the inputs
-    //       const updatedData = {
-    //           clubName: document.getElementById('edited-club-name').value.trim(),
-    //           clubDescription: document.getElementById('edited-description').value.trim(),
-    //           clubActivities: document.getElementById('edited-activities').value.trim(),
-    //           clubPresident: document.getElementById('edited-president-name').value.trim(),
-    //           clubPresidentEmail: document.getElementById('edited-president-email').value.trim(),
-    //           clubVicePresident: document.getElementById('edited-viPresident-name').value.trim(),
-    //           clubVicePresidentEmail: document.getElementById('edited-viPresident-email').value.trim(),
-    //       };
-    //       const clubLogoInput = document.getElementById('edited-image');
-    //       if (clubLogoInput.files && clubLogoInput.files.length > 0) {
-    //         formData.append('eventimage', clubLogoInput.files[0]);
-    //         console.log(`show value: ${clubLogoInput.files[0]}`);
-    //     }
-    //       console.log('Updated data:', updatedData);
-    //     console.log('Initialized formData:', formData);
-    // for (const [key, value] of Object.entries(updatedData)) {
-    //     formData.append(key, value);
-    //     console.log(`Appended key: ${key}, value: ${value}`);
-    // }
-    // for (const [key, value] of formData) {
-    //   console.log(`show key: ${key}, show value: ${value}`);
-    // }
-    //       console.log('Update query conditions:', { idclubEvent });
-    //       // Send a PUT request to the server with the updated data
-    //       const response = await fetch(`/api/Event/${idclubEvent}`, {
-    //           method: 'PATCH',
-    //           body: formData,
-    //           headers: {
-    //           'Accept': 'application/json' // Specify the content type the server should respond with
-    //           }
-    //       });
-    //       // Check the server response
-    //       if (response.ok) {
-    //           alert('Club updated successfully.');
-    //           // Refresh the page data
-    //           const updatedClub = await response.json();
-    //       } else {
-    //           alert('Failed to update club.');
-    //       }
-    //   } catch (error) {
-    //       console.error('Error updating club:', error);
-    //   }
-    // });
-    
-    // Event listener for the cancel button
-    cancelBtn.addEventListener('click', function(event) {
-      // Prevent default behavior (page reload)
-      event.preventDefault();
-      // Navigate back to the previous page
-      window.location.href = `Admin_all-events.html?clubLogo=${encodeURIComponent(clubData.clubLogo)}
-      &clubName=${encodeURIComponent(clubData.clubName)}`;
+    try {
+        // Gather updated information from the inputs
+        const updatedData = {
+            guestName: document.getElementById('edited-guestName1').value.trim(),
+            eventDescription: document.getElementById('edited-EventDescription').value.trim(),
+            eventDate: document.getElementById('edited-EventDate').value.trim(),
+            eventTime: document.getElementById('edited-EventTime').value.trim(),
+            eventLocation: document.getElementById('edited-EventLocation').value.trim(),
+            // Include other fields as necessary
+        };
+        const EventPosterInput = document.getElementById('edited-posterImg');
+        if (EventPosterInput.files && EventPosterInput.files.length > 0) {
+          formData.append('eventImage', EventPosterInput.files[0]);
+          console.log(`show value: ${EventPosterInput.files[0]}`);
+      }
+        // Append updated data to the form data
+        for (const [key, value] of Object.entries(updatedData)) {
+          formData.append(key, value);
+          console.log(`Appended key: ${key}, value: ${value}`);
+      }
+         // Send a PUT request to update the event data
+        const response = await fetch(`/api/Event/${idclubEvent}`, {
+            method: 'PUT',
+            body: formData,
+            headers: {
+                'Accept': 'application/json', // Specify the content type the server should respond with
+            },
         });
-    
+        
+        // Check the server response
+        if (response.ok) {
+            alert('Event updated successfully.');
+            // Optionally, refresh the page or update the UI with the updated event data
+        } else {
+            alert('Failed to update event.');
+        }
+    } catch (error) {
+        console.error('Error updating event:', error);
+    }
+});

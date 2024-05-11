@@ -24,12 +24,11 @@ router.get('/events/club/:clubName', EventControllar.getEventsByClubName);
 router.get('/Notevents/club/:clubName', EventControllar.getNotAprovesEventsByClubName);
 
 //update route
-router.put('/:id',EventControllar.updateEevnt);
+router.put('/:id',upload.single('eventImage'),EventControllar.updateEevnt);
 
 router.put('/approveEvent/:id',EventControllar.approveEvent);
 
 //update route
-router.patch('/:id',upload.single('file'),EventControllar.updateEevnt);
 
 //delete route
 router.delete('/:id',EventControllar.deleteEvent);

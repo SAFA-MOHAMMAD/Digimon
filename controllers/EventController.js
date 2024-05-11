@@ -51,8 +51,25 @@ const deleteEvent=async(req,res)=>{
 const updateEevnt=async(req,res)=>{
     try {
     let id=req.params.id;
-    const event=await Event.update(req.body,{where:{idclubEvent:id}});
-    res.status(200).send(event);
+    const event=await Event.findOne({where:{idclubEvent:id}});
+    let info={
+        idclubEvent:event.idclubEvent,
+        clubName: req.body.clubName,
+        eventType:req.body.eventType,
+        eventName:req.body.eventName,
+        eventDate:req.body.eventDate,
+        eventSpeaker:req.body.eventSpeaker,
+        eventContent:req.body.eventContent,
+        eventPlace:req.body.eventPlace,
+        eventSpecialService:req.body.eventSpecialService,
+        eventImage: req.file ? req.file.path : event.eventImage,
+        eventTime:req.body.eventTime,
+        eventApproval:req.body.eventApproval
+    }
+    await Event.update(info,{where:{idclubEvent:id}});
+    const updatedEvent = await Event.findOne({ where: { idclubEvent: id } });
+
+    res.status(200).send(updatedEvent);
     }catch (error) {
         console.error('Error fetching Events:', error);
         res.status(500).send('Internal Server Error');

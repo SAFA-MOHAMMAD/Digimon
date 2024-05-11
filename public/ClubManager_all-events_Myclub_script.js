@@ -144,7 +144,7 @@ async function fetchchunkedEvents() {
               
               // Redirect to the event page with the event data as query parameters
               // Constructing the URL with query parameters
-              window.location.href = `./ClubManager_Event_details.html?idclubEvent=${encodeURIComponent(event.idclubEvent)}
+              window.location.href = `./ClubManager_Event_details_myClub.html?idclubEvent=${encodeURIComponent(event.idclubEvent)}
               &clubName=${encodeURIComponent(eventData.clubName)}
               &clubLogo=${encodeURIComponent(clubLogo)}
               &eventType=${encodeURIComponent(eventData.eventType)}

@@ -185,9 +185,8 @@
         <div class="titleSecDiv">
           <div class="titleDiv">
             <h3 class="title">Title</h3>
-            <i class="fa-regular fa-pen-to-square" id="edit-contact-us-btn"></i>
           </div>
-          <p class="descP" id="title">Turkcell Summer internships for senior students 2024-2025</p>
+          <p class="descP"><span id="postTitle">Turkcell Summer internships for senior students 2024-2025</span><textarea id="edited-postTitle" class="edited-textarea""></textarea></p>
           <div class="titleCounter">
             <p>0/90</p>
           </div>
@@ -198,11 +197,10 @@
         <div class="descDiv">
           <div class="titleDiv">
             <h3 class="title">Description</h3>
-            <i class="fa-regular fa-pen-to-square" id="edit-contact-us-btn"></i>
           </div>
-          <p class="descP" id="descP">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque molestiae unde porro ullam
+          <p class="descP"><span id="postDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque molestiae unde porro ullam
             laborum sit quas debitis rerum, adipisci cupiditate, quasi nisi modi magnam quam et nostrum quos ducimus!
-            Repudiandae?</p>
+            Repudiandae?</span><textarea id="edited-postDescription" class="edited-textarea"></textarea></p>
         </div>
 
       </div>
@@ -213,24 +211,28 @@
         <!--Poster section-->
         <div class="posterDiv">
           <img src="images/post_poster1.png" class="posterImg" alt="" id="posterImg">
+          <input type="file" id="edited-posterImg" class="choose-file-button">
         </div>
       </div>
 
 
     </div> <!--layout container: end-->
-
+    <div>
+      <button id="edit-button">Edit</button>
+      <button class="cancelBtn" id="cancel-button" onclick="cancelEdit()" style="display: none;">Cancel Changes</button>
+    </div>
     <!--Control buttons section-->
     <div class="ctrlButtons">
       <form action="">
-        <button class="deleteBtn" id="deleteBtn">Delete Event <span class="material-symbols-outlined deleteIcon">
-            delete_forever
+        <button class="deleteBtn" id="deleteBtn">Delete Post <span class="deleteIcon">
+          🗑️
           </span></button>
-        <button class="cancelBtn" id="cancelBtn">Cancel Changes</button>
-        <button class="saveBtn" id="saveBtn">Save Changes</button>
+          <button class="saveBtn" id="save-button" style="display: none;" onclick="saveEdit()">Save Changes</button>
       </form>
     </div>
 
     <!--home-section: End-->
+
 
     <script src="Admin_Post_details_script.js"></script>
 </body>

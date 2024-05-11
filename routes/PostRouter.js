@@ -16,7 +16,7 @@ router.get('/:id',PostControllar.getOnePost);
 //get all posts with same clubname route
 router.get('/posts/club/:clubName',PostControllar.getPostsByClubName);
 //update route
-router.put('/:id',PostControllar.updatePost);
+router.put('/:id',upload.single('postImage'),PostControllar.updatePost);
 router.put('/approvePost/:id',PostControllar.approvePost);
 //update route
 router.patch('/:id',upload.single('file'),PostControllar.updatePost);
