@@ -168,6 +168,24 @@
               `;
                 // Add the card to the results container
                 resultsContainer.appendChild(card);
+                card.addEventListener("click", async function() {
+                  // Fetch the specific club information
+                  const clubResponse = await fetch(`/api/Club/${club.clubID}`);
+                  const clubData = await clubResponse.json();
+                  
+                  // Redirect to the club page with the club data as query parameters
+                  // Constructing the URL with query parameters
+                  window.location.href = `/club?clubID=${club.clubID}
+                  &clubName=${encodeURIComponent(clubData.clubName)}
+                  &clubDescription=${encodeURIComponent(clubData.clubDescription)}
+                  &clubPresident=${encodeURIComponent(clubData.clubPresident)}
+                  &clubVicePresident=${encodeURIComponent(clubData.clubVicePresident)}
+                  &clubActivitiesInfo=${encodeURIComponent(clubData.clubActivitiesInfo)}
+                  &clubOfficialEmail=${encodeURIComponent(clubData.clubOfficialEmail)}
+                  &clubPresidentEmail=${encodeURIComponent(clubData.clubPresidentEmail)}
+                  &clubVicePresidentEmail=${encodeURIComponent(clubData.clubVicePresidentEmail)}
+                  &clubLogo=${encodeURIComponent(clubData.clubLogo)}`;
+              });
             });
         }
 
