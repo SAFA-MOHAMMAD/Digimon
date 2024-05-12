@@ -102,73 +102,11 @@
       <div class="notifi-box" id="box">
         <h2>Notifications </h2>
 
-
-
-        <a href="">       <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (1).png" alt="img">
-            <div class="text">
-               <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">     <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">  
-            <img class = "box-icon" src="images/notfication1 (2).png" alt="img">
-            <div class="text">
-              <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">     <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (3).png" alt="img">
-            <div class="text">
-              <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">      <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (4).png" alt="img">
-            <div class="text">
-               <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">      <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (5).png" alt="img">
-            <div class="text">
-              <h4 id="notfication=title">notfication type</h4>
-              <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (6).png" alt="img">
-            <div class="text">
-               <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-        
       </div>
     </div>
     
   <main>
-    <div class="search-container">
+    <div class="search-container" id="results-container">
       <div class="category-container">
           <div class="select-btn">
               <span class="btn-text">Select</span>
@@ -221,18 +159,62 @@
 
                     // Display results as cards
                     results.forEach(club => {
-                        const card = document.createElement('div');
-                        card.classList.add('card'); // Add a card class for styling
+                      const card = document.createElement('div');
+                      card.classList.add('gallery-item', 'grid-colum-span');
+                      
+                      // Set the ID for each card, using `club-card-{index}` to distinguish them
+                      //card.id = `club-card-${index}`;
+                      // Set the card content
+                      card.innerHTML = `
+                          <img src="${club.clubLogo}" alt="${club.clubName}" class="club-logo">
+                          <h3>${club.clubName}</h3>
+                          <p>${club.clubDescription}</p>
+                          <p>President: ${club.clubPresident}</p>
+                          <p>Vice President: ${club.clubVicePresident}</p>
+                      `;
+                        // Add the card to the results container
+                        resultsContainer.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                    resultsContainer.innerHTML = '<p>An error occurred while fetching search results.</p>';
+                });
+        });
+    </script>
+    <script>
+      console.log('Hello')
+        document.querySelector('#submit').addEventListener('click', function () {
+            // Get the query parameter from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            // let searchTerm = window.location.pathname.split('=').pop();
+            const searchTerm = document.getElementById('search').value
+console.log('ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg')
+            // Fetch search results
+            console.log(document.getElementById('search').value)
+            fetch(`/api/Club/search/${searchTerm}`)
+                .then(response => response.json())
+                .then(results => {
+                   console.log(results)
+                    // Get the results container
+                    const resultsContainer = document.getElementById('results-container');
+                    resultsContainer.innerHTML = ' ';
 
-                        // Populate the card with club information
-                        card.innerHTML = `
-                            <img src="${club.clubLogo}" alt="${club.clubName}" class="club-logo">
-                            <h3>${club.clubName}</h3>
-                            <p>${club.clubDescription}</p>
-                            <p>President: ${club.clubPresident}</p>
-                            <p>Vice President: ${club.clubVicePresident}</p>
-                        `;
-
+                    // Display results as cards
+                    results.forEach(club => {
+                      const card = document.createElement('div');
+                      card.classList.add('gallery-item', 'grid-colum-span');
+                      
+                      // Set the ID for each card, using `club-card-{index}` to distinguish them
+                      //card.id = `club-card-${index}`;
+                      // Set the card content
+                      card.innerHTML = `
+                          <img src="${club.clubLogo}" alt="${club.clubName}" class="club-logo">
+                          <h3>${club.clubName}</h3>
+                          <p>${club.clubDescription}</p>
+                          <p>President: ${club.clubPresident}</p>
+                          <p>Vice President: ${club.clubVicePresident}</p>
+                      `;
                         // Add the card to the results container
                         resultsContainer.appendChild(card);
                     });

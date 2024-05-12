@@ -132,7 +132,7 @@
   </div>
   
   <!-- Add a div to display the search results -->
-  <div id="results-container"></div>
+  <div class="gallery" id="results-container"></div>
   
   
      <div class="gallery" id="club-gallery">
@@ -144,5 +144,58 @@
   <script src="Admin_home_script.js">
   
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to display search results
+        function displaySearchResults(results) {
+            const resultsContainer = document.getElementById('results-container');
+            resultsContainer.innerHTML = ''; // Clear previous results
+
+            // Loop through results and group them into rows of four
+            results.forEach(club => {
+              const card = document.createElement('div');
+              card.classList.add('gallery-item', 'grid-colum-span');
+              
+              // Set the ID for each card, using `club-card-{index}` to distinguish them
+              //card.id = `club-card-${index}`;
+              // Set the card content
+              card.innerHTML = `
+                  <img src="${club.clubLogo}" alt="${club.clubName}" class="club-logo">
+                  <h3>${club.clubName}</h3>
+                  <p>${club.clubDescription}</p>
+                  <p>President: ${club.clubPresident}</p>
+                  <p>Vice President: ${club.clubVicePresident}</p>
+              `;
+                // Add the card to the results container
+                resultsContainer.appendChild(card);
+            });
+        }
+
+        // Function to handle search
+        function handleSearch() {
+            const searchTerm = document.getElementById('search').value;
+
+            fetch(`/api/Club/search/${searchTerm}`)
+                .then(response => response.json())
+                .then(displaySearchResults)
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                    const resultsContainer = document.getElementById('results-container');
+                    resultsContainer.innerHTML = '<p>An error occurred while fetching search results.</p>';
+                });
+        }
+
+        // Search button click event listener
+        document.querySelector('#submit').addEventListener('click', handleSearch);
+
+        // Optionally, you can also trigger search on pressing Enter in the input field
+        document.getElementById('search').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
