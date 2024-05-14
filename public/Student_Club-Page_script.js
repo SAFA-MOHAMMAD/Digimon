@@ -92,6 +92,7 @@ document.getElementById('club-president-name').textContent = clubData.clubPresid
 document.getElementById('club-viPresident-name').textContent = clubData.clubVicePresident;
 document.getElementById('club-president-email').textContent = clubData.clubPresidentEmail;
 document.getElementById('club-viPresident-email').textContent = clubData.clubVicePresidentEmail;
+document.getElementById('email').textContent = clubData.clubOfficialEmail;
 document.getElementById('club-info').textContent = clubData.clubDescription;
 document.getElementById('club-activities').textContent = clubData.clubActivitiesInfo;
 document.getElementById('club-logo').src = clubData.clubLogo;

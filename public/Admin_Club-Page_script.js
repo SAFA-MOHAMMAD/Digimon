@@ -95,6 +95,7 @@ document.getElementById('club-president-name').textContent = clubData.clubPresid
 document.getElementById('club-viPresident-name').textContent = clubData.clubVicePresident;
 document.getElementById('club-president-email').textContent = clubData.clubPresidentEmail;
 document.getElementById('club-viPresident-email').textContent = clubData.clubVicePresidentEmail;
+document.getElementById('email').textContent = clubData.clubOfficialEmail;
 document.getElementById('club-info').textContent = clubData.clubDescription;
 document.getElementById('club-activities').textContent = clubData.clubActivitiesInfo;
 document.getElementById('club-logo').src = clubData.clubLogo;
@@ -291,6 +292,7 @@ saveBtn.addEventListener('click', async function(event) {
           clubPresidentEmail: document.getElementById('edited-president-email').value.trim(),
           clubVicePresident: document.getElementById('edited-viPresident-name').value.trim(),
           clubVicePresidentEmail: document.getElementById('edited-viPresident-email').value.trim(),
+          clubOfficialEmail: document.getElementById('edited-email').value.trim(),
           // Include other fields as necessary
       };
       const clubLogoInput = document.getElementById('edited-image');

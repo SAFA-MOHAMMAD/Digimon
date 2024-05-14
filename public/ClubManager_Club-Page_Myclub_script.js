@@ -257,6 +257,7 @@ const clubPresident=document.getElementById('club-president-name');
 const clubVicePresident=document.getElementById('club-viPresident-name');
 const clubPresidentEmail=document.getElementById('club-president-email');
 const clubVicePresidentEmail=document.getElementById('club-viPresident-email');
+const club_email=document.getElementById('email');
 const clubinfo=document.getElementById('club-info');
 const clubActivitiesInfo=document.getElementById('club-activities');
 const clubLogo=document.getElementById('club-logo');
@@ -273,6 +274,7 @@ try {
       clubVicePresident.textContent=MyClubData.clubVicePresident;
       clubPresidentEmail.textContent=MyClubData.clubPresidentEmail;
       clubVicePresidentEmail.textContent=MyClubData.clubVicePresidentEmail;
+      club_email.textContent = MyClubData.clubOfficialEmail;
       clubinfo.textContent=MyClubData.clubDescription;
       clubActivitiesInfo.textContent=MyClubData.clubActivitiesInfo;
       clubLogo.src=MyClubData.clubLogo;
@@ -470,6 +472,7 @@ try {
             clubPresidentEmail: document.getElementById('edited-president-email').value.trim(),
             clubVicePresident: document.getElementById('edited-viPresident-name').value.trim(),
             clubVicePresidentEmail: document.getElementById('edited-viPresident-email').value.trim(),
+            clubOfficialEmail: document.getElementById('edited-email').value.trim(),
             // Include other fields as necessary
         };
         const clubLogoInput = document.getElementById('edited-image');
