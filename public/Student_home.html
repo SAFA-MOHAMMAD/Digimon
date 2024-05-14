@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Sets the character encoding of the document to UTF-8, ensuring proper rendering of international characters and symbols -->
   <meta charset="UTF-8">
@@ -11,6 +12,7 @@
   <script src="https://kit.fontawesome.com/14f233c83a.js" crossorigin="anonymous"></script>
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
   <div class="sidebar">
     <div class="logo-details">
@@ -54,53 +56,62 @@
 
   <div class="home-section">
 
-    
-    
+
+
     <div class="text">
       HomePage
     </div>
-  <main>
+    <main>
 
-    <div class="search-container">
+      <div class="search-container">
         <div class="category-container">
           <div class="select-btn">
             <span class="btn-text">
-              select 
+              select
             </span>
             <span class="arrow-dwn">
               <i class="fa-solid fa-chevron-down"></i>
             </span>
           </div>
-   
+
           <ul class="list-items">
-             <li class="item"> 
-               <span class="checkbox">
-                   <i class="fa-solid fa-check check-icon"></i>
-               </span>
-               <span class="item-text">
-                 MATH
-               </span>
-             </li>
+
+            <input class="" type="checkbox" id="Science" name="category[]" value="science">
+            <label class="" for="sports">Science</label>
+
+            <input class="" type="checkbox" id="Arts" name="category[]" value="arts">
+            <label class="" for="music">Arts</label>
+
+            <input class="" type="checkbox" id="Languages" name="category[]" value="languages">
+            <label class="" for="arts">Languages</label>
+
+            <input class="" type="checkbox" id="Entertainment" name="category[]" value="entertainment">
+            <label class="" for="academic">Entertainment</label>
+
+
+            <input type="checkbox" id="sports" name="category[]" value="sport">
+            <label for="sports">Sports</label><br>
           </ul>
         </div>
 
         <div class="search-form-container">
-             <input type="text" class="input" placeholder="search" id="search">
-             <button type="submit" class="button" id="submit">Search</button>
-         </div>
-     </div>
-     <div class="gallery" id="results-container"></div>
-  
-  
-     <div class="gallery" id="club-gallery">
-      <!-- Cards will be dynamically inserted here -->
+          <input type="text" class="input" placeholder="search" id="search">
+          <button type="submit" class="button" id="submit">Search</button>
+        </div>
+      </div>
+      <div class="gallery" id="results-container"></div>
+
+
+      <div class="gallery" id="club-gallery">
+        <!-- Cards will be dynamically inserted here -->
+      </div>
   </div>
-  </div>
-    </main>
+  </main>
   </div>
   <script src="Student_home_script.js">
-  
+
   </script>
-  
+
 </body>
+
 </html>
