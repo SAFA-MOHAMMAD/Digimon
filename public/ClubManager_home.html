@@ -91,67 +91,6 @@
         <h2>Notifications </h2>
 
 
-
-        <a href="">       <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (1).png" alt="img">
-            <div class="text">
-               <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">     <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">  
-            <img class = "box-icon" src="images/notfication1 (2).png" alt="img">
-            <div class="text">
-              <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">     <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (3).png" alt="img">
-            <div class="text">
-              <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">      <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (4).png" alt="img">
-            <div class="text">
-               <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">      <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (5).png" alt="img">
-            <div class="text">
-              <h4 id="notfication=title">notfication type</h4>
-              <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (6).png" alt="img">
-            <div class="text">
-               <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-        
       </div>
     </div>
 
@@ -181,23 +120,24 @@
         </div>
 
         <div class="search-form-container">
-             <input type="text" class="input" placeholder="search" id="search">
-             <button type="submit" class="button" id="submit">Search</button>
-         </div>
-     </div>
-    <div class="gallery">
-      <!-- the link of this card is inside the javascript -->
-      <div class="gallery-item grid-colum-span" id="club-card">
-          
-            <img src="images/club-img.png" alt="club-img" class="club-logo">
-            <h3 id="club-name">Club name</h3>
-            <p><span id="club-summry">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam necessitatibus atque! Iure ut dicta veritatis deserunt delectus soluta distinctio.</span><p>
+          <input type="text" class="input" placeholder="Search" id="search" />
+          <button type="submit" class="button" id="submit">Search</button>
       </div>
-    </div>
+     </div>
+
+     <!-- Add a div to display the search results -->
+  <div class="gallery" id="results-container"></div>
+  
+  
+     <div class="gallery" id="club-gallery">
+      <!-- Cards will be dynamically inserted here -->
+  </div>
     </main>
   </div>
   <script src="ClubManager_home_script.js">
   
   </script>
+
+  
 </body>
 </html>

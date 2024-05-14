@@ -30,3 +30,78 @@ loginBtn.addEventListener("click", (e) => {
   e.preventDefault();
   formContainer.classList.remove("active");
 });
+
+document.getElementById('login_st').addEventListener('submit', async function(event) {
+  // Prevent default form submission behavior
+  event.preventDefault();
+
+  // Create FormData from the form element
+  const formData = new FormData(event.target);
+
+  try {
+      // Send the FormData to the server via a POST request
+      const response = await fetch('/api/User/login', {
+          method: 'POST',
+          body: formData,
+      });
+
+      // Handle the response
+      if (response.ok) {
+          const data = await response.json();
+          console.log('Login successful:', data);
+          window.location.href = './Admin_home.html'; // Redirect to home page
+      } else {
+          const errorData = await response.json();
+          console.error('Failed to log in:', errorData.message);
+
+          // Display the error message to the user
+          const errorMessageElement = document.getElementById('loginErrorMessage');
+          errorMessageElement.textContent = errorData.message; // Set error message content
+          errorMessageElement.style.display = 'block'; // Show the error message
+      }
+  } catch (error) {
+      console.error('Error during login:', error);
+
+      // Display a generic error message if something goes wrong
+      const errorMessageElement = document.getElementById('loginErrorMessage');
+      errorMessageElement.textContent = 'Invalid Email or Password.';
+      errorMessageElement.style.display = 'block';
+  }
+});
+document.getElementById('signupForm').addEventListener('submit', async function(event) {
+  // Prevent default form submission behavior
+  event.preventDefault();
+
+  // Create FormData from the form element
+  const formData = new FormData(event.target);
+
+  try {
+      // Send the FormData to the server via a POST request
+      const response = await fetch('/api/User/newUser', {
+          method: 'POST',
+          body: formData, // Send the form data directly as the request body
+      });
+
+      // Handle the response
+      if (response.ok) {
+          const data = await response.json();
+          console.log('Sign-up successful:', data);
+          window.location.href = '/'; // Redirect the user to the home page
+      } else {
+          const errorData = await response.json();
+          console.error('Failed to register:', errorData.message);
+
+          // Display the error message to the user
+          const errorMessageElement = document.getElementById('signupErrorMessage');
+          errorMessageElement.textContent = errorData.message; // Set error message content
+          errorMessageElement.style.display = 'block'; // Show the error message
+      }
+  } catch (error) {
+      console.error('Error during registration:', error);
+
+      // Display a generic error message if something goes wrong
+      const errorMessageElement = document.getElementById('signupErrorMessage');
+      errorMessageElement.textContent = 'The Email Or Password is Invalid. Please Check Again.';
+      errorMessageElement.style.display = 'block';
+  }
+});

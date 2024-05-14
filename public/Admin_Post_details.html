@@ -174,10 +174,9 @@
       <div class="childGrid-1">
         <!--Club section-->
         <div class="clubNameDiv">
-          <img src="images/club2-logo.png" class="clubNameImg" alt="">
+          <img src="images/club2-logo.png" class="clubNameImg" id="clubLogo" alt="">
           <div>
-            <h3 class="clubNameImg">Club Name</h3>
-            <p class="clubNameInfo">some info</p>
+            <h3 class="clubNameImg" id="clubNameImg">Club Name</h3>
           </div>
         </div>
         <br><br>
@@ -208,7 +207,7 @@
 
       <div class="childGrid-2">
         <!--Release Date-->
-        <div class="releaseDate">Release Date: 22/03/2024</div>
+        <div class="releaseDate" id="releaseDate">Release Date: 22/03/2024</div>
         <!--Poster section-->
         <div class="posterDiv">
           <img src="images/post_poster1.png" class="posterImg" alt="" id="posterImg">
@@ -225,7 +224,7 @@
     <!--Control buttons section-->
     <div class="ctrlButtons">
       <form action="">
-        <button class="deleteBtn">Delete Post <span class="deleteIcon">
+        <button class="deleteBtn" id="deleteBtn">Delete Post <span class="deleteIcon">
           🗑️
           </span></button>
           <button class="saveBtn" id="save-button" style="display: none;" onclick="saveEdit()">Save Changes</button>

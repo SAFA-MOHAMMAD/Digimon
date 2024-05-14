@@ -34,17 +34,17 @@
   <section class="home">
     <div class="form_container">
       <i class="uil uil-times form_close"></i>
-      <!-- Login Form -->
-      <div class="form login_form">
-        <form action="#">
+       <!-- Login Form -->
+       <div class="form login_form">
+        <div id="loginErrorMessage" class="error-message" style="display: none; color: red;"></div>
+        <form id="login_st"action="/api/User/login" method="POST" enctype="multipart/form-data">
           <h2>Login</h2>
-
           <div class="input_box">
-            <input type="email" placeholder="Enter your email" required />
+            <input type="email" name="userEmail" id="userEmail" placeholder="Enter your email" required />
             <i class="uil uil-envelope-alt email"></i>
           </div>
           <div class="input_box">
-            <input type="password" placeholder="Enter your password" required />
+            <input type="password" name="userPassword" id="userPassword" placeholder="Enter your password" required />
             <i class="uil uil-lock password"></i>
             <i class="uil uil-eye-slash pw_hide"></i>
           </div>
@@ -58,40 +58,35 @@
           </div>
 
           <button class="button">Login Now</button>
-
           <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
         </form>
       </div>
 
-      <!-- Signup Form -->
       <div class="form signup_form">
-        <form action="#">
+        <div id="signupErrorMessage" class="error-message" style="display: none; color: red;"></div>
+        <form id="signupForm" action="/api/User/register" method="POST" enctype="multipart/form-data">
           <h2>Signup</h2>
 
           <div class="input_box">
-            <input type="email" placeholder="Enter your email" required />
+            <input type="email" name="userEmail" id="userEmail" placeholder="Enter your email" required />
             <i class="uil uil-envelope-alt email"></i>
           </div>
           <div class="input_box">
-            <input type="password" placeholder="Create password" required />
+            <input type="password" name="userPassword" id="userPassword" placeholder="Create password" required />
             <i class="uil uil-lock password"></i>
             <i class="uil uil-eye-slash pw_hide"></i>
           </div>
           <div class="input_box">
-            <input type="password" placeholder="Confirm password" required />
+            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" required />
             <i class="uil uil-lock password"></i>
             <i class="uil uil-eye-slash pw_hide"></i>
           </div>
-
           <button class="button">Signup Now</button>
-
           <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
         </form>
       </div>
     </div>
   </section>
-
-  <script src="Admin_SKS_Admin_script.js"></script>
-</body>
-
+  <script src="Student_login_script.js"></script>
+  </body>
 </html>

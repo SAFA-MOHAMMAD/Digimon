@@ -8,11 +8,18 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
+      clubName: {
+        type: DataTypes.STRING,
+      },
       postTitle: {
         type: DataTypes.STRING,
       },
       postDescription: {
         type: DataTypes.TEXT,
+      },
+      PostApproval: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
       postImage: {
         type: DataTypes.STRING,

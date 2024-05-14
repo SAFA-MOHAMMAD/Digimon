@@ -2,23 +2,40 @@ const EventControllar=require('../controllers/EventController');
 const router=require('express').Router();
 const multer=require('multer');
 const upload = multer({ dest: 'uploads/' });
-
+const path = require('path');
 //create event route
-router.post('/newEvent',EventControllar.newEvent);
+router.post('/newEvent',upload.single('file'),EventControllar.newEvent);
 
 //get all route
 router.get('/getAllEvents',EventControllar.getAllEvents);
 
+router.get('/getAllNotAproveEvents',EventControllar.getAllNotAproveEvents);
+
+
+router.get('/getUpcomingEvents',EventControllar.getUpcomingEvents);
+// get all evenets 
+router.get('/all', EventControllar.getAllEvents);
+
 //get one route
 router.get('/:id',EventControllar.getOneEvent);
 
-//update route
-router.put('/:id',EventControllar.updateEevnt);
+//get all by clubname route
+router.get('/events/club/:clubName', EventControllar.getEventsByClubName);
+
+router.get('/Notevents/club/:clubName', EventControllar.getNotAprovesEventsByClubName);
+
+router.get('/search/:key' , EventControllar.searchForEvents);
 
 //update route
-router.patch('/:id',upload.single('file'),EventControllar.updateEevnt);
+router.put('/:id',upload.single('eventImage'),EventControllar.updateEevnt);
+
+router.put('/approveEvent/:id',EventControllar.approveEvent);
+
+//update route
 
 //delete route
 router.delete('/:id',EventControllar.deleteEvent);
+
+
 
 module.exports=router;

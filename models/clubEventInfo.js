@@ -35,6 +35,9 @@ module.exports = (sequelize, DataTypes) => {
       eventImage: {
         type: DataTypes.STRING,
       },
+      eventCategory:{
+        type: DataTypes.STRING, 
+      },
       eventTime: {
         type: DataTypes.TIME,
       },
@@ -43,7 +46,6 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: false,
       },
     },
-
     {
       timestamps: false,
     }

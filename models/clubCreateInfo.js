@@ -1,3 +1,5 @@
+const { data } = require("jquery");
+
 module.exports = (sequelize, DataTypes) => {
   const Club = sequelize.define(
     "clubCreateInfo",
@@ -24,12 +26,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       clubPresidentEmail: {
         type: DataTypes.STRING,
-
+        
         unique: true,
       },
       clubVicePresidentEmail: {
         type: DataTypes.STRING,
-
+        
         unique: true,
       },
       clubDescription: {
@@ -39,6 +41,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
       },
       clubLogo: {
+        type: DataTypes.STRING,
+      },
+      clubCategory:{
         type: DataTypes.STRING,
       },
     },

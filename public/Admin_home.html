@@ -102,114 +102,119 @@
       <div class="notifi-box" id="box">
         <h2>Notifications </h2>
 
-
-
-        <a href="">       <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (1).png" alt="img">
-            <div class="text">
-               <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">     <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">  
-            <img class = "box-icon" src="images/notfication1 (2).png" alt="img">
-            <div class="text">
-              <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">     <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (3).png" alt="img">
-            <div class="text">
-              <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">      <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (4).png" alt="img">
-            <div class="text">
-               <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">      <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (5).png" alt="img">
-            <div class="text">
-              <h4 id="notfication=title">notfication type</h4>
-              <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (6).png" alt="img">
-            <div class="text">
-               <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-        
       </div>
     </div>
     
   <main>
-
     <div class="search-container">
-        <div class="category-container">
+      <div class="category-container">
           <div class="select-btn">
-            <span class="btn-text">
-              select 
-            </span>
-            <span class="arrow-dwn">
-              <i class="fa-solid fa-chevron-down"></i>
-            </span>
+              <span class="btn-text">Select</span>
+              <span class="arrow-dwn">
+                  <i class="fa-solid fa-chevron-down"></i>
+              </span>
           </div>
-   
+  
           <ul class="list-items">
-             <li class="item"> 
-               <span class="checkbox">
-                   <i class="fa-solid fa-check check-icon"></i>
-               </span>
-               <span class="item-text">
-                 MATH
-               </span>
-             </li>
-          </ul>
-        </div>
 
-        <div class="search-form-container">
-             <input type="text" class="input" placeholder="search" id="search">
-             <button type="submit" class="button" id="submit">Search</button>
-         </div>
-     </div>
-    <div class="gallery">
-      <!-- the link of this card is inside the javascript -->
-      <div class="gallery-item grid-colum-span" id="club-card">
-          <img src="images/club-img.png" alt="club-img" class="club-logo">
-            <h3 id="club-name">Club name</h3>
-            <p><span id="club-summry">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ipsam necessitatibus atque! Iure ut dicta veritatis deserunt delectus soluta distinctio.</span><p>
+            <input type="checkbox" id="sports" name="category[]" value="e">
+            <label for="sports">Sports</label><br>
+          </ul>
+
       </div>
-      
+  
+      <div class="search-form-container">
+          <input type="text" class="input" placeholder="Search" id="search" />
+          <button type="submit" class="button" id="submit">Search</button>
+      </div>
+  </div>
+  
+  <!-- Add a div to display the search results -->
+  <div class="gallery" id="results-container"></div>
+  
+  
+     <div class="gallery" id="club-gallery">
+      <!-- Cards will be dynamicallyhanging inserted here -->
+  </div>
     </div>
     </main>
   </div>
   <script src="Admin_home_script.js">
   
   </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to display search results
+        function displaySearchResults(results) {
+            const resultsContainer = document.getElementById('results-container');
+            resultsContainer.innerHTML = ''; // Clear previous results
+
+            // Loop through results and group them into rows of four
+            results.forEach(club => {
+              
+              const card = document.createElement('div');
+              card.classList.add('gallery-item', 'grid-colum-span');
+                card.classList.add('gallery-item', 'grid-colum-span');
+              
+              // Set the ID for each card, using `club-card-{index}` to distinguish them
+              //card.id = `club-card-${index}`;
+              // Set the card content
+              card.innerHTML = `
+                  <img src="${club.clubLogo}" alt="${club.clubName}" class="club-logo">
+                  <h3>${club.clubName}</h3>
+                  <p>${club.clubDescription}</p>
+                  <p>President: ${club.clubPresident}</p>
+                  <p>Vice President: ${club.clubVicePresident}</p>
+              `;
+                // Add the card to the results container
+                resultsContainer.appendChild(card);
+                card.addEventListener("click", async function() {
+                  // Fetch the specific club information
+                  const clubResponse = await fetch(`/api/Club/${club.clubID}`);
+                  const clubData = await clubResponse.json();
+                  
+                  // Redirect to the club page with the club data as query parameters
+                  // Constructing the URL with query parameters
+                  window.location.href = `/club?clubID=${club.clubID}
+                  &clubName=${encodeURIComponent(clubData.clubName)}
+                  &clubDescription=${encodeURIComponent(clubData.clubDescription)}
+                  &clubPresident=${encodeURIComponent(clubData.clubPresident)}
+                  &clubVicePresident=${encodeURIComponent(clubData.clubVicePresident)}
+                  &clubActivitiesInfo=${encodeURIComponent(clubData.clubActivitiesInfo)}
+                  &clubOfficialEmail=${encodeURIComponent(clubData.clubOfficialEmail)}
+                  &clubPresidentEmail=${encodeURIComponent(clubData.clubPresidentEmail)}
+                  &clubVicePresidentEmail=${encodeURIComponent(clubData.clubVicePresidentEmail)}
+                  &clubLogo=${encodeURIComponent(clubData.clubLogo)}`;
+              });
+            });
+        }
+
+        // Function to handle search
+        function handleSearch() {
+            const searchTerm = document.getElementById('search').value;
+
+            fetch(`/api/Club/search/${searchTerm}`)
+                .then(response => response.json())
+                .then(displaySearchResults)
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                    const resultsContainer = document.getElementById('results-container');
+                    resultsContainer.innerHTML = '<p>An error occurred while fetching search results.</p>';
+                });
+        }
+
+        // Search button click event listener
+        document.querySelector('#submit').addEventListener('click', handleSearch);
+
+        // Optionally, you can also trigger search on pressing Enter in the input field
+        document.getElementById('search').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

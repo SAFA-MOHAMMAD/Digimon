@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.use(express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 //Routers
 const UserRouter=require('./routes/UserRoute.js')
@@ -38,12 +38,20 @@ app.use('/api/Event',EventRouter);
 const PostRouter=require('./routes/PostRouter.js');
 app.use('/api/Post',PostRouter);
 
-
+const NotificationRouter=require('./routes/NotificationRoute.js')
+app.use('/api/Notification',NotificationRouter);
 
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+'/public/Admin_Log_in.html');
 });
 
+app.get('/ClubManager_home.html',(req,res)=>{
+    res.sendFile(__dirname+'/public/ClubManager_home.html');
+});
+
+app.get('/Student_home.html',(req,res)=>{
+    res.sendFile(__dirname+'/public/Student_home.html');
+});
 app.get('/club',(req,res)=>{
     res.sendFile(__dirname+'/public/Admin_Club-Page.html');
 });
@@ -52,50 +60,22 @@ app.get('/createClub',(req,res)=>{
     res.sendFile(__dirname+'/public/Admin/create club page/create_club_page.html');
 });
 
+app.use('/api/events', EventRouter);
 
 
 //for images
-app.get('/uploads/Imagenum1.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum1.jpg');
-});
-app.get('/uploads/Imagenum2.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum2.jpg');
-});
-app.get('/uploads/Imagenum3.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum3.jpg');
-});
-app.get('/uploads/Imagenum4.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum4.jpg');
-});
 app.get('/uploads/Imagenum5.jpg',(req,res)=>{
     res.sendFile(__dirname+'/uploads/Imagenum5.png');
-});
-app.get('/uploads/Imagenum6.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum6.jpg');
-});
-app.get('/uploads/Imagenum7.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum7.jpg');
-});
-app.get('/uploads/Imagenum8.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum8.jpg');
 });
 app.get('/uploads/Imagenum9.jpg',(req,res)=>{
     res.sendFile(__dirname+'/uploads/Imagenum9.png');
 });
-app.get('/uploads/Imagenum10.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads//Imagenum10.jpg');
+app.get('/uploads/Imagenum7.jpg',(req,res)=>{
+    res.sendFile(__dirname+'/uploads/Imagenum7.jpg');
 });
-app.get('/uploads/Imagenum11.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum11.jpg');
-});
-app.get('/uploads/Imagenum12.jpg',(req,res)=>{
-    res.sendFile(__dirname+'/uploads/Imagenum12.jpg');
-});
-
 app.get('/set',(req,res)=>{
 res.sendFile(__dirname+'/public/Admin/weekly-events/weekly-Events.html');
 });
-
 
 
 

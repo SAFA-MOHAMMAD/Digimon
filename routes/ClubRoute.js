@@ -14,11 +14,19 @@ router.get('/getAllClubs',ClubControllar.getAllClubs);
 //get one route
 router.get('/:id',ClubControllar.getOneClub);
 
-//update route
-router.put('/:id',ClubControllar.updateClub);
+router.get('/getOneClubByemail/:userEmail',ClubControllar.getOneClubByemail);
+
+router.get('/name/:clubName',ClubControllar.getOneClubByname);
+
+router.get('/search/:key',ClubControllar.searchForClub);
 
 //update route
-router.patch('/:id',upload.single('club-logo'),ClubControllar.updateClub);
+router.put('/:id',upload.single('clubLogo'),ClubControllar.updateClub);
+
+//update route
+router.patch('/:id',upload.single('clubLogo'),ClubControllar.updateClub);
+
+//router.patch('/:id',upload.single('clubLogo'),ClubControllar.updateClubLogo);
 
 //delete route
 router.delete('/:id',ClubControllar.deleteClub);
