@@ -162,7 +162,7 @@
         function displaySearchResults(results) {
             const resultsContainer = document.getElementById('results-container');
             resultsContainer.innerHTML = ''; // Clear previous results
-
+            const searchTerm = searchInput.value;
             // Loop through results and group them into rows of four
             results.forEach(club => {
               
@@ -205,8 +205,7 @@
 
         // Function to handle search
         function handleSearch() {
-            const searchTerm = document.getElementById('search').value;
-
+            const searchTerm = searchInput.value;
             fetch(`/api/Club/search/${searchTerm}`)
                 .then(response => response.json())
                 .then(displaySearchResults)

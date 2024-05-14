@@ -1,7 +1,7 @@
 module.exports={
     HOST:'localhost',
-    USER:'root',
-    PASSWORD:'hamzah4747',
+    USER:'EA',
+    PASSWORD:'EAuskudar2002',
     DB:'node_digimon',
     dialect: 'mysql',
     pool:{
