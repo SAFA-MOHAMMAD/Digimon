@@ -500,6 +500,28 @@ try {
             alert('Club updated successfully.');
             // Refresh the page data
             const updatedClub = await response.json();
+            try {
+              const notificationResponse = await fetch('/api/Notification/notifications', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                      message: updatedClub.clubDescription,
+                      Title: updatedClub.clubName,
+                      Image:updatedClub.clubLogo
+                  })
+              });
+              // Handle the response (e.g., check if it was successful, log errors, etc.)
+              if (notificationResponse.ok) {
+                  const notificationData = await notificationResponse.json();
+                  console.log('Notification created successfully:', notificationData);
+              } else {
+                  console.error('Failed to create notification:', notificationResponse.statusText);
+              }
+          } catch (error) {
+              console.error('Error creating notification:', error);
+          }
         } else {
             alert('Failed to update club.');
         }
