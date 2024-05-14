@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Sets the character encoding of the document to UTF-8, ensuring proper rendering of international characters and symbols -->
   <meta charset="UTF-8">
@@ -11,6 +12,7 @@
   <script src="https://kit.fontawesome.com/14f233c83a.js" crossorigin="anonymous"></script>
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
   <div class="sidebar">
     <div class="logo-details">
@@ -73,20 +75,20 @@
       </li>
     </ul>
   </div>
-  
+
 
   <!-- ======================================== -->
 
   <!-- homesection start -->
   <section class="home-section">
-    
+
     <div class="nav-grid">
       <div class="text">
         New Event Request Form
       </div>
-      
-      <div class="icon-1" onclick="toggleNotifi()">  <!-- notfication icon div -->
-        <img class = "notfication-icon" src="images/Notification-icon.png" alt="">
+
+      <div class="icon-1" onclick="toggleNotifi()"> <!-- notfication icon div -->
+        <img class="notfication-icon" src="images/Notification-icon.png" alt="">
       </div>
       <div class="notifi-box" id="box">
         <h2>Notifications </h2>
@@ -94,77 +96,103 @@
       </div>
     </div>
 
-     <!-- Event Form -->
-     <section class="Form">
+    <!-- Event Form -->
+    <section class="Form">
       <form id="form" action="/api/Event/newEvent" method="post" enctype="multipart/form-data">
-      <!-- Event Name -->
-      <div class="input">
+        <!-- Event Name -->
+        <div class="input">
           <label for="eventName">Event Name</label>
           <input class="text-input" type="text" id="eventName" name="eventName" required>
-      </div>
-      <!-- Event Date -->
-      <div class="input">
+        </div>
+        <!-- Event Date -->
+        <div class="input">
           <label for="eventDate">Event Date</label>
           <input class="text-input" type="date" id="eventDate" name="eventDate" required>
-      </div>
-      <!-- Event Time -->
-      <div class="input">
+        </div>
+        <!-- Event Time -->
+        <div class="input">
           <label for="eventTime">Event Time</label>
           <input class="text-input" type="time" id="eventTime" name="eventTime" required>
-      </div>
-      <!-- Event Place -->
-      <div class="input">
+        </div>
+        <!-- Event Place -->
+        <div class="input">
           <label for="eventPlace">Event Place</label>
           <input class="text-input" type="text" id="eventPlace" name="eventPlace" required>
-      </div>
-      <!-- Event Type -->
-      <div class="input">
+        </div>
+        <!-- Event Type -->
+        <div class="input">
           <label for="eventType">Event Type</label>
           <input class="text-input" type="text" id="eventType" name="eventType" required>
-      </div>
-      <!-- Event Speaker -->
-      <div class="input">
+        </div>
+        <!-- Event Speaker -->
+        <div class="input">
           <label for="eventSpeaker">Event Speaker</label>
           <input class="text-input" type="text" id="eventSpeaker" name="eventSpeaker">
-      </div>
-      <!-- Event Content -->
-      <div class="input">
+        </div>
+        <!-- Event Content -->
+        <div class="input">
           <label for="eventContent">Event Content</label>
           <textarea class="text-input" id="eventContent" name="eventContent" rows="4" required></textarea>
-      </div>
-      <!-- Event Special Service -->
-      <div class="input">
+        </div>
+        <!-- Event Special Service -->
+        <div class="input">
           <label for="eventSpecialService">Event Special Service</label>
           <input class="text-input" type="text" id="eventSpecialService" name="eventSpecialService">
-      </div>
-      <!-- Event Approval -->
-      <!-- <div class="input">
+        </div>
+        <!-- Event Approval -->
+        <!-- <div class="input">
           <label for="eventApproval">Event Approval</label>
           <select id="eventApproval" name="eventApproval" required>
               <option value="false">No</option>
               <option value="true">Yes</option>
           </select>
       </div> -->
-      <!-- Event Image Upload -->
-      <div class="input">
+        <!-- Event Image Upload -->
+        <div class="input">
           <label for="eventImage">Event Image</label>
           <input type="file" id="eventImage" name="file">
-      </div>
-      <!-- Club Name -->
-      <div class="input">
+        </div>
+        <!-- Club Name -->
+        <div class="input">
           <label for="clubName">Club Name</label>
           <input class="text-input" type="text" id="clubName" name="clubName" required>
-      </div>
-      <!-- Submit Button -->
-      <div class="button-container">
-        <button class="cancel" id="cancel" type="button">Cancel</button>
+        </div>
+        <div class="input">
+          <label class="label" for="clubcategories">Event Categories</label><br>
+          <div class="categories-grid">
+            <div class="Checkbox">
+              <input class="" type="checkbox" id="Science" name="category[]" value="science">
+              <label class="" for="sports">Science</label>
+            </div>
+            <div class="Checkbox">
+              <input class="" type="checkbox" id="Arts" name="category[]" value="arts">
+              <label class="" for="music">Arts</label>
+            </div>
+            <div class="Checkbox">
+              <input class="" type="checkbox" id="Languages" name="category[]" value="languages">
+              <label class="" for="arts">Languages</label>
+            </div>
+            <div class="Checkbox">
+              <input class="" type="checkbox" id="Entertainment" name="category[]" value="entertainment">
+              <label class="" for="academic">Entertainment</label>
+            </div>
+            <div class="Checkbox">
+              <input class="" type="checkbox" id="Sports" name="category[]" value="sport">
+              <label class="" for="community">Sports</label><br>
+            </div>
+          </div>
+        </div>
+        <!-- Submit Button -->
+        <div class="button-container">
+          <button class="cancel" id="cancel" type="button">Cancel</button>
           <button class="accept" type="submit">Submit</button>
-      </div>
-  </form>
-</section>
+        </div>
+      </form>
+    </section>
 
 
   </section>
   <script src="ClubManager_Create_New_Event_Page_script.js"> </script>
 </body>
+
 </html>
