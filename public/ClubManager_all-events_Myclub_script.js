@@ -167,10 +167,12 @@ async function fetchchunkedEvents() {
 // Fetch chunkedevents when the page loads
 window.addEventListener('load', fetchchunkedEvents);
 
+
 async function fetchchunkedNotification() {
-  fetch('/api/Notification/getNotifications') // Adjust the URL as needed
-  .then(response => response.json())
-  .then(notifications => {
+  try {
+      const response = await fetch('/api/Notification/getNotifications');
+      const notifications = await response.json();
+      
       // Get the notification box element
       const notificationBox = document.getElementById('box');
       
@@ -178,22 +180,50 @@ async function fetchchunkedNotification() {
       notificationBox.innerHTML = '<h2>Notifications</h2>';
 
       // Loop through each notification and create HTML elements
-      notifications.forEach(notification => {
+      notifications.forEach(async notification => {
+          // Create a link element
           const link = document.createElement('a');
-          link.href = './Admin_weekly-Events.html'; // You can set the link URL based on the notification
+          let destinationUrl = './ClubManager_weekly-Events.html'; // Default URL for non-club notifications
+          // Check if the title matches a club name
+          const data=(await isClubName(notification.Title)).found;
+          console.log('Does the club exist?', data); // Should print true or false
 
+          //const clubData=data.clubData;
+          if (data===true) {
+            console.log("enterd the is club function")
+              // If it's a club name, set the destination URL to the club page
+              const clubData=(await isClubName(notification.Title)).clubData;
+              console.log("the result is :",clubData.clubID)
+
+              destinationUrl = `./ClubManager_Club-Page.html?clubID=${clubData.clubID}
+              &clubName=${encodeURIComponent(clubData.clubName)}
+              &clubDescription=${encodeURIComponent(clubData.clubDescription)}
+              &clubPresident=${encodeURIComponent(clubData.clubPresident)}
+              &clubVicePresident=${encodeURIComponent(clubData.clubVicePresident)}
+              &clubActivitiesInfo=${encodeURIComponent(clubData.clubActivitiesInfo)}
+              &clubOfficialEmail=${encodeURIComponent(clubData.clubOfficialEmail)}
+              &clubPresidentEmail=${encodeURIComponent(clubData.clubPresidentEmail)}
+              &clubVicePresidentEmail=${encodeURIComponent(clubData.clubVicePresidentEmail)}
+              &clubLogo=${encodeURIComponent(clubData.clubLogo)}`;
+          }
+
+          // Set the href attribute of the link
+          link.href = destinationUrl;
+
+          // Create a div for the notification item
           const itemDiv = document.createElement('div');
           itemDiv.classList.add('notifi-item');
-          if (notification.Image) {
-            // Create an image element and set its source
-            const img = document.createElement('img');
-            img.classList.add('box-icon');
-            img.src = notification.Image; // Image URL from notification
-            img.alt = 'Notification image';
 
-            // Append the image to the item div
-            itemDiv.appendChild(img);
-        }
+          // If notification has an image, create an image element
+          if (notification.Image) {
+              const img = document.createElement('img');
+              img.classList.add('box-icon');
+              img.src = notification.Image; // Image URL from notification
+              img.alt = 'Notification image';
+              itemDiv.appendChild(img);
+          }
+
+          // Create a div for the notification text
           const textDiv = document.createElement('div');
           textDiv.classList.add('text');
 
@@ -205,26 +235,49 @@ async function fetchchunkedNotification() {
           const messageP = document.createElement('p');
           messageP.textContent = notification.message;
 
-          // Append the title and message to the text div
+          // Append title and message to the text div
           textDiv.appendChild(titleH4);
           textDiv.appendChild(messageP);
 
-          // Append the text div to the item div
+          // Append text div to the item div
           itemDiv.appendChild(textDiv);
 
-          // Append the item div to the link
+          // Append item div to the link
           link.appendChild(itemDiv);
 
-          // Append the link to the notification box
+          // Append link to the notification box
           notificationBox.appendChild(link);
       });
-  })
-  .catch(error => {
+  } catch (error) {
       console.error('Error fetching notifications:', error);
-  });
+  }
 }
 
 
+async function isClubName(name) {
+  try {
+      // Send a request to your server to check if a club with the given name exists
+      const response = await fetch(`/api/club/name/${encodeURIComponent(name)}`);
+      
+      if (response.ok) {
+          // If the response is successful, it means the club exists
+          const clubData = await response.json();
+          return {
+              found: true, // Indicate that the club is found
+              clubData: clubData // Include club data in the response
+          };
+      } else {
+          // If the response is not successful, it means the club doesn't exist
+          return { found: false }; // Indicate that the club is not found
+      }
+  } catch (error) {
+      // Handle any errors that occur during the request
+      console.error('Error checking club name:', error);
+      return { found: false }; // Return false in case of an error
+  }
+}
+
+// Execute the function when the window is loaded
 window.onload = function() {
   fetchchunkedNotification();
 };
