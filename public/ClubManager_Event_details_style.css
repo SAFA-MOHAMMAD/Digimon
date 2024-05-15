@@ -479,6 +479,15 @@ notifi-box a{
   grid-template-columns: 90% 10%;
 }
 
+#clubLogo{
+  width: 128px;
+  height: 128px;
+}
+
+#posterImg{
+  width: 397px;
+}
+
 /* Control Buttons: start */
 .ctrlButtons {
   padding: 30px;

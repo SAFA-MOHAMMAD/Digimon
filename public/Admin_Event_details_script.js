@@ -135,7 +135,6 @@ function saveEdit(){
     }
     
     editedPosterImage.style.display = 'none';
-    editedPosterImage.style.display = 'block';
     guestName.style.display = 'inline';
     editedguestName1.style.display = 'none';
     

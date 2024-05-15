@@ -447,6 +447,10 @@ notifi-box a{
   font-weight: 600;
 }
 
+.clubInfo img{
+  width: 128px;
+  height: 128px;
+}
 
 /* Buttons */
 .buttons {
