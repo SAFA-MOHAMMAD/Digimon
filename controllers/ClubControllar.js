@@ -18,6 +18,7 @@ const newClub = async (req, res) => {
             clubPresidentEmail: req.body.clubPresidentEmail,
             clubVicePresidentEmail: req.body.clubVicePresidentEmail,
             clubDescription: req.body.clubDescription,
+            
             clubActivitiesInfo: req.body.clubActivitiesInfo,
             clubLogo:  req.file ? req.file.path : null
         };

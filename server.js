@@ -5,7 +5,7 @@ const model_event=require('./models/index');
 const path=require('path')
 const bodyParser=require('body-parser');
 const multer=require('multer');
-const port=process.env.PORT || 5000;
+const port= 5000;
 const app=express()
 
 var corOptions ={
