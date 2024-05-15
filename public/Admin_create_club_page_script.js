@@ -19,47 +19,25 @@ function menuBtnChange() {
   }
 }
 
-
 /* ============================ */
 
-var box  = document.getElementById('box');
+var box = document.getElementById('box');
 var down = false;
-
 
 function toggleNotifi(){
   if (down) {
-    box.style.height  = '0px';
+    box.style.height = '0px';
     box.style.opacity = 0;
     down = false;
-  }else {
-    box.style.height  = '510px';
+  } else {
+    box.style.height = '510px';
     box.style.opacity = 1;
     down = true;
   }
 }
+
 /* ============================ */
 
-// const selectBtn = document.querySelector(".select-btn"),
-//            items = document.querySelectorAll(".item");
- 
-//      selectBtn.addEventListener("click", ()=> {
-//        selectBtn.classList.toggle("open");
-//      });
-//      items.forEach(item => {
-//        item.addEventListener("click", () =>{
-//          item.classList.toggle("checked");
-       
-//          let checked = document.querySelectorAll(".checked"),
-//            btnText = document.querySelector(".btn-text");
- 
-//            if(checked && checked.length > 0){
-//               btnText.innerText = `${checked.length} selected`;
-//              }else{
-//                btnText.innerText = "select";
-//              }
- 
-//        });
-//      })
 // Get the form element
 document.querySelector('form').addEventListener('submit', async function(event) {
   // Prevent default form submission behavior
@@ -68,27 +46,34 @@ document.querySelector('form').addEventListener('submit', async function(event) 
   const form = event.target;
   const formData = new FormData(form);
 
+  // Collect the selected categories
+  const categories = [];
+  form.querySelectorAll('input[name="category[]"]:checked').forEach(checkbox => {
+    categories.push(checkbox.value);
+  });
+  formData.append('category', categories);
+
   // Log the FormData contents to check what's being sent
   for (const [key, value] of formData.entries()) {
-      console.log(`Key: ${key}, Value: ${value}`);
+    console.log(`Key: ${key}, Value: ${value}`);
   }
 
   try {
-      // Send the FormData to the server via a POST request
-      const response = await fetch('/api/club/newClub', {
-          method: 'POST',
-          body: formData,
-      });
-      // Handle the response
-      if (response.ok) {
-          const createdClub = await response.json();
-          window.location.href = './Admin_home.html';
-          console.log('Club created successfully:', createdClub);
-      } else {
-          console.error('Failed to create club:', response.statusText);
-      }
+    // Send the FormData to the server via a POST request
+    const response = await fetch('/api/club/newClub', {
+      method: 'POST',
+      body: formData,
+    });
+    // Handle the response
+    if (response.ok) {
+      const createdClub = await response.json();
+      window.location.href = './Admin_home.html';
+      console.log('Club created successfully:', createdClub);
+    } else {
+      console.error('Failed to create club:', response.statusText);
+    }
   } catch (error) {
-      console.error('Error creating club:', error);
+    console.error('Error creating club:', error);
   }
 });
 

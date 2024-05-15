@@ -1,11 +1,9 @@
 const db = require('../models');
 const Club = db.club;
-const User=db.user;
+const User = db.user;
 const multer = require('multer');
-const Sequelize=require('sequelize');
+const Sequelize = require('sequelize');
 const { Op } = require('sequelize'); // Import Sequelize operators
-
-
 
 const newClub = async (req, res) => {
     try {
@@ -18,9 +16,9 @@ const newClub = async (req, res) => {
             clubPresidentEmail: req.body.clubPresidentEmail,
             clubVicePresidentEmail: req.body.clubVicePresidentEmail,
             clubDescription: req.body.clubDescription,
-            
             clubActivitiesInfo: req.body.clubActivitiesInfo,
-            clubLogo:  req.file ? req.file.path : null
+            clubLogo: req.file ? req.file.path : null,
+            clubCategory: req.body.category ? req.body.category.join(', ') : null // Handling the categories
         };
         // Create a new club entry in the database
         const club = await Club.create(info);
@@ -101,20 +99,21 @@ const updateClub = async (req, res) => {
         const id = req.params.id;
         // Find the club record in the database
         const club = await Club.findOne({ where: { clubID: id } });
-        let info={
-            clubID:club.clubID,
-            clubName : req.body.clubName,
-            clubPresident : req.body.clubPresident,
-            clubVicePresident : req.body.clubVicePresident,
-            clubOfficialEmail : req.body.clubOfficialEmail,
-            clubPresidentEmail : req.body.clubPresidentEmail,
-            clubVicePresidentEmail : req.body.clubVicePresidentEmail,
-            clubDescription : req.body.clubDescription,
-            clubActivitiesInfo : req.body.clubActivitiesInfo,
-            clubLogo :   req.file ? req.file.path : club.clubLogo
-        }// Adjust as needed
+        let info = {
+            clubID: club.clubID,
+            clubName: req.body.clubName,
+            clubPresident: req.body.clubPresident,
+            clubVicePresident: req.body.clubVicePresident,
+            clubOfficialEmail: req.body.clubOfficialEmail,
+            clubPresidentEmail: req.body.clubPresidentEmail,
+            clubVicePresidentEmail: req.body.clubVicePresidentEmail,
+            clubDescription: req.body.clubDescription,
+            clubActivitiesInfo: req.body.clubActivitiesInfo,
+            clubLogo: req.file ? req.file.path : club.clubLogo,
+            clubCategory: req.body.category ? req.body.category.join(', ') : club.clubCategory // Handling the categories
+        };
         // Save the updated club record
-        await Club.update(info,{where:{clubID:id}});
+        await Club.update(info, { where: { clubID: id } });
         const updatedClub = await Club.findOne({ where: { clubID: id } });
         // Send a success response with the updated club data
         res.status(200).send(updatedClub);
@@ -174,7 +173,7 @@ const getOneClubByemail= async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
-module.exports={
+module.exports = {
     newClub,
     getAllClubs,
     getOneClubByname,
@@ -183,4 +182,4 @@ module.exports={
     deleteClub,
     updateClub,
     searchForClub
-}
+};
