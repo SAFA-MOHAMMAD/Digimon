@@ -66,11 +66,14 @@ items.forEach(item => {
 //   performSearch(searchQuery);
 // });
 
+
 document.addEventListener('DOMContentLoaded', function () {
   console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
 
   // Get the search input field and submit button elements
   const searchInput = document.getElementById('search');
+  const search1=document.getElementById('sports');
+  const search2=document.getElementById('art');
   const submitButton = document.getElementById('submit');
 
   // Add an event listener to the submit button
@@ -79,19 +82,37 @@ document.addEventListener('DOMContentLoaded', function () {
 console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
       // Get the search term from the input field
       const searchTerm = searchInput.value;
-console.log(searchTerm)
+      const searchTerm1=search1.value;
+      const searchTerm2=search2.value;
+console.log(searchTerm1)
       // Check if search term is empty
-      if (!searchTerm) {
-          alert('Please enter a search term.');
-          return;
-      }
+      // if (!searchTerm1) {
+      //     alert('Please enter a search term.');
+      //     return;
+      // }
 
       try {
           // Send an HTTP GET request to the search API endpoint
-          const response = await fetch(`/api/Club/search/${searchTerm}`);
+          let x;
+
+if (typeof searchTerm !== 'undefined' && searchTerm !== '') {
+    x = searchTerm;
+}  
+else if (typeof searchTerm1 !== 'undefined' && searchTerm1 === 'engineering') {
+    x = searchTerm1;
+} 
+else if (typeof searchTerm2 !== 'undefined' && searchTerm2 === 'Art') {
+    x = searchTerm2;
+} 
+// else {
+//     x = 'art';
+// }
+
+            console.log('x:',x);
+          const response = await fetch(`/api/Club/search/${x}`);
           const clubData = await response.json();
           console.log(clubData)
-         
+          
 
           // Check if the response is OK (status code 200)
           if (!response.ok) {
@@ -113,8 +134,9 @@ console.log(searchTerm)
           galleryContainer.innerHTML = ' ';
                     // Display results as cards
                     clubData.forEach(club => {
-                        const card = document.createElement('div');
-                        card.classList.add('card'); // Add a card class for styling
+                      const card = document.createElement('div');
+                      card.classList.add('gallery-item', 'grid-colum-span');
+                       // Add a card class for styling
                         // Populate the card with club information
                         card.innerHTML = `
                             <img src="${club.clubLogo}" alt="${club.clubName}" class="club-logo">
@@ -126,7 +148,24 @@ console.log(searchTerm)
                   
                         // Add the card to the results container
                         resultsContainer.appendChild(card);
-
+                        card.addEventListener("click", async function() {
+                          // Fetch the specific club information
+                          const clubResponse = await fetch(`/api/Club/${club.clubID}`);
+                          const clubData = await clubResponse.json();
+                          
+                          // Redirect to the club page with the club data as query parameters
+                          // Constructing the URL with query parameters
+                          window.location.href = `/club?clubID=${club.clubID}
+                          &clubName=${encodeURIComponent(clubData.clubName)}
+                          &clubDescription=${encodeURIComponent(clubData.clubDescription)}
+                          &clubPresident=${encodeURIComponent(clubData.clubPresident)}
+                          &clubVicePresident=${encodeURIComponent(clubData.clubVicePresident)}
+                          &clubActivitiesInfo=${encodeURIComponent(clubData.clubActivitiesInfo)}
+                          &clubOfficialEmail=${encodeURIComponent(clubData.clubOfficialEmail)}
+                          &clubPresidentEmail=${encodeURIComponent(clubData.clubPresidentEmail)}
+                          &clubVicePresidentEmail=${encodeURIComponent(clubData.clubVicePresidentEmail)}
+                          &clubLogo=${encodeURIComponent(clubData.clubLogo)}`;
+                      });
                       })
 
           // Create a list of results

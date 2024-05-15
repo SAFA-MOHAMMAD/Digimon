@@ -138,16 +138,22 @@ const searchForClub = async (req, res) => {
         // Perform a search in the database
         const results = await Club.findAll({
             where: {
-                clubName: {
-                    [Sequelize.Op.like]: `%${query}%`
-                },
-                clubActivitiesInfo: {
-                    [Sequelize.Op.like]: `%${query}%`
-                }
-                
-                // Add more fields to search by as needed
+                [Sequelize.Op.or]: [
+                    {
+                        clubName: {
+                            [Sequelize.Op.like]: `%${query}%`
+                        }
+                    },
+                    {
+                        clubActivitiesInfo: {
+                            [Sequelize.Op.like]: `%${query}%`
+                        }
+                    }
+                    // Add more fields to search by as needed
+                ]
             }
         });
+        
         console.log('Search results:', results);
         // Send the search results as a JSON response
         res.json(results);
