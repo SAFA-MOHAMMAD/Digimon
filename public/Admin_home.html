@@ -116,14 +116,12 @@
           </div>
   
           <ul class="list-items">
-              <li class="item">
-                  <span class="checkbox">
-                      <i class="fa-solid fa-check check-icon"></i>
-                  </span>
-                  <span class="item-text">MATH</span>
-              </li>
+
+            <input type="checkbox" id="sports" name="category[]" value="engineering">
+            <label for="sports">Sports</label><br>
           </ul>
-      </div>
+
+      </div>swimming
   
       <div class="search-form-container">
           <input type="text" class="input" placeholder="Search" id="search" />
@@ -136,7 +134,7 @@
   
   
      <div class="gallery" id="club-gallery">
-      <!-- Cards will be dynamically inserted here -->
+      <!-- Cards will be dynamicallyhanging inserted here -->
   </div>
     </div>
     </main>
@@ -144,6 +142,7 @@
   <script src="Admin_home_script.js">
   
   </script>
+
   <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Function to display search results
@@ -153,8 +152,10 @@
 
             // Loop through results and group them into rows of four
             results.forEach(club => {
+              
               const card = document.createElement('div');
               card.classList.add('gallery-item', 'grid-colum-span');
+                card.classList.add('gallery-item', 'grid-colum-span');
               
               // Set the ID for each card, using `club-card-{index}` to distinguish them
               //card.id = `club-card-${index}`;
