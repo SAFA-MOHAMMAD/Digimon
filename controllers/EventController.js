@@ -1,34 +1,33 @@
-const db=require('../models');
-const Event=db.event
+const db = require('../models');
+const Event = db.event;
 const multer = require('multer');
 const { Op } = require('sequelize'); // Import Sequelize operators
 
-
-const newEvent=async(req,res)=>{
+const newEvent = async (req, res) => {
     try {
-    console.log(req.body);
-    let info={
-        idclubEvent:req.body.idclubEvent,
-        clubName: req.body.clubName,
-        eventType:req.body.eventType,
-        eventName:req.body.eventName,
-        eventDate:req.body.eventDate,
-        eventSpeaker:req.body.eventSpeaker,
-        eventContent:req.body.eventContent,
-        eventPlace:req.body.eventPlace,
-        eventSpecialService:req.body.eventSpecialService,
-        eventImage: req.file ? req.file.path : null,
-        eventTime:req.body.eventTime,
-        eventApproval:req.body.eventApproval
+        console.log(req.body);
+        let info = {
+            idclubEvent: req.body.idclubEvent,
+            clubName: req.body.clubName,
+            eventType: req.body.eventType,
+            eventName: req.body.eventName,
+            eventDate: req.body.eventDate,
+            eventSpeaker: req.body.eventSpeaker,
+            eventContent: req.body.eventContent,
+            eventPlace: req.body.eventPlace,
+            eventSpecialService: req.body.eventSpecialService,
+            eventImage: req.file ? req.file.path : null,
+            eventTime: req.body.eventTime,
+            eventApproval: req.body.eventApproval,
+            eventCategory: req.body.category ? req.body.category.join(', ') : null // Handling the categories
+        };
+        const event = await Event.create(info);
+        res.status(200).send(event);
+        console.log(event);
+    } catch (error) {
+        console.error('Error creating event:', error);
+        res.status(500).send('Internal Server Error');
     }
-    const event=await Event.create(info);
-    res.status(200).send(event);
-    console.log(event);
-}
-catch (error) {
-    console.error('Error fetching Events:', error);
-    res.status(500).send('Internal Server Error');
-}
 }
 
 
@@ -48,30 +47,31 @@ const deleteEvent=async(req,res)=>{
 
 
 
-const updateEevnt=async(req,res)=>{
+const updateEevnt = async (req, res) => {
     try {
-    let id=req.params.id;
-    const event=await Event.findOne({where:{idclubEvent:id}});
-    let info={
-        idclubEvent:event.idclubEvent,
-        clubName: req.body.clubName,
-        eventType:req.body.eventType,
-        eventName:req.body.eventName,
-        eventDate:req.body.eventDate,
-        eventSpeaker:req.body.eventSpeaker,
-        eventContent:req.body.eventContent,
-        eventPlace:req.body.eventPlace,
-        eventSpecialService:req.body.eventSpecialService,
-        eventImage: req.file ? req.file.path : event.eventImage,
-        eventTime:req.body.eventTime,
-        eventApproval:req.body.eventApproval
-    }
-    await Event.update(info,{where:{idclubEvent:id}});
-    const updatedEvent = await Event.findOne({ where: { idclubEvent: id } });
+        let id = req.params.id;
+        const event = await Event.findOne({ where: { idclubEvent: id } });
+        let info = {
+            idclubEvent: event.idclubEvent,
+            clubName: req.body.clubName,
+            eventType: req.body.eventType,
+            eventName: req.body.eventName,
+            eventDate: req.body.eventDate,
+            eventSpeaker: req.body.eventSpeaker,
+            eventContent: req.body.eventContent,
+            eventPlace: req.body.eventPlace,
+            eventSpecialService: req.body.eventSpecialService,
+            eventImage: req.file ? req.file.path : event.eventImage,
+            eventTime: req.body.eventTime,
+            eventApproval: req.body.eventApproval,
+            eventCategory: req.body.category ? req.body.category.join(', ') : event.eventCategory // Handling the categories
+        }
+        await Event.update(info, { where: { idclubEvent: id } });
+        const updatedEvent = await Event.findOne({ where: { idclubEvent: id } });
 
-    res.status(200).send(updatedEvent);
-    }catch (error) {
-        console.error('Error fetching Events:', error);
+        res.status(200).send(updatedEvent);
+    } catch (error) {
+        console.error('Error updating event:', error);
         res.status(500).send('Internal Server Error');
     }
 }
@@ -246,7 +246,7 @@ const getNotAprovesEventsByClubName = async (req, res) => {
     }
 };
 
-module.exports={
+module.exports = {
     newEvent,
     deleteEvent,
     updateEevnt,

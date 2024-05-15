@@ -3,7 +3,6 @@ let closeBtn = document.querySelector("#btn");
 let searchBtn = document.querySelector(".bx-search");
 const cancel = document.getElementById('cancel');
 
-
 // Attach a submit event listener to the form
 document.getElementById('form').addEventListener('submit', async function(event) {
   // Prevent default form submission behavior
@@ -12,6 +11,14 @@ document.getElementById('form').addEventListener('submit', async function(event)
   // Create FormData from the form element
   const form = event.target;
   const formData = new FormData(form);
+
+  // Collect the selected categories
+  const categories = [];
+  form.querySelectorAll('input[name="category[]"]:checked').forEach(checkbox => {
+    categories.push(checkbox.value);
+  });
+  formData.append('category', categories);
+
   try {
       // Send a POST request to the server with the FormData
       const response = await fetch('/api/Event/newEvent', {
@@ -32,7 +39,7 @@ document.getElementById('form').addEventListener('submit', async function(event)
                 body: JSON.stringify({
                     message: formData.get('eventContent'),
                     Title: formData.get('eventName'),
-                    Image:eventImage
+                    Image: eventImage
                 })
             });
             // Handle the response (e.g., check if it was successful, log errors, etc.)
@@ -62,6 +69,7 @@ cancel.addEventListener('click', function(event) {
   // Navigate back to the previous page
   window.history.back();
 });
+
 closeBtn.addEventListener("click", () => {
   sidebar.classList.toggle("open");
   menuBtnChange(); // calling the function(optional)
@@ -79,7 +87,6 @@ function menuBtnChange() {
 /* ========================================= */
 var box  = document.getElementById('box');
 var down = false;
-
 
 function toggleNotifi(){
 	if (down) {
@@ -149,25 +156,6 @@ async function fetchchunkedNotification() {
   });
 }
 
-
 window.onload = function() {
   fetchchunkedNotification();
 };
-/* ========================================= */
-
-
-  // document.querySelector('.event-scroll-button-right').addEventListener('click', function() {
-  //   document.querySelector('.gallery').scrollBy({
-  //     top: 0,
-  //     left: 600, // Change this value to adjust the scroll distance
-  //     behavior: 'smooth'
-  //   });
-  // });
-  
-  // document.querySelector('.event-scroll-button-left').addEventListener('click', function() {
-  //   document.querySelector('.gallery').scrollBy({
-  //     top: 0,
-  //     left: -600, // Change this value to adjust the scroll distance
-  //     behavior: 'smooth'
-  //   });
-  // });
