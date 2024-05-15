@@ -140,7 +140,11 @@ const searchForClub = async (req, res) => {
             where: {
                 clubName: {
                     [Sequelize.Op.like]: `%${query}%`
+                },
+                clubActivitiesInfo: {
+                    [Sequelize.Op.like]: `%${query}%`
                 }
+                
                 // Add more fields to search by as needed
             }
         });
