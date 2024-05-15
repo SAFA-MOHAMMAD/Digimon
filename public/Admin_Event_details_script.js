@@ -273,11 +273,11 @@ saveBtn.addEventListener('click', async function(event) {
     try {
         // Gather updated information from the inputs
         const updatedData = {
-            guestName: document.getElementById('edited-guestName1').value.trim(),
-            eventDescription: document.getElementById('edited-EventDescription').value.trim(),
+            eventSpeaker: document.getElementById('edited-guestName1').value.trim(),
+            eventContent: document.getElementById('edited-EventDescription').value.trim(),
             eventDate: document.getElementById('edited-EventDate').value.trim(),
             eventTime: document.getElementById('edited-EventTime').value.trim(),
-            eventLocation: document.getElementById('edited-EventLocation').value.trim(),
+            eventPlace: document.getElementById('edited-EventLocation').value.trim(),
             // Include other fields as necessary
         };
         const EventPosterInput = document.getElementById('edited-posterImg');
