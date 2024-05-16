@@ -141,7 +141,7 @@ async function fetchchunkedEvents() {
 
           card.innerHTML = `
           <div class=" grid-colum-span">
-              <a href="Admin_Event_details.html?id=${event.idclubEvent}" id="event-card-link">
+              <a href="ClubManager_Event_details.html?id=${event.idclubEvent}" id="event-card-link">
                   <div class="eventCard" style="background-image: url(${imageUrl});">
                       <div class="dateBlock">
                           <p class="day"><span>${event.eventDate.substring(8, 10)}</span>th</p>

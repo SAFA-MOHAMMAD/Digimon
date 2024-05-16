@@ -26,6 +26,8 @@ router.get('/Notevents/club/:clubName', EventControllar.getNotAprovesEventsByClu
 
 router.get('/search/:Date', EventControllar.searchEventsByDate);
 
+router.get('/search/:Date/:ClubName', EventControllar.searchEventsByDateAlleventPages);
+
 //update route
 router.put('/:id',upload.single('eventImage'),EventControllar.updateEevnt);
 
