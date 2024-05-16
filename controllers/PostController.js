@@ -1,7 +1,8 @@
 const db=require('../models');
 const Post=db.post
+const Sequelize=require('sequelize');
 const multer = require('multer');
-
+const { Op, where } = require('sequelize');
 
 const newPost=async(req,res)=>{
         try {
@@ -187,6 +188,74 @@ const searchPostsByDateAlleventPages = async (req, res) => {
     }
 };
 
+
+const searchForPost = async (req, res) => {
+    try {
+        // Retrieve the search query from the request's query parameters
+        const query = req.params.key;
+        console.log('Search query:', query);
+        // if (!searchTerm) {
+        //     return res.status(400).json({ error: 'Query parameter q is required' });
+        // }
+        // Perform a search in the database
+        const results = await Post.findAll({
+            where: {
+                [Sequelize.Op.or]: [
+                    {
+                        postTitle: {
+                            [Sequelize.Op.like]: `%${query}%`
+                        }
+                    },
+                    // Add more fields to search by as needed
+                ],
+                PostApproval: true
+            }
+            
+        });
+        
+        console.log('Search results:', results);
+        // Send the search results as a JSON response
+        res.json(results);
+    } catch (error) {
+        console.error('Error handling search request:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+const searchForPostwithClubName = async (req, res) => {
+    try {
+        // Retrieve the search query from the request's query parameters
+        const query = req.params.key;
+        const clubName = req.params.clubName;
+
+        console.log('Search query:', query);
+        // if (!searchTerm) {
+        //     return res.status(400).json({ error: 'Query parameter q is required' });
+        // }
+        // Perform a search in the database
+        const results = await Post.findAll({
+            where: {
+                clubName:clubName,
+                PostApproval: true,
+                [Sequelize.Op.or]: [
+                    {
+                        postTitle: {
+                            [Sequelize.Op.like]: `%${query}%`
+                        }
+                    },
+                    // Add more fields to search by as needed
+                ],
+            }
+        });
+        
+        console.log('Search results:', results);
+        // Send the search results as a JSON response
+        res.json(results);
+    } catch (error) {
+        console.error('Error handling search request:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
 module.exports={
     newPost,
     deletePost,
@@ -196,5 +265,7 @@ module.exports={
     getAllNotAprovePosts,
     searchPostsByDateAlleventPages,
     getOnePost,
-    getPostsByClubName
+    getPostsByClubName,
+    searchForPost,
+    searchForPostwithClubName
 }

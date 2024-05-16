@@ -17,6 +17,9 @@ router.get('/search/:Date/:ClubName', PostControllar.searchPostsByDateAlleventPa
 
 //get all posts with same clubname route
 router.get('/posts/club/:clubName',PostControllar.getPostsByClubName);
+router.get('/search/byname/:key', PostControllar.searchForPost);
+
+router.get('/search/byname/:key/:clubName',PostControllar.searchForPostwithClubName);
 //update route
 router.put('/:id',upload.single('postImage'),PostControllar.updatePost);
 router.put('/approvePost/:id',PostControllar.approvePost);
