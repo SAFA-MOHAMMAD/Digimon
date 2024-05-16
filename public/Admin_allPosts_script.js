@@ -253,3 +253,105 @@ async function isClubName(name) {
 window.onload = function() {
   fetchchunkedNotification();
 };
+
+document.addEventListener('DOMContentLoaded', function () {
+  const clubName = getQueryParams().clubName;
+  const clubLogo=getQueryParams().clubLogo;
+  console.log('Search function entered')
+  // Get the search input field and submit button elements
+  const searchInput = document.getElementById('date');
+  const submitButton = document.getElementById('submit');
+
+  // Add an event listener to the submit button
+  submitButton.addEventListener('click', async function (e) {
+      e.preventDefault(); // Prevent the form from submitting the traditional way
+console.log('submitButton clicked')
+      // Get the search term from the input field
+      const searchTerm = searchInput.value;
+console.log(searchTerm)
+      // Check if search term is empty
+      if (!searchTerm) {
+          alert('Please enter a search term.');
+          return;
+      }
+
+      try {
+          // Send an HTTP GET request to the search API endpoint
+          const response = await fetch(`/api/Post/search/${searchTerm}/${clubName}`);
+          const PostData = await response.json();
+          console.log(PostData)
+          
+
+          // Check if the response is OK (status code 200)
+          if (!response.ok) {
+              throw new Error('Failed to fetch search results');
+          }
+
+          // Parse the response JSON
+         // const results = await response.json();
+
+          // Display the search results in the results container
+          // const resultsContainer = document.getElementById('results-container');
+          
+
+          const resultsContainer = document.getElementById('results-container');
+          resultsContainer.innerHTML = ' ';
+
+          
+          const galleryContainer =document.getElementById('post-gallery');
+
+          galleryContainer.innerHTML = ' ';
+                    // Display results as cards
+                    PostData.forEach(post => {
+                      const card = document.createElement('div');
+                      card.classList.add('gallery-item', 'grid-colum-span');
+                       // Add a card class for styling
+                        // Populate the card with club information
+                        let imageUrl = '';
+                        if (post.postImage) {
+                            // Convert backslashes to forward slashes in the image URL
+                            imageUrl = post.postImage.replace(/\\/g, '/');
+                        }
+                        card.innerHTML = `
+                  <div class="postCard" style="background-image: url(${imageUrl});">
+                  <div class="dateBlock">
+                  <p class="day" id="post-day">${post.postDate.substring(8, 10)}th</p>
+                  <p class="month" id="post-month">${post.postDate.substring(5, 7)}</p>
+                  <p class="year" id="post-year">${post.postDate.substring(0, 4)}</p>
+                  </div>
+                  <div class="titleBlock">
+                  <h3 id="post-name">${post.postTitle}</h3>
+                  </div>
+                  </div>`;
+                        // Add the card to the results container
+                        resultsContainer.appendChild(card);
+                        card.addEventListener("click", async function() {
+                          // Fetch the specific post information
+                          const postResponse = await fetch(`/api/post/${post.postID}`);
+                          const postData = await postResponse.json();
+                          
+                          // Redirect to the post page with the post data as query parameters
+                          // Constructing the URL with query parameters
+                          window.location.href = `./Admin_Post_details.html?postID=${encodeURIComponent(post.postID)}
+                              &clubName=${encodeURIComponent(postData.clubName)}
+                              &clubLogo=${encodeURIComponent(clubLogo)}
+                              &postDescription=${encodeURIComponent(postData.postDescription)}
+                              &postTitle=${encodeURIComponent(postData.postTitle)}
+                              &postDate=${encodeURIComponent(postData.postDate)}
+                              &postImage=${encodeURIComponent(postData.postImage)}`;
+                      });
+                      })
+
+          // Create a list of results
+          // results.forEach((result) => {
+          //     const listItem = document.createElement('div');
+          //     listItem.textContent = result.clubName; // Customize this as needed
+          //     resultsContainer.appendChild(listItem);
+          // });
+
+      } catch (error) {
+          console.error('Error fetching search results:', error);
+          alert('An error occurred while fetching search results.');
+      }
+  });
+});

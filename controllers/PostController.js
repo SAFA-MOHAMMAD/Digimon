@@ -163,6 +163,30 @@ const approvePost=async(req,res)=>{
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+
+
+const searchPostsByDateAlleventPages = async (req, res) => {
+    try {
+        // Get the club Name from the URL parameters
+        const postDate = req.params.Date;
+        const clubName = req.params.ClubName;
+        // Fetch events associated with the specified club Name
+        const posts = await Post.findAll({
+            where: {
+                postDate: postDate,
+                clubName: clubName, // Assuming clubName is the field name in Event model for club name
+                PostApproval: true,
+            },
+        });
+        // Send the events as the response
+        res.status(200).json(posts);
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
 module.exports={
     newPost,
     deletePost,
@@ -170,6 +194,7 @@ module.exports={
     getAllPosts,
     approvePost,
     getAllNotAprovePosts,
+    searchPostsByDateAlleventPages,
     getOnePost,
     getPostsByClubName
 }

@@ -13,6 +13,8 @@ router.get('/getAllNotAprovePosts',PostControllar.getAllNotAprovePosts);
 //get one route
 router.get('/:id',PostControllar.getOnePost);
 
+router.get('/search/:Date/:ClubName', PostControllar.searchPostsByDateAlleventPages);
+
 //get all posts with same clubname route
 router.get('/posts/club/:clubName',PostControllar.getPostsByClubName);
 //update route
