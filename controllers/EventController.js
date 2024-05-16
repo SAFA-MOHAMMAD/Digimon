@@ -221,6 +221,26 @@ const getNotAprovesEventsByClubName = async (req, res) => {
     }
 };
 
+
+const searchEventsByDate = async (req, res) => {
+    try {
+        // Get the club Name from the URL parameters
+        const eventDate = req.params.Date;
+        // Fetch events associated with the specified club Name
+        const events = await Event.findAll({
+            where: {
+                eventDate: eventDate,
+                eventApproval: true,
+            },
+        });
+        // Send the events as the response
+        res.status(200).json(events);
+    } catch (error) {
+        console.error('Error fetching events:', error);
+        res.status(500).send('Internal Server Error');
+    }
+};
+
 module.exports={
     newEvent,
     deleteEvent,
@@ -231,5 +251,6 @@ module.exports={
     getAllNotAproveEvents,
     getUpcomingEvents,
     getOneEvent,
+    searchEventsByDate,
     getEventsByClubName
 }
