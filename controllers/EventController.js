@@ -1,5 +1,6 @@
 const db=require('../models');
 const Event=db.event
+const Sequelize=require('sequelize');
 const multer = require('multer');
 const { Op, where } = require('sequelize'); // Import Sequelize operators
 
@@ -264,6 +265,75 @@ const searchEventsByDateAlleventPages = async (req, res) => {
     }
 };
 
+
+
+const searchForEvent = async (req, res) => {
+    try {
+        // Retrieve the search query from the request's query parameters
+        const query = req.params.key;
+        console.log('Search query:', query);
+        // if (!searchTerm) {
+        //     return res.status(400).json({ error: 'Query parameter q is required' });
+        // }
+        // Perform a search in the database
+        const results = await Event.findAll({
+            where: {
+                [Sequelize.Op.or]: [
+                    {
+                        eventName: {
+                            [Sequelize.Op.like]: `%${query}%`
+                        }
+                    },
+                    // Add more fields to search by as needed
+                ],
+                eventApproval: true
+            }
+            
+        });
+        
+        console.log('Search results:', results);
+        // Send the search results as a JSON response
+        res.json(results);
+    } catch (error) {
+        console.error('Error handling search request:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+const searchForEventwithClubName = async (req, res) => {
+    try {
+        // Retrieve the search query from the request's query parameters
+        const query = req.params.key;
+        const clubName = req.params.clubName;
+
+        console.log('Search query:', query);
+        // if (!searchTerm) {
+        //     return res.status(400).json({ error: 'Query parameter q is required' });
+        // }
+        // Perform a search in the database
+        const results = await Event.findAll({
+            where: {
+                clubName:clubName,
+                eventApproval: true,
+                [Sequelize.Op.or]: [
+                    {
+                        eventName: {
+                            [Sequelize.Op.like]: `%${query}%`
+                        }
+                    },
+                    // Add more fields to search by as needed
+                ],
+            }
+        });
+        
+        console.log('Search results:', results);
+        // Send the search results as a JSON response
+        res.json(results);
+    } catch (error) {
+        console.error('Error handling search request:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
 module.exports={
     newEvent,
     deleteEvent,
@@ -276,5 +346,7 @@ module.exports={
     getOneEvent,
     searchEventsByDate,
     searchEventsByDateAlleventPages,
-    getEventsByClubName
+    getEventsByClubName,
+    searchForEvent,
+    searchForEventwithClubName
 }

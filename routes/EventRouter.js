@@ -26,6 +26,10 @@ router.get('/Notevents/club/:clubName', EventControllar.getNotAprovesEventsByClu
 
 router.get('/search/:Date', EventControllar.searchEventsByDate);
 
+router.get('/search/byname/:key', EventControllar.searchForEvent);
+
+router.get('/search/byname/:key/:clubName', EventControllar.searchForEventwithClubName);
+
 router.get('/search/:Date/:ClubName', EventControllar.searchEventsByDateAlleventPages);
 
 //update route
