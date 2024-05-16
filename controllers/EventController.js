@@ -158,7 +158,8 @@ const getUpcomingEvents = async (req, res) => {
             where: {
                 eventDate: {
                     [Op.between]: [currentDate, nextWeekDate] // Filter events by date range
-                }
+                },
+                eventApproval: true // Filter events by approval status
             }
         });
 

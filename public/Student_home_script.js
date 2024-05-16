@@ -57,6 +57,134 @@ items.forEach(item => {
   });
 })
 
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('search entered')
+
+  // Get the search input field and submit button elements
+  const searchInput = document.getElementById('search');
+  const submitButton = document.getElementById('submit');
+
+  // Add an event listener to the submit button
+  submitButton.addEventListener('click', async function (e) {
+      e.preventDefault(); // Prevent the form from submitting the traditional way
+console.log('submitButton entered')
+      // Get the search term from the input field
+      const searchTerm = searchInput.value;
+console.log(searchTerm)
+      // Check if search term is empty
+      // if (!searchTerm1) {
+      //     alert('Please enter a search term.');
+      //     return;
+      // }
+
+      try {
+        const checkedCategories = Array.from(document.querySelectorAll('input[name="category[]"]:checked'))
+          .map(checkbox => checkbox.value);
+      console.log('Checked categories:', checkedCategories);
+           // Determine the search term based on conditions using switch statement
+      let x;
+      switch (true) {
+          case (searchTerm !== ''):
+              x = searchTerm;
+              break;
+          case checkedCategories.includes('engineering'):
+              x = 'engineering';
+              break;
+          case checkedCategories.includes('bio'):
+              x = 'bio';
+              break;
+          case checkedCategories.includes('Art'):
+              x = 'Art';
+              break;
+          default:
+              if (checkedCategories.length > 0) {
+                  x = checkedCategories.join(', ');
+              } else {
+                  alert('Please enter a search term or select at least one category.');
+                  return;
+              }
+      }
+      console.log('Final search term:',x);
+
+            console.log('x:',x);
+          const response = await fetch(`/api/Club/search/${x}`);
+          const clubData = await response.json();
+          console.log(clubData)
+          
+
+          // Check if the response is OK (status code 200)
+          if (!response.ok) {
+              throw new Error('Failed to fetch search results');
+          }
+
+          // Parse the response JSON
+         // const results = await response.json();
+
+          // Display the search results in the results container
+          // const resultsContainer = document.getElementById('results-container');
+          
+
+          const resultsContainer = document.getElementById('results-container');
+          resultsContainer.innerHTML = ' ';
+
+          
+          const galleryContainer = document.getElementById('club-gallery');
+          galleryContainer.innerHTML = ' ';
+                    // Display results as cards
+                    clubData.forEach(club => {
+                      const card = document.createElement('div');
+                      card.classList.add('gallery-item', 'grid-colum-span');
+                       // Add a card class for styling
+                        // Populate the card with club information
+                        card.innerHTML = `
+                            <img src="${club.clubLogo}" alt="${club.clubName}" class="club-logo">
+                            <h3>${club.clubName}</h3>
+                            <p>${club.clubDescription}</p>
+                            <p>President: ${club.clubPresident}</p>
+                            <p>Vice President: ${club.clubVicePresident}</p>
+                        `;
+                  
+                        // Add the card to the results container
+                        resultsContainer.appendChild(card);
+                        card.addEventListener("click", async function() {
+                          // Fetch the specific club information
+                          const clubResponse = await fetch(`/api/Club/${club.clubID}`);
+                          const clubData = await clubResponse.json();
+                          
+                          // Redirect to the club page with the club data as query parameters
+                          // Constructing the URL with query parameters
+                          window.location.href = `./Student_Club-Page.html?clubID=${club.clubID}
+                          &clubName=${encodeURIComponent(clubData.clubName)}
+                          &clubDescription=${encodeURIComponent(clubData.clubDescription)}
+                          &clubPresident=${encodeURIComponent(clubData.clubPresident)}
+                          &clubVicePresident=${encodeURIComponent(clubData.clubVicePresident)}
+                          &clubActivitiesInfo=${encodeURIComponent(clubData.clubActivitiesInfo)}
+                          &clubOfficialEmail=${encodeURIComponent(clubData.clubOfficialEmail)}
+                          &clubPresidentEmail=${encodeURIComponent(clubData.clubPresidentEmail)}
+                          &clubVicePresidentEmail=${encodeURIComponent(clubData.clubVicePresidentEmail)}
+                          &clubLogo=${encodeURIComponent(clubData.clubLogo)}`;
+                      });
+                      })
+
+          // Create a list of results
+          // results.forEach((result) => {
+          //     const listItem = document.createElement('div');
+          //     listItem.textContent = result.clubName; // Customize this as needed
+          //     resultsContainer.appendChild(listItem);
+          // });
+
+      } catch (error) {
+          console.error('Error fetching search results:', error);
+          alert('An error occurred while fetching search results.');
+      }
+  });
+});
+
+
+
 // Function to fetch data from the server and create club cards
 async function fetchchunkedClubs() {
   try {
@@ -115,84 +243,6 @@ async function fetchchunkedClubs() {
   }
 }
 
-
-document.addEventListener('DOMContentLoaded', function () {
-  console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
-
-  // Get the search input field and submit button elements
-  const searchInput = document.getElementById('search');
-  const submitButton = document.getElementById('submit');
-
-  // Add an event listener to the submit button
-  submitButton.addEventListener('click', async function (e) {
-      e.preventDefault(); // Prevent the form from submitting the traditional way
-console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
-      // Get the search term from the input field
-      const searchTerm = searchInput.value;
-console.log(searchTerm)
-      // Check if search term is empty
-      if (!searchTerm) {
-          alert('Please enter a search term.');
-          return;
-      }
-
-      try {
-          // Send an HTTP GET request to the search API endpoint
-          const response = await fetch(`/api/Club/search/${searchTerm}`);
-          const clubData = await response.json();
-          console.log(clubData)
-         
-
-          // Check if the response is OK (status code 200)
-          if (!response.ok) {
-              throw new Error('Failed to fetch search results');
-          }
-
-          // Parse the response JSON
-         // const results = await response.json();
-
-          // Display the search results in the results container
-          // const resultsContainer = document.getElementById('results-container');
-          
-
-          const resultsContainer = document.getElementById('results-container');
-          resultsContainer.innerHTML = ' ';
-
-          
-          const galleryContainer = document.getElementById('club-gallery');
-          galleryContainer.innerHTML = ' ';
-                    // Display results as cards
-                    clubData.forEach(club => {
-                        const card = document.createElement('div');
-                        card.classList.add('card'); // Add a card class for styling
-                        card.classList.add('gallery-item', 'grid-colum-span');
-                        // Populate the card with club information
-                        card.innerHTML = `
-                            <img src="${club.clubLogo}" alt="${club.clubName}" class="club-logo">
-                            <h3>${club.clubName}</h3>
-                            <p>${club.clubDescription}</p>
-                            <p>President: ${club.clubPresident}</p>
-                            <p>Vice President: ${club.clubVicePresident}</p>
-                        `;
-                  
-                        // Add the card to the results container
-                        resultsContainer.appendChild(card);
-
-                      })
-
-          // Create a list of results
-          // results.forEach((result) => {
-          //     const listItem = document.createElement('div');
-          //     listItem.textContent = result.clubName; // Customize this as needed
-          //     resultsContainer.appendChild(listItem);
-          // });
-
-      } catch (error) {
-          console.error('Error fetching search results:', error);
-          alert('An error occurred while fetching search results.');
-      }
-  });
-});
 
 
 // Fetch chunkedClubs when the page loads

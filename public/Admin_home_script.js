@@ -68,23 +68,19 @@ items.forEach(item => {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
+  console.log('search entered')
 
   // Get the search input field and submit button elements
   const searchInput = document.getElementById('search');
-  const search1=document.getElementById('sports');
-  const search2=document.getElementById('art');
   const submitButton = document.getElementById('submit');
 
   // Add an event listener to the submit button
   submitButton.addEventListener('click', async function (e) {
       e.preventDefault(); // Prevent the form from submitting the traditional way
-console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
+console.log('submitButton entered')
       // Get the search term from the input field
       const searchTerm = searchInput.value;
-      const searchTerm1=search1.value;
-      const searchTerm2=search2.value;
-console.log(searchTerm1)
+console.log(searchTerm)
       // Check if search term is empty
       // if (!searchTerm1) {
       //     alert('Please enter a search term.');
@@ -92,21 +88,33 @@ console.log(searchTerm1)
       // }
 
       try {
-          // Send an HTTP GET request to the search API endpoint
-          let x;
-
-if (typeof searchTerm !== 'undefined' && searchTerm !== '') {
-    x = searchTerm;
-}  
-else if (typeof searchTerm1 !== 'undefined' && searchTerm1 === 'engineering') {
-    x = searchTerm1;
-} 
-else if (typeof searchTerm2 !== 'undefined' && searchTerm2 === 'Art') {
-    x = searchTerm2;
-} 
-// else {
-//     x = 'art';
-// }
+        const checkedCategories = Array.from(document.querySelectorAll('input[name="category[]"]:checked'))
+          .map(checkbox => checkbox.value);
+      console.log('Checked categories:', checkedCategories);
+           // Determine the search term based on conditions using switch statement
+      let x;
+      switch (true) {
+          case (searchTerm !== ''):
+              x = searchTerm;
+              break;
+          case checkedCategories.includes('engineering'):
+              x = 'engineering';
+              break;
+          case checkedCategories.includes('bio'):
+              x = 'bio';
+              break;
+          case checkedCategories.includes('Art'):
+              x = 'Art';
+              break;
+          default:
+              if (checkedCategories.length > 0) {
+                  x = checkedCategories.join(', ');
+              } else {
+                  alert('Please enter a search term or select at least one category.');
+                  return;
+              }
+      }
+      console.log('Final search term:',x);
 
             console.log('x:',x);
           const response = await fetch(`/api/Club/search/${x}`);
