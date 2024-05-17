@@ -438,7 +438,7 @@ notifi-box a{
 /*Layout*/
 .mainGrid {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 20% 60% 20%;
   padding: 20px;
 }
 

@@ -93,8 +93,8 @@ console.log(searchTerm)
           case checkedCategories.includes('engineering'):
               x = 'engineering';
               break;
-          case checkedCategories.includes('bio'):
-              x = 'bio';
+          case checkedCategories.includes('fit'):
+              x = 'fit';
               break;
           case checkedCategories.includes('Art'):
               x = 'Art';
