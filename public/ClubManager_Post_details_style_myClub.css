@@ -491,6 +491,15 @@ notifi-box a{
 .clubNameDiv img{
   width: 140px;
 }
+
+#clubLogo{
+  width: 128px;
+  height: 128px;
+}
+
+#posterImg{
+  width: 397px;
+}
 /* edit button */
 
 /* =============================== */

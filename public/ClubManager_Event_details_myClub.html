@@ -92,83 +92,20 @@
         <h2>Notifications </h2>
 
 
-
-        <a href="">       <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (1).png" alt="img">
-            <div class="text">
-               <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">     <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">  
-            <img class = "box-icon" src="images/notfication1 (2).png" alt="img">
-            <div class="text">
-              <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">     <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (3).png" alt="img">
-            <div class="text">
-              <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">      <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (4).png" alt="img">
-            <div class="text">
-               <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">      <!-- Link to each subpage,for example : home,weekly activites ..... etc -->
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (5).png" alt="img">
-            <div class="text">
-              <h4 id="notfication=title">notfication type</h4>
-              <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-
-        <a href="">
-          <div class="notifi-item">
-            <img class = "box-icon" src="images/notfication1 (6).png" alt="img">
-            <div class="text">
-               <h4 id="notfication=title">notfication type</h4>
-               <p id="notfication-message">more text about the notfication type</p>
-            </div> 
-          </div>
-        </a>
-        
       </div>
     </div>
   
   <!--sidebar: end-->
 
   <!--home-section: start-->
-  <section class="home-section">
     <div class="grid"> <!--layout contaioner-->
 
       <!--All the comming classes' names are descriping themselves-->
 
       <!--Club section-->
       <div class="clubNameDiv">
-        <img src="images/club2-logo.png" class="clubNameImg" alt="">
-        <h3 class="clubNameImg">Club Name</h3>
-        <p class="clubNameInfo">some info</p>
+        <img src="images/club2-logo.png" class="clubNameImg" id="clubLogo" alt="">
+        <h3 class="clubNameImg" id="clubNameImg">Club Name</h3>
       </div>
 
       <!--Poster section-->
@@ -182,11 +119,7 @@
         <div class="titleDiv">
           <h3 class="title">Guests</h3>
         </div>
-        <h4 class="guestName">Guest 1: <span id="guestName1">Elon Musk</span><input id="edited-guestName1" style="display: none;"></h4>
-        <p class="contactInfo">Contact Info: <span id="guestContact1">random@email.com</span><input id="edited-guestContact1" style="display: none;"></p>
-        <br>
-        <h4 class="guestName">Guest 2: <span id="guestName2">Jeon Jung-kook</span><input id="edited-guestName2" style="display: none;"></h4>
-        <p class="contactInfo">Contact Info: <span id="guestContact2">random@email.com</span><input id="edited-guestContact2" style="display: none;"></p>
+        <h4 class="guestName" >Guest 1: <span id="guestName">Elon Musk</span><input id="edited-guestName1" style="display: none;"></h4>
         <br>
       </div>
 
@@ -194,9 +127,9 @@
       <div class="infoDiv">
         <div class="titleDiv">
           <h3 class="title">Information</h3>
-          
+
         </div>
-        <p class="InfoDate">Date: <span id="EventDate">10/3/2024</p></span><input id="edited-EventDate" style="display: none;" type="date">
+        <p class="InfoDate">Date: <span id="EventDate">10/3/2024</span><input id="edited-EventDate" style="display: none;" type="date"></p>
         <p class="infoTime">Time: <span id="EventTime">12:00 PM</span><input id="edited-EventTime" style="display: none;" type="time"></p>
         <p class="infoLocation">Location: <span id="EventLocation">Uskudar Central Campus</span><input id="edited-EventLocation" style="display: none;"></p>
       </div>
@@ -205,7 +138,6 @@
       <div class="descDiv">
         <div class="titleDiv">
           <h3 class="title">Description</h3>
-          
         </div>
         <p class="descP"> <span id="EventDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque molestiae unde porro ullam
           laborum sit quas debitis rerum, adipisci cupiditate, quasi nisi modi magnam quam et nostrum quos ducimus!
@@ -213,8 +145,8 @@
       </div>
 
 
-    </div> <!--layout container: end-->
 
+    </div> <!--layout container: end-->
 
     <div>
       <button id="edit-button">Edit</button>
@@ -223,14 +155,15 @@
     <!--Control buttons section-->
     <div class="ctrlButtons">
       <form action="">
-        <button class="deleteBtn">Delete Event <span class="deleteIcon">
+        <button class="deleteBtn" id="deleteBtn">Delete Event <span class="deleteIcon">
           🗑️
           </span></button>
-          <button class="saveBtn" id="save-button" style="display: none;" onclick="saveEdit()">Save Changes</button>
+        <button class="saveBtn" id="save-button" style="display: none;" onclick="saveEdit()">Save Changes</button>
       </form>
     </div>
 
     <!--home-section: End-->
+
 
     <script src="ClubManager_Event_details_myClub_script.js"></script>
 </body>

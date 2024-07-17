@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Sets the character encoding of the document to UTF-8, ensuring proper rendering of international characters and symbols -->
+  <meta charset="UTF-8">
+  <title>All Events</title>
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="Admin_all-events_style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Boxicons CDN Link, Used to load the icons -->
+  <script src="https://kit.fontawesome.com/14f233c83a.js" crossorigin="anonymous"></script>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="sidebar">
+
+    <div class="logo-details">
+      <img src="images/logo.png" class="icon">
+      <div class="logo_name">Club Mangment</div>
+      <i class='bx bx-menu' id="btn"></i> <!-- the class name is taken from boxicons website -->
+    </div>
+
+
+    <ul class="nav-list">
+      <li>
+        <a href="Admin_home.html">
+          <i class='bx bx-home'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+
+
+      <li>
+        <a href="Admin_weekly-Events.html">
+          <i class='bx bx-calendar-event'></i>
+          <span class="links_name">Weekly activities</span>
+        </a>
+        <span class="tooltip">Weekly activities</span>
+      </li>
+
+
+      <li>
+        <a href="Admin_Incoming_requessts.html">
+          <i class='bx bxl-telegram'></i>
+          <span class="links_name">Event Requests</span>
+        </a>
+        <span class="tooltip">Event Requests</span>
+      </li>
+
+
+      <li>
+        <a href="Admin_Incoming_post_requests.html">
+          <i class='bx bx-detail'></i>
+          <span class="links_name">Post Requests</span>
+        </a>
+        <span class="tooltip">Post Requests</span>
+      </li>
+
+
+      <li>
+        <a href="Admin_create_club_page.html">
+          <i class='bx bx-plus'></i>
+          <span class="links_name">Create Club</span>
+        </a>
+        <span class="tooltip">Create Club</span>
+      </li>
+
+
+      <li class="profile">
+        <div class="profile-details">
+          <img src="images/profile.png" alt="profileImg">
+          <div class="name_job">
+            <div class="name">Micheal salman</div>
+            <div class="job">Admin</div>
+          </div>
+        </div>
+        <div>
+          <a href="Admin_Log_in.html">
+            <i class='bx bx-log-out' id="log_out"></i>
+          </a>
+        </div>
+      </li>
+
+
+    </ul>
+  </div>
+
+  <!-- ======================================== -->
+
+  <!-- homesection start -->
+  <section class="home-section">
+    
+    <div class="nav-grid">
+      <div class="text">
+        All Events
+      </div>
+      
+      <div class="icon-1" onclick="toggleNotifi()">  <!-- notfication icon div -->
+        <img class = "notfication-icon" src="images/Notification-icon.png" alt="">
+      </div>
+      <div class="notifi-box" id="box">
+        <h2>Notifications </h2>
+      </div>
+    </div>
+
+  <main>
+
+    <div class="search-container">
+      <div class="date-container">
+         <input type="date" name="date" id="date" class="date-input">
+       </div>
+   
+   
+       
+        
+   
+   
+   
+        <div class="search-form-container">
+             <input type="text" class="input" placeholder="search" id="search">
+             <button type="submit" class="button" id="submit">Search</button>
+         </div>
+     </div>
+     <div class="gallery" id="results-container"></div>
+
+    <div class="gallery"id="event-gallery">
+
+    </div>
+    </main>
+  </div>
+  <script src="Admin_all-events_script.js"> </script>
+</body>
+</html>

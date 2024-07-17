@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Sets the character encoding of the document to UTF-8, ensuring proper rendering of international characters and symbols -->
+  <meta charset="UTF-8">
+  <title>New Event Request Form </title>
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="ClubManager_Create_New_Event_Page_style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Boxicons CDN Link, Used to load the icons -->
+  <script src="https://kit.fontawesome.com/14f233c83a.js" crossorigin="anonymous"></script>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="images/logo.png" class="icon">
+      <div class="logo_name">Club Mangment</div>
+      <i class='bx bx-menu' id="btn"></i> <!-- the class name is taken from boxicons website -->
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="ClubManager_home.html">
+          <i class='bx bx-home'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <a href="ClubManager_weekly-Events.html">
+          <i class='bx bx-calendar-event'></i>
+          <span class="links_name">Weekly activities</span>
+        </a>
+        <span class="tooltip">Weekly activities</span>
+      </li>
+      <li>
+        <a href="ClubManager_Club-Page_Myclub.html">
+          <i class='bx bx-bullseye'></i>
+          <span class="links_name">My Club</span>
+        </a>
+        <span class="tooltip">My Club</span>
+      </li>
+      <li>
+        <a href="ClubManager_create_post_page.html">
+          <i class='bx bxs-file-plus'></i>
+          <span class="links_name">Create Post</span>
+        </a>
+        <span class="tooltip">Create Post</span>
+      </li>
+      <li>
+        <a href="ClubManager_Create_New_Event_Page.html">
+          <i class='bx bx-add-to-queue'></i>
+          <span class="links_name">Create Event</span>
+        </a>
+        <span class="tooltip">Create Event</span>
+      </li>
+      <li class="profile">
+        <div class="profile-details">
+          <img src="images/profile.png" alt="profileImg">
+          <div class="name_job">
+            <div class="name">Micheal salman</div>
+            <div class="job">Club Manager</div>
+          </div>
+        </div>
+
+        <div>
+          <a href="Club_Manager_Log_In.html">
+            <i class='bx bx-log-out' id="log_out">
+
+            </i>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+
+  <!-- ======================================== -->
+
+  <!-- homesection start -->
+  <section class="home-section">
+    
+    <div class="nav-grid">
+      <div class="text">
+        New Event Request Form
+      </div>
+      
+      <div class="icon-1" onclick="toggleNotifi()">  <!-- notfication icon div -->
+        <img class = "notfication-icon" src="images/Notification-icon.png" alt="">
+      </div>
+      <div class="notifi-box" id="box">
+        <h2>Notifications </h2>
+
+      </div>
+    </div>
+
+     <!-- Event Form -->
+     <section class="Form">
+      <form id="form" action="/api/Event/newEvent" method="post" enctype="multipart/form-data">
+      <!-- Event Name -->
+      <div class="input">
+          <label for="eventName">Event Name</label>
+          <input class="text-input" type="text" id="eventName" name="eventName" required>
+      </div>
+      <!-- Event Date -->
+      <div class="input">
+          <label for="eventDate">Event Date</label>
+          <input class="text-input" type="date" id="eventDate" name="eventDate" required>
+      </div>
+      <!-- Event Time -->
+      <div class="input">
+          <label for="eventTime">Event Time</label>
+          <input class="text-input" type="time" id="eventTime" name="eventTime" required>
+      </div>
+      <!-- Event Place -->
+      <div class="input">
+          <label for="eventPlace">Event Place</label>
+          <input class="text-input" type="text" id="eventPlace" name="eventPlace" required>
+      </div>
+      <!-- Event Type -->
+      <div class="input">
+          <label for="eventType">Event Type</label>
+          <input class="text-input" type="text" id="eventType" name="eventType" required>
+      </div>
+      <!-- Event Speaker -->
+      <div class="input">
+          <label for="eventSpeaker">Event Speaker</label>
+          <input class="text-input" type="text" id="eventSpeaker" name="eventSpeaker">
+      </div>
+      <!-- Event Content -->
+      <div class="input">
+          <label for="eventContent">Event Content</label>
+          <textarea class="text-input" id="eventContent" name="eventContent" rows="4" required></textarea>
+      </div>
+      <!-- Event Special Service -->
+      <div class="input">
+          <label for="eventSpecialService">Event Special Service</label>
+          <input class="text-input" type="text" id="eventSpecialService" name="eventSpecialService">
+      </div>
+      <!-- Event Approval -->
+      <!-- <div class="input">
+          <label for="eventApproval">Event Approval</label>
+          <select id="eventApproval" name="eventApproval" required>
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+          </select>
+      </div> -->
+      <!-- Event Image Upload -->
+      <div class="input">
+          <label for="eventImage">Event Image</label>
+          <input type="file" id="eventImage" name="file">
+      </div>
+      <!-- Club Name -->
+      <div class="input">
+          <label for="clubName">Club Name</label>
+          <input class="text-input" type="text" id="clubName" name="clubName" required>
+      </div>
+      <!-- Submit Button -->
+      <div class="button-container">
+        <button class="cancel" id="cancel" type="button">Cancel</button>
+          <button class="accept" type="submit">Submit</button>
+      </div>
+  </form>
+</section>
+
+
+  </section>
+  <script src="ClubManager_Create_New_Event_Page_script.js"> </script>
+</body>
+</html>

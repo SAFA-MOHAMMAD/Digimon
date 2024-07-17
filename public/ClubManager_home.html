@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Sets the character encoding of the document to UTF-8, ensuring proper rendering of international characters and symbols -->
+  <meta charset="UTF-8">
+  <title>Homepage</title>
+  <!-- CSS Link -->
+  <link rel="stylesheet" href="ClubManager_home_style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Boxicons CDN Link, Used to load the icons -->
+  <script src="https://kit.fontawesome.com/14f233c83a.js" crossorigin="anonymous"></script>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="images/logo.png" class="icon">
+      <div class="logo_name">Club Mangment</div>
+      <i class='bx bx-menu' id="btn"></i> <!-- the class name is taken from boxicons website -->
+    </div>
+    <ul class="nav-list">
+      <li>
+        <a href="ClubManager_home.html">
+          <i class='bx bx-home'></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+      <li>
+        <a href="ClubManager_weekly-Events.html">
+          <i class='bx bx-calendar-event'></i>
+          <span class="links_name">Weekly activities</span>
+        </a>
+        <span class="tooltip">Weekly activities</span>
+      </li>
+      <li>
+        <a href="ClubManager_Club-Page_Myclub.html">
+          <i class='bx bx-bullseye'></i>
+          <span class="links_name">My Club</span>
+        </a>
+        <span class="tooltip">My Club</span>
+      </li>
+      <li>
+        <a href="ClubManager_create_post_page.html">
+          <i class='bx bxs-file-plus'></i>
+          <span class="links_name">Create Post</span>
+        </a>
+        <span class="tooltip">Create Post</span>
+      </li>
+      <li>
+        <a href="ClubManager_Create_New_Event_Page.html">
+          <i class='bx bx-add-to-queue'></i>
+          <span class="links_name">Create Event</span>
+        </a>
+        <span class="tooltip">Create Event</span>
+      </li>
+      <li class="profile">
+        <div class="profile-details">
+          <img src="images/profile.png" alt="profileImg">
+          <div class="name_job">
+            <div class="name">Micheal salman</div>
+            <div class="job">Club Manager</div>
+          </div>
+        </div>
+
+        <div>
+          <a href="/">
+            <i class='bx bx-log-out' id="log_out">
+
+            </i>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+   <!-- ======================================== -->
+
+  <!-- homesection start -->
+  <section class="home-section">
+    
+    <div class="nav-grid">
+      <div class="text">
+        Homepage
+      </div>
+      
+      <div class="icon-1" onclick="toggleNotifi()">  <!-- notfication icon div -->
+        <img class = "notfication-icon" src="images/Notification-icon.png" alt="">
+      </div>
+      <div class="notifi-box" id="box">
+        <h2>Notifications </h2>
+
+
+      </div>
+    </div>
+
+  <main>
+    <div class="search-container">
+      <div class="category-container">
+          <div class="select-btn">
+              <span class="btn-text">Select</span>
+              <span class="arrow-dwn">
+                  <i class="fa-solid fa-chevron-down"></i>
+              </span>
+          </div>
+  
+          <ul class="list-items">
+            <div>
+            <input type="checkbox" id="sports" name="category[]" value="engineering">
+            <label for="sports">engineering</label><br>
+          </div>
+          <div>
+            <input type="checkbox" id="music" name="category[]" value="fit">
+            <label for="music">fitness</label><br>
+          </div><div>
+            <input type="checkbox" id="art" name="category[]" value="Art">
+            <label for="art">Art</label><br>
+          </div>
+            <!-- Add more checkboxes as needed -->
+        </ul>
+
+      </div>
+  
+
+        <div class="search-form-container">
+          <input type="text" class="input" placeholder="Search" id="search" />
+          <button type="submit" class="button" id="submit">Search</button>
+      </div>
+     </div>
+
+     <!-- Add a div to display the search results -->
+  <div class="gallery" id="results-container"></div>
+  
+  
+     <div class="gallery" id="club-gallery">
+      <!-- Cards will be dynamically inserted here -->
+  </div>
+    </main>
+  </div>
+  <script src="ClubManager_home_script.js">
+  
+  </script>
+
+  
+</body>
+</html>

@@ -364,6 +364,15 @@ a {
   width: 140px;
 }
 
+#clubLogo{
+  width: 128px;
+  height: 128px;
+}
+
+#posterImg{
+  width: 397px;
+}
+
 /* Edit Button */
 .editBtn {
   border: none;

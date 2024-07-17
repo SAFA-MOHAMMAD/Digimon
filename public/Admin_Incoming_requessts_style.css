@@ -438,7 +438,7 @@ notifi-box a{
 /*Layout*/
 .mainGrid {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 20% 60% 20%;
   padding: 20px;
 }
 
@@ -447,6 +447,10 @@ notifi-box a{
   font-weight: 600;
 }
 
+.clubInfo img{
+  width: 128px;
+  height: 128px;
+}
 
 /* Buttons */
 .buttons {
@@ -518,6 +522,7 @@ border: none;
   margin: 20px;
   padding-bottom: 25px;
 }
+
 
 .nav-grid>.text {
   border-bottom: 10px  #000000;
